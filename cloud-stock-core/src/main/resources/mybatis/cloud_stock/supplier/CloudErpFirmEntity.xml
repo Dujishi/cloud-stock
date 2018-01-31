@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudErpFirmEntity" >
+
+  <sql id="Base_Column_List" >
+    id, app_id, key, erp_firm_name, is_delete, create_time, update_time
+  </sql>
+
+  <select id="getErpKeyByAppId" parameterType="String" resultType="String">
+    select `key` from cloud_erp_firm
+    where app_id = #{appId} and is_delete = 0
+  </select>
+
+  <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudErpFirmEntity"  useGeneratedKeys="true" keyProperty="id">
+    insert into cloud_erp_firm (app_id, `key`, erp_firm_name)
+    values (#{appId,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{erpFirmName,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudErpFirmEntity">
+    update cloud_erp_firm
+    <set >
+      <if test="appId != null" >
+        app_id = #{appId},
+      </if>
+      <if test="erpFirmName != null" >
+        erp_firm_name = #{erpFirmName},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <update id="deleteErpFirmById" parameterType="Integer" >
+    update cloud_erp_firm SET is_delete = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

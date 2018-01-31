@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.region.entity.CarCityDistrictEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.region.entity.CarCityDistrictEntity" >
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="city_id" property="cityId" jdbcType="INTEGER" />
+	<result column="name" property="name" jdbcType="VARCHAR" />
+	<result column="mark" property="mark" jdbcType="VARCHAR" />
+	<result column="coding" property="coding" jdbcType="INTEGER" />
+</resultMap>
+       
+<!-- car_city_district table all fields -->
+<sql id="Base_Column_List" >
+	 id, city_id, name, mark, coding
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id = #{id, jdbcType=INTEGER}
+	</if>
+	<if test="cityId != null" >
+	    and city_id = #{cityId, jdbcType=INTEGER}
+	</if>
+	 	<if test="name != null and name != ''" >
+	    and name = #{name, jdbcType=VARCHAR}
+	</if>
+	 	<if test="mark != null and mark != ''" >
+	    and mark = #{mark, jdbcType=VARCHAR}
+	</if>
+	<if test="coding != null" >
+	    and coding = #{coding, jdbcType=INTEGER}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityDistrictEntity" >
+  	insert into car_city_district(
+		id,
+		city_id,
+		name,
+		mark,
+		coding
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{cityId, jdbcType=INTEGER},
+		#{name, jdbcType=VARCHAR},
+		#{mark, jdbcType=VARCHAR},
+		#{coding, jdbcType=INTEGER}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityDistrictEntity" >
+	update car_city_district set 
+	<trim  suffixOverrides="," >
+		<if test="cityId != null  ">
+			city_id = #{cityId, jdbcType=INTEGER},
+		</if>
+		<if test="name != null  and name != '' ">
+			name = #{name, jdbcType=VARCHAR},
+		</if>
+		<if test="mark != null  and mark != '' ">
+			mark = #{mark, jdbcType=VARCHAR},
+		</if>
+		<if test="coding != null  ">
+			coding = #{coding, jdbcType=INTEGER},
+		</if>
+	</trim> 
+	where id = #{id, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityDistrictEntity">
+	delete from car_city_district where id = #{id}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityDistrictEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from car_city_district 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

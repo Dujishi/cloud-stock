@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.VinEpcResultEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.VinEpcResultEntity" >
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="vin" property="vin" jdbcType="VARCHAR" />
+	<result column="car_brand_name" property="carBrandName" jdbcType="VARCHAR" />
+	<result column="car_brand_factory" property="carBrandFactory" jdbcType="VARCHAR" />
+	<result column="car_series_name" property="carSeriesName" jdbcType="VARCHAR" />
+	<result column="displacement" property="displacement" jdbcType="VARCHAR" />
+	<result column="transmission" property="transmission" jdbcType="VARCHAR" />
+	<result column="model_year" property="modelYear" jdbcType="VARCHAR" />
+	<result column="car_model_name" property="carModelName" jdbcType="VARCHAR" />
+	<result column="source" property="source" jdbcType="VARCHAR" />
+	<result column="has_epc" property="hasEpc" jdbcType="BOOLEAN" />
+	<result column="has_model_data" property="hasModelData" jdbcType="BOOLEAN" />
+	<result column="is_valid" property="isValid" jdbcType="BOOLEAN" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+</resultMap>
+       
+<!-- vin_epc_result table all fields -->
+<sql id="Base_Column_List" >
+	 id, vin, car_brand_name, car_brand_factory, car_series_name, displacement, transmission, model_year, car_model_name, source, has_epc, has_model_data, is_valid, create_time, update_time
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id = #{id, jdbcType=INTEGER}
+	</if>
+	 	<if test="vin != null and vin != ''" >
+	    and vin = #{vin, jdbcType=VARCHAR}
+	</if>
+	 	<if test="carBrandName != null and carBrandName != ''" >
+	    and car_brand_name = #{carBrandName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="carBrandFactory != null and carBrandFactory != ''" >
+	    and car_brand_factory = #{carBrandFactory, jdbcType=VARCHAR}
+	</if>
+	 	<if test="carSeriesName != null and carSeriesName != ''" >
+	    and car_series_name = #{carSeriesName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="displacement != null and displacement != ''" >
+	    and displacement = #{displacement, jdbcType=VARCHAR}
+	</if>
+	 	<if test="transmission != null and transmission != ''" >
+	    and transmission = #{transmission, jdbcType=VARCHAR}
+	</if>
+	 	<if test="modelYear != null and modelYear != ''" >
+	    and model_year = #{modelYear, jdbcType=VARCHAR}
+	</if>
+	 	<if test="carModelName != null and carModelName != ''" >
+	    and car_model_name = #{carModelName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="source != null and source != ''" >
+	    and source = #{source, jdbcType=VARCHAR}
+	</if>
+	<if test="hasEpc != null" >
+	    and has_epc = #{hasEpc, jdbcType=BOOLEAN}
+	</if>
+	<if test="hasModelData != null" >
+	    and has_model_data = #{hasModelData, jdbcType=BOOLEAN}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=BOOLEAN}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinEpcResultEntity" >
+  	insert into vin_epc_result(
+		id,
+		vin,
+		car_brand_name,
+		car_brand_factory,
+		car_series_name,
+		displacement,
+		transmission,
+		model_year,
+		car_model_name,
+		source,
+		has_epc,
+		has_model_data,
+		is_valid
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{vin, jdbcType=VARCHAR},
+		#{carBrandName, jdbcType=VARCHAR},
+		#{carBrandFactory, jdbcType=VARCHAR},
+		#{carSeriesName, jdbcType=VARCHAR},
+		#{displacement, jdbcType=VARCHAR},
+		#{transmission, jdbcType=VARCHAR},
+		#{modelYear, jdbcType=VARCHAR},
+		#{carModelName, jdbcType=VARCHAR},
+		#{source, jdbcType=VARCHAR},
+		#{hasEpc, jdbcType=BOOLEAN},
+		#{hasModelData, jdbcType=BOOLEAN},
+		#{isValid, jdbcType=BOOLEAN}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinEpcResultEntity" >
+	update vin_epc_result set 
+	<trim  suffixOverrides="," >
+		<if test="vin != null  and vin != '' ">
+			vin = #{vin, jdbcType=VARCHAR},
+		</if>
+		<if test="carBrandName != null  and carBrandName != '' ">
+			car_brand_name = #{carBrandName, jdbcType=VARCHAR},
+		</if>
+		<if test="carBrandFactory != null  and carBrandFactory != '' ">
+			car_brand_factory = #{carBrandFactory, jdbcType=VARCHAR},
+		</if>
+		<if test="carSeriesName != null  and carSeriesName != '' ">
+			car_series_name = #{carSeriesName, jdbcType=VARCHAR},
+		</if>
+		<if test="displacement != null  and displacement != '' ">
+			displacement = #{displacement, jdbcType=VARCHAR},
+		</if>
+		<if test="transmission != null  and transmission != '' ">
+			transmission = #{transmission, jdbcType=VARCHAR},
+		</if>
+		<if test="modelYear != null  and modelYear != '' ">
+			model_year = #{modelYear, jdbcType=VARCHAR},
+		</if>
+		<if test="carModelName != null  and carModelName != '' ">
+			car_model_name = #{carModelName, jdbcType=VARCHAR},
+		</if>
+		<if test="source != null  and source != '' ">
+			source = #{source, jdbcType=VARCHAR},
+		</if>
+		<if test="hasEpc != null  ">
+			has_epc = #{hasEpc, jdbcType=BOOLEAN},
+		</if>
+		<if test="hasModelData != null  ">
+			has_model_data = #{hasModelData, jdbcType=BOOLEAN},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=BOOLEAN},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+	</trim> 
+	where id = #{id, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinEpcResultEntity">
+	delete from vin_epc_result where id = #{id}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinEpcResultEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from vin_epc_result 
+    <include refid="Where_Clause"/>
+</select>
+
+<select id="countInvokedToday" parameterType="string" resultType="int">
+	select count(*) from vin_epc_result where source=#{source} and date(create_time)=CURDATE()
+</select>
+  	
+</mapper>   

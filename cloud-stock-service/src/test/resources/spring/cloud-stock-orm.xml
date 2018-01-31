@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	">
+
+	<!-- 带路由功能的主从数据源 -->
+	<bean id="cloud_stock_dataSource" class="com.xiaoka.freework.data.datasource.RoutingDataSource">
+		<property name="masterSource">
+			<ref bean="cloud_stock_masterDataSource" />
+		</property>
+		<property name="slaveSources">
+			<list>
+				<ref bean="cloud_stock_slaveDataSource1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 事务管理器 -->
+	<bean id="transactionManager"
+		class="com.xiaoka.freework.data.datasource.RoutingDataSourceTransactionManager">
+		<property name="dataSource" ref="cloud_stock_dataSource"></property>
+	</bean>
+
+	<!-- 声明式注解事务配置 整个项目中只允许配置一个，多配无效-->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 事务模板 -->
+	<bean id="transactionTemplate"
+		  class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="cloud_stock_dataSource" />
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:mybatis/cloud_stock/**/*.xml</value>
+			</array>
+		</property>
+		<property name="plugins">
+			<array>
+				<bean id="tableSegInterceptor" class="com.xiaoka.cloud.stock.core.route.RouteInterceptor"/>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 定义mybatis操作模板类似hibernateTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="commonDao" class="com.xiaoka.freework.container.dao.CommonDaoFactoryBean">
+		<property name="sqlSessionFactory">
+			<ref bean="sqlSessionFactory" />
+		</property>
+	</bean>
+
+    <!-- =================================养车典典数据库（过度期间写法）================================= -->
+
+    <!-- 带路由功能的主从数据源 -->
+    <bean id="cddDataSource" class="com.xiaoka.freework.data.datasource.RoutingDataSource">
+        <property name="masterSource">
+            <ref bean="chediandian_masterDataSource" />
+        </property>
+        <property name="slaveSources">
+            <list>
+                <ref bean="chediandian_slaveDataSource1" />
+                <ref bean="chediandian_slaveDataSource2" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- 事务管理器 -->
+    <bean id="cddtransactionManager"
+          class="com.xiaoka.freework.data.datasource.RoutingDataSourceTransactionManager">
+        <property name="dataSource" ref="cddDataSource"></property>
+    </bean>
+
+    <!-- 创建SqlSessionFactory，同时指定数据源 -->
+    <bean id="cddsqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="cddDataSource"/>
+        <!-- Mybatis的配置文件位置，如果指定了该属性，那么会以该配置文件的内容作为配置信息构建对应的SqlSessionFactoryBuilder -->
+        <!-- 但是后RT续属性指定的内容会覆盖该配置文件里面指定的对应内容 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <!-- <property name="configurationProperties" ref="mybatisConfigurationProperties"/> -->
+        <!-- Mapper文件存放的位置，当我们的Mapper文件跟对应的Mapper接口处于同一位置的时候可以不用指定该属性的值 -->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath*:mybatis/chediandian/**/*.xml</value>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 定义mybatis操作模板类似hibernateTemplate -->
+    <bean id="cddsqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="cddsqlSessionFactory"/>
+    </bean>
+
+    <bean id="cddDao" class="com.xiaoka.freework.container.dao.CommonDaoFactoryBean">
+        <property name="sqlSessionFactory">
+            <ref bean="cddsqlSessionFactory"/>
+        </property>
+    </bean>
+
+    <!-- 事务模板 -->
+    <bean id="cddtransactionTemplate"
+          class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="cddtransactionManager"/>
+    </bean>
+
+    <!-- =================================系列生成器 ================================= -->
+
+    <!-- 系列生成器 -->
+    <bean id="tunnelServer" class="com.xiaoka.freework.common.net.tunnel.TunnelServerFactory">
+        <property name="port">
+            <value>10886</value>
+        </property>
+    </bean>
+</beans>

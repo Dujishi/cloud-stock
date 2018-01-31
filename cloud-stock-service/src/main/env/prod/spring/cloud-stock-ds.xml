@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/jee
+	http://www.springframework.org/schema/jee/spring-jee.xsd
+	">
+    <!-- =================================数据库================================= -->
+
+    <!-- 数据源 -->
+    <jee:jndi-lookup id="cloud_stock_masterDataSource" jndi-name="jdbc/cloud_stock_master"/>
+    <jee:jndi-lookup id="cloud_stock_slaveDataSource1" jndi-name="jdbc/cloud_stock_slave1"/>
+    <!--<jee:jndi-lookup id="cloud_stock_slaveDataSource2" jndi-name="jdbc/cloud_stock_slave2" />-->
+
+    <jee:jndi-lookup id="chediandian_masterDataSource" jndi-name="jdbc/ycdd_master" />
+    <jee:jndi-lookup id="chediandian_slaveDataSource1" jndi-name="jdbc/ycdd_slave1" />
+    <jee:jndi-lookup id="chediandian_slaveDataSource2" jndi-name="jdbc/ycdd_slave2" />
+
+</beans>

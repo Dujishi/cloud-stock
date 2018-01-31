@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartInfoEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartInfoEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="brand" property="brand" jdbcType="VARCHAR"/>
+        <result column="pid" property="pid" jdbcType="VARCHAR"/>
+        <result column="real_pid" property="realPid" jdbcType="VARCHAR"/>
+        <result column="pid_model" property="pidModel" jdbcType="VARCHAR"/>
+        <result column="pid_label" property="pidLabel" jdbcType="VARCHAR"/>
+        <result column="pid_remark" property="pidRemark" jdbcType="VARCHAR"/>
+        <result column="it_id" property="itId" jdbcType="VARCHAR"/>
+        <result column="num" property="num" jdbcType="VARCHAR"/>
+        <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- zero_part_info table all fields -->
+    <sql id="Base_Column_List">
+	 id, brand, pid, real_pid, pid_model, pid_label, pid_remark, it_id, num, img_url, is_valid, create_time, create_by, update_time, update_by, remark
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="brand != null and brand != ''">
+                    and brand = #{brand, jdbcType=VARCHAR}
+                </if>
+                <if test="pid != null and pid != ''">
+                    and pid = #{pid, jdbcType=VARCHAR}
+                </if>
+                <if test="realPid != null and realPid != ''">
+                    and real_pid = #{realPid, jdbcType=VARCHAR}
+                </if>
+                <if test="pidModel != null and pidModel != ''">
+                    and pid_model = #{pidModel, jdbcType=VARCHAR}
+                </if>
+                <if test="pidLabel != null and pidLabel != ''">
+                    and pid_label = #{pidLabel, jdbcType=VARCHAR}
+                </if>
+                <if test="pidRemark != null and pidRemark != ''">
+                    and pid_remark = #{pidRemark, jdbcType=VARCHAR}
+                </if>
+                <if test="itId != null and itId != ''">
+                    and it_id = #{itId, jdbcType=VARCHAR}
+                </if>
+                <if test="num != null and num != ''">
+                    and num = #{num, jdbcType=VARCHAR}
+                </if>
+                <if test="imgUrl != null and imgUrl != ''">
+                    and img_url = #{imgUrl, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+                <if test="remark != null and remark != ''">
+                    and remark = #{remark, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartInfoEntity">
+  	insert into zero_part_info(
+		id,
+		brand,
+		pid,
+		real_pid,
+		pid_model,
+		pid_label,
+		pid_remark,
+		it_id,
+		num,
+		img_url,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by,
+		remark
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{brand, jdbcType=VARCHAR},
+		#{pid, jdbcType=VARCHAR},
+		#{realPid, jdbcType=VARCHAR},
+		#{pidModel, jdbcType=VARCHAR},
+		#{pidLabel, jdbcType=VARCHAR},
+		#{pidRemark, jdbcType=VARCHAR},
+		#{itId, jdbcType=VARCHAR},
+		#{num, jdbcType=VARCHAR},
+		#{imgUrl, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR}
+	)
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartInfoEntity">
+        update zero_part_info set
+        <trim suffixOverrides=",">
+            <if test="brand != null  and brand != '' ">
+                brand = #{brand, jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null  and pid != '' ">
+                pid = #{pid, jdbcType=VARCHAR},
+            </if>
+            <if test="realPid != null  and realPid != '' ">
+                real_pid = #{realPid, jdbcType=VARCHAR},
+            </if>
+            <if test="pidModel != null  and pidModel != '' ">
+                pid_model = #{pidModel, jdbcType=VARCHAR},
+            </if>
+            <if test="pidLabel != null  and pidLabel != '' ">
+                pid_label = #{pidLabel, jdbcType=VARCHAR},
+            </if>
+            <if test="pidRemark != null  and pidRemark != '' ">
+                pid_remark = #{pidRemark, jdbcType=VARCHAR},
+            </if>
+            <if test="itId != null  and itId != '' ">
+                it_id = #{itId, jdbcType=VARCHAR},
+            </if>
+            <if test="num != null  and num != '' ">
+                num = #{num, jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl != null  and imgUrl != '' ">
+                img_url = #{imgUrl, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null  and remark != '' ">
+                remark = #{remark, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartInfoEntity">
+	delete from zero_part_info where id = #{id}
+</update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartInfoEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_part_info
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByConditions" parameterType="java.util.List"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from zero_part_info
+        <where>
+            <foreach collection="list" item="item" separator="OR" close=")" open="(" index="index">
+                (
+                brand = #{item.brand, jdbcType=VARCHAR}
+                AND
+                pid = #{item.pid, jdbcType=VARCHAR}
+                )
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into zero_part_info(
+        brand,
+        pid,
+        real_pid,
+        pid_model,
+        pid_label,
+        pid_remark,
+        it_id,
+        num,
+        img_url,
+        remark
+        ) values
+        <foreach collection="list" index="index" separator="," item="item">
+            (
+            #{item.brand, jdbcType=VARCHAR},
+            #{item.pid, jdbcType=VARCHAR},
+            #{item.realPid, jdbcType=VARCHAR},
+            #{item.pidModel, jdbcType=VARCHAR},
+            #{item.pidLabel, jdbcType=VARCHAR},
+            #{item.pidRemark, jdbcType=VARCHAR},
+            #{item.itId, jdbcType=VARCHAR},
+            #{item.num, jdbcType=VARCHAR},
+            #{item.imgUrl, jdbcType=VARCHAR},
+            #{item.remark, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateList" parameterType="java.util.List">
+        <foreach collection="list" index="index" separator=";" item="item">
+            UPDATE zero_part_info
+            SET pid_model=#{item.pidModel}, pid_label= #{item.pidLabel},
+            pid_remark = #{item.pidRemark}, it_id = #{item.itId},
+            num = #{item.num},img_url = #{item.imgUrl},
+            remark = #{item.remark}
+            WHERE brand = #{item.brand} AND pid = #{item.pid}
+        </foreach>
+    </update>
+
+</mapper>   

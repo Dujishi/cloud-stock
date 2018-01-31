@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelVinEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelVinEntity" >
+	<result column="vin" property="vin" jdbcType="VARCHAR" />
+	<result column="model_id" property="modelId" jdbcType="INTEGER" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- car_model_vin table all fields -->
+<sql id="Base_Column_List" >
+	 vin, model_id, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	 	<if test="vin != null and vin != ''" >
+	    and vin = #{vin, jdbcType=VARCHAR}
+	</if>
+	<if test="modelId != null" >
+	    and model_id = #{modelId, jdbcType=INTEGER}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelVinEntity" >
+  	insert into car_model_vin(
+		vin,
+		model_id,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{vin, jdbcType=VARCHAR},
+		#{modelId, jdbcType=INTEGER},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List" >
+  	insert into car_model_vin(
+		vin,
+		model_id,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+	<foreach collection="list" item="item" open="" close="" separator="),(">
+		#{item.vin, jdbcType=VARCHAR},
+		#{item.modelId, jdbcType=INTEGER},
+		#{item.isValid, jdbcType=INTEGER},
+		#{item.createTime, jdbcType=TIMESTAMP},
+		#{item.createBy, jdbcType=VARCHAR},
+		#{item.updateTime, jdbcType=TIMESTAMP},
+		#{item.updateBy, jdbcType=VARCHAR}
+	</foreach>
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelVinEntity" >
+	update car_model_vin set 
+	<trim  suffixOverrides="," >
+		<if test="modelId != null  ">
+			model_id = #{modelId, jdbcType=INTEGER},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where vin = #{vin, jdbcType=VARCHAR}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelVinEntity">
+	delete from car_model_vin where vin = #{vin}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelVinEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from car_model_vin 
+    <include refid="Where_Clause"/>
+</select>
+
+<select id="selectByVinModelIdList" parameterType="java.util.List" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List"/>
+	from car_model_vin
+	<where>
+		is_valid = 1 and
+		<foreach item="item" index="index" collection="list" open="(" separator="OR" close=")">
+			(vin =#{item.vin} AND model_id =#{item.modelId})
+		</foreach>
+	</where>
+</select>
+  	
+</mapper>   

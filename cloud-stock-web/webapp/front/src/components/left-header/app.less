@@ -1,0 +1,31 @@
+@import '../../assets/less/variable.less';
+
+.v-l-header {
+    overflow: hidden;
+}
+.v-l-header__tab {
+    position: relative;
+    a {
+        width: 100%;
+        height: 100px;
+        color: @color-header-text;
+        border-bottom: 1px solid @color-border-level3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        span{
+            display: block;
+
+            &:first-child{
+                font-size: 32px;
+                margin: 0 0 6px 0;
+            }
+        }
+
+        &.selected {
+            color: @color-primary;
+        }
+    }
+}

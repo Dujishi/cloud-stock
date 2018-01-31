@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+    <!--用户中心相关服务 -->
+    <dubbo:reference id="userCenterService"
+                     interface="com.xiaoka.platform.api.user.service.UserCenterService" lazy="true"/>
+    <dubbo:reference id="userLoginSOAService"
+                     interface="com.xiaoka.platform.api.user.service.UserLoginSOAService" layer="true"/>
+    <dubbo:reference id="loginSOAService"
+                     interface="com.xiaoka.platform.api.user.service.LoginSOAService" layer="true"/>
+    <dubbo:reference id="sendMessageService"
+                     interface="com.xiaoka.platform.api.tool.sms.message.SendMessageService" layer="true"/>
+
+    <!--商家相关服务-->
+    <dubbo:reference id="shopCareSoaService"
+                     interface="com.xiaoka.shop.care.soa.api.shop.ShopCareSoaService" layer="true"/>
+
+</beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+        <artifactId>cloud-stock-pom</artifactId>
+        <groupId>com.xiaoka.cloud-stock</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../cloud-stock-pom/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>cloud-stock-admin</artifactId>
+	<packaging>war</packaging>
+
+	<properties>
+		<xk.build.env>int</xk.build.env>
+        <xk.build.env.path>../${project.parent.artifactId}</xk.build.env.path>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.xiaoka.ups</groupId>
+			<artifactId>ups-client</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+		</dependency>
+    </dependencies>
+
+	<build>
+		<finalName>cs-admin</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>cs-admin</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

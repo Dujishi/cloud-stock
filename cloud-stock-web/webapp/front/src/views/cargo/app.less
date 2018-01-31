@@ -1,0 +1,348 @@
+@import '../../assets/less/variable.less';
+
+
+.cargo-page {
+    background-color: #f6f6f6;
+    padding: 0 0 80px 0;
+
+    .title-content {
+        
+
+        .title-bg {
+            height: 135px;
+            // background-image: linear-gradient(-180deg, #48485A 0%, #2C2C38 100%);
+            text-align: center;
+
+            .title-wrap {
+                max-width: 1400px;
+                background-image: linear-gradient(-180deg, #EEB18D 0%, #D06D69 75%);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 0 auto;
+                height: 100%;
+            }
+
+            .title-text {
+                margin: 0 0 0 20px;
+
+                p:nth-of-type(1) {
+                    font-size: 32px;
+                    color: #fff;
+                }
+
+                p:nth-of-type(2) {
+                    font-size: 12px;
+                    color: #fff;
+                    letter-spacing: 2px;
+                }
+            }
+
+            .title-img {
+                align-self: flex-end;
+
+                img {
+                    height: 100px;
+                }
+               
+            }
+        }
+
+        .cargo-menu-list {
+            padding: 0 30px;
+            margin: 0 auto;
+            max-width: 1400px;
+            font-size: 16px;
+            color: @color-text-normal;
+            background: #FFFFFF;
+            box-shadow: 0 1px 1px 0 rgba(200,200,200,0.50);
+
+            li {
+               display: inline-block; 
+               position: relative;
+               padding: 0 20px;    
+               cursor: pointer;
+
+                &:not(:last-of-type)::after {
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    top: 20px;
+                    right:0;
+                    width: 2px;
+                    height: 20px;
+                    background: #dfdfdf;
+                }
+
+               span {
+                   display: inline-block;
+                   padding: 23px 0;
+               }
+
+               .active {
+                    color: @color-primary;
+                    border-bottom: 2px solid @color-primary;
+               }
+
+               img {
+                   margin-left: 10px;
+                   vertical-align: baseline;
+               }
+            }
+        }
+    }
+
+    .cargo-box {
+        position: relative;
+        //margin: 30px 120px;
+        padding: 28px 30px;
+        min-height: 500px;
+        //min-width: 960px;
+        background: #FFFFFF;
+        box-shadow: 0 1px 6px 0 rgba(173,173,173,0.50);
+        max-width: 1400px;
+        min-width: 960px;
+        margin: 30px auto;
+
+        .no-data {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .cargo-title {
+                padding: 2px 18px;
+                font-size: 28px;
+                color: @color-text-dark;
+                background-color: #f5f5f5;
+                border: 1px solid #bbbbbb;
+                border-radius: 3px;
+                outline: none;
+
+            &[disabled="disabled"]{
+                padding: 2px 18px;
+                font-size: 28px;
+                color: @color-text-dark;
+                border: 0;
+                background-color: #fff;  
+            }
+
+            &:focus {
+                border-color:  @color-primary;
+            }
+        }
+
+        .cargo-title-span{
+            padding: 2px 18px;
+            font-size: 28px;
+            background-color: #fff;
+        }
+
+        .edit-img {
+            width: 24px;
+            cursor: pointer;
+        }
+
+        .cargo-info-box {
+            padding: 30px 0 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #EFEFEF;
+            border-top: 1px solid #EFEFEF;
+
+            .el-form-item {
+                display: inline-block;
+                
+                    .el-select {
+                    margin-bottom: 10px;
+                    width: 128px;
+                }
+
+                .common-input,.el-autocomplete{
+                    width: 248px;
+                    height: 40px;
+                }
+
+                .address-input {
+                    width: 560px;
+                }
+            } 
+        }
+
+        .part-table {
+            margin-top: 30px;
+
+            .price-column {
+                .cell {
+                    padding: 19px 10px;
+                    overflow: inherit;
+
+                    input {
+                        width: 60px;
+                    }
+                }
+            } 
+
+            tr:hover {
+                td {
+                    background-color: #fff!important;
+                }
+                background-color: #fff!important;
+            }
+
+            .del-part-btn {
+                cursor: pointer;
+            }
+            
+            .change-number-input {
+                width: 120px;
+            }
+
+            .part-total-price {
+                color: @color-primary;
+            }
+
+            // .change-part-price {
+            //     width: 100px;
+
+            //     input {
+            //         padding: 0;
+            //         height: 30px;
+            //         width: 100px;
+            //         border: 0;
+            //         background: #fff;
+
+            //         &:focus {
+            //             background: #bbbbbb;
+            //             border: 1px solid #f5f5f5;
+            //         }
+            //     }  
+            // }
+        }
+
+        .statistics-box {
+            margin-top: 30px;
+            overflow: hidden;
+
+            .add-part {
+                float: left;
+
+                h1 {
+                    display: inline-block;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                span {
+                    display: inline-block;
+                    margin-left: 10px;
+                    padding: 8px 12px;
+                    font-size: 12px;
+                    color: #333333;
+                    background: #FFFFFF;
+                    border: 1px solid #888D98;
+                    border-radius: 3px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: @color-primary;
+                        border: 1px solid @color-primary;
+                    }
+                }
+            }
+
+            .price-info-box {
+                float: right;
+                text-align: right;
+
+                .total-price {
+                    margin-left: 20px;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                .real-price {
+                    margin-left: 20px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: @color-primary;
+                }
+
+                .coupon-input {
+                    margin:24px 0;
+                    padding: 3px 20px;
+                    background: #FFFFFF;
+                    border: 1px solid #BBBBBB;
+                    border-radius: 3px;
+
+                    span {
+                        color: @color-primary;
+                    }
+
+                    input {
+                        width: 80px;
+                        outline: none;
+                        text-align: right;
+                        border: 0;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        .btn-box {
+            margin-top: 44px;
+            padding-top: 20px;
+            border-top: 1px solid #f9f9f9; 
+            text-align: center;
+            
+            button {
+                font-size: 14px;
+                padding: 9px 28px;
+                border-radius: 3px; 
+                cursor: pointer;
+                outline: none;
+            }
+
+            .save-btn {
+                margin-right: 20px;
+                background: @color-primary;
+                color: #fff;
+                border: 0;
+            }
+
+            .submit-btn {
+                background: #ffffff;
+                border: 1px solid #d8d8d8;
+            }
+        }
+
+        .add-part-modal {
+
+            .el-dialog--small {
+                width: 480px;
+            }
+
+            .el-form-item__content {
+                display: inline-block;
+                width: 240px;
+                margin-left: 0!important;
+            }
+
+            .save-btn {
+                background: @color-primary;
+                color: #fff;
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+
+            button:hover {
+                color: @color-primary;
+                border: 1px solid @color-primary;     
+            }
+
+            .el-select {
+                width: 100%;
+            }
+        }
+    }
+}

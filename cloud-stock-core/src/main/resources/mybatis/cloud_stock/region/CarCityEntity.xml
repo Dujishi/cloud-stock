@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.region.entity.CarCityEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.region.entity.CarCityEntity" >
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="name" property="name" jdbcType="VARCHAR" />
+	<result column="mark" property="mark" jdbcType="VARCHAR" />
+	<result column="code" property="code" jdbcType="VARCHAR" />
+	<result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+	<result column="bank_city" property="bankCity" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="BOOLEAN" />
+	<result column="frame_no" property="frameNo" jdbcType="INTEGER" />
+	<result column="engine_no" property="engineNo" jdbcType="INTEGER" />
+	<result column="violation_code" property="violationCode" jdbcType="VARCHAR" />
+	<result column="province" property="province" jdbcType="INTEGER" />
+	<result column="is_show" property="isShow" jdbcType="BOOLEAN" />
+	<result column="bank_city_valid" property="bankCityValid" jdbcType="BOOLEAN" />
+	<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+	<result column="query_violation_status" property="queryViolationStatus" jdbcType="INTEGER" />
+	<result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
+	<result column="coding" property="coding" jdbcType="INTEGER" />
+</resultMap>
+       
+<!-- car_city table all fields -->
+<sql id="Base_Column_List" >
+	 id, name, mark, code, area_code, bank_city, is_valid, frame_no, engine_no, violation_code, province, is_show, bank_city_valid, parent_id, query_violation_status, pinyin, coding
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id = #{id, jdbcType=INTEGER}
+	</if>
+	 	<if test="name != null and name != ''" >
+	    and name = #{name, jdbcType=VARCHAR}
+	</if>
+	 	<if test="mark != null and mark != ''" >
+	    and mark = #{mark, jdbcType=VARCHAR}
+	</if>
+	 	<if test="code != null and code != ''" >
+	    and code = #{code, jdbcType=VARCHAR}
+	</if>
+	 	<if test="areaCode != null and areaCode != ''" >
+	    and area_code = #{areaCode, jdbcType=VARCHAR}
+	</if>
+	 	<if test="bankCity != null and bankCity != ''" >
+	    and bank_city = #{bankCity, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=BOOLEAN}
+	</if>
+	<if test="frameNo != null" >
+	    and frame_no = #{frameNo, jdbcType=INTEGER}
+	</if>
+	<if test="engineNo != null" >
+	    and engine_no = #{engineNo, jdbcType=INTEGER}
+	</if>
+	 	<if test="violationCode != null and violationCode != ''" >
+	    and violation_code = #{violationCode, jdbcType=VARCHAR}
+	</if>
+	<if test="province != null" >
+	    and province = #{province, jdbcType=INTEGER}
+	</if>
+	<if test="isShow != null" >
+	    and is_show = #{isShow, jdbcType=BOOLEAN}
+	</if>
+	<if test="bankCityValid != null" >
+	    and bank_city_valid = #{bankCityValid, jdbcType=BOOLEAN}
+	</if>
+	<if test="parentId != null" >
+	    and parent_id = #{parentId, jdbcType=INTEGER}
+	</if>
+	<if test="queryViolationStatus != null" >
+	    and query_violation_status = #{queryViolationStatus, jdbcType=INTEGER}
+	</if>
+	 	<if test="pinyin != null and pinyin != ''" >
+	    and pinyin = #{pinyin, jdbcType=VARCHAR}
+	</if>
+	<if test="coding != null" >
+	    and coding = #{coding, jdbcType=INTEGER}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityEntity" >
+  	insert into car_city(
+		id,
+		name,
+		mark,
+		code,
+		area_code,
+		bank_city,
+		is_valid,
+		frame_no,
+		engine_no,
+		violation_code,
+		province,
+		is_show,
+		bank_city_valid,
+		parent_id,
+		query_violation_status,
+		pinyin,
+		coding
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{name, jdbcType=VARCHAR},
+		#{mark, jdbcType=VARCHAR},
+		#{code, jdbcType=VARCHAR},
+		#{areaCode, jdbcType=VARCHAR},
+		#{bankCity, jdbcType=VARCHAR},
+		#{isValid, jdbcType=BOOLEAN},
+		#{frameNo, jdbcType=INTEGER},
+		#{engineNo, jdbcType=INTEGER},
+		#{violationCode, jdbcType=VARCHAR},
+		#{province, jdbcType=INTEGER},
+		#{isShow, jdbcType=BOOLEAN},
+		#{bankCityValid, jdbcType=BOOLEAN},
+		#{parentId, jdbcType=INTEGER},
+		#{queryViolationStatus, jdbcType=INTEGER},
+		#{pinyin, jdbcType=VARCHAR},
+		#{coding, jdbcType=INTEGER}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityEntity" >
+	update car_city set 
+	<trim  suffixOverrides="," >
+		<if test="name != null  and name != '' ">
+			name = #{name, jdbcType=VARCHAR},
+		</if>
+		<if test="mark != null  and mark != '' ">
+			mark = #{mark, jdbcType=VARCHAR},
+		</if>
+		<if test="code != null  and code != '' ">
+			code = #{code, jdbcType=VARCHAR},
+		</if>
+		<if test="areaCode != null  and areaCode != '' ">
+			area_code = #{areaCode, jdbcType=VARCHAR},
+		</if>
+		<if test="bankCity != null  and bankCity != '' ">
+			bank_city = #{bankCity, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=BOOLEAN},
+		</if>
+		<if test="frameNo != null  ">
+			frame_no = #{frameNo, jdbcType=INTEGER},
+		</if>
+		<if test="engineNo != null  ">
+			engine_no = #{engineNo, jdbcType=INTEGER},
+		</if>
+		<if test="violationCode != null  and violationCode != '' ">
+			violation_code = #{violationCode, jdbcType=VARCHAR},
+		</if>
+		<if test="province != null  ">
+			province = #{province, jdbcType=INTEGER},
+		</if>
+		<if test="isShow != null  ">
+			is_show = #{isShow, jdbcType=BOOLEAN},
+		</if>
+		<if test="bankCityValid != null  ">
+			bank_city_valid = #{bankCityValid, jdbcType=BOOLEAN},
+		</if>
+		<if test="parentId != null  ">
+			parent_id = #{parentId, jdbcType=INTEGER},
+		</if>
+		<if test="queryViolationStatus != null  ">
+			query_violation_status = #{queryViolationStatus, jdbcType=INTEGER},
+		</if>
+		<if test="pinyin != null  and pinyin != '' ">
+			pinyin = #{pinyin, jdbcType=VARCHAR},
+		</if>
+		<if test="coding != null  ">
+			coding = #{coding, jdbcType=INTEGER},
+		</if>
+	</trim> 
+	where id = #{id, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityEntity">
+	delete from car_city where id = #{id}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.region.entity.CarCityEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from car_city 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

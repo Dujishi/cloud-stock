@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.VinSampleEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.VinSampleEntity" >
+	<result column="vin" property="vin" jdbcType="VARCHAR" />
+	<result column="car_brand_id" property="carBrandId" jdbcType="INTEGER" />
+	<result column="car_brand_name" property="carBrandName" jdbcType="VARCHAR" />
+	<result column="car_series_id" property="carSeriesId" jdbcType="INTEGER" />
+	<result column="car_series_name" property="carSeriesName" jdbcType="VARCHAR" />
+	<result column="car_model_id" property="carModelId" jdbcType="INTEGER" />
+	<result column="car_model_name" property="carModelName" jdbcType="VARCHAR" />
+	<result column="model_year" property="modelYear" jdbcType="VARCHAR" />
+	<result column="guide_price" property="guidePrice" jdbcType="VARCHAR" />
+	<result column="trust_rate" property="trustRate" jdbcType="INTEGER" />
+	<result column="is_valid" property="isValid" jdbcType="BOOLEAN" />
+	<result column="trust_rate_0" property="trustRate0" jdbcType="INTEGER" />
+	<result column="trust_rate_1" property="trustRate1" jdbcType="INTEGER" />
+	<result column="trust_rate_2" property="trustRate2" jdbcType="INTEGER" />
+	<result column="trust_rate_3" property="trustRate3" jdbcType="INTEGER" />
+	<result column="trust_rate_4" property="trustRate4" jdbcType="INTEGER" />
+	<result column="trust_rate_5" property="trustRate5" jdbcType="INTEGER" />
+	<result column="trust_rate_6" property="trustRate6" jdbcType="INTEGER" />
+	<result column="trust_rate_7" property="trustRate7" jdbcType="INTEGER" />
+	<result column="trust_rate_8" property="trustRate8" jdbcType="INTEGER" />
+	<result column="trust_rate_9" property="trustRate9" jdbcType="INTEGER" />
+	<result column="trust_rate_10" property="trustRate10" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+</resultMap>
+       
+<!-- vin_sample table all fields -->
+<sql id="Base_Column_List" >
+	 vin, car_brand_id, car_brand_name, car_series_id, car_series_name, car_model_id, car_model_name, model_year, guide_price, trust_rate, is_valid, trust_rate_0, trust_rate_1, trust_rate_2, trust_rate_3, trust_rate_4, trust_rate_5, trust_rate_6, trust_rate_7, trust_rate_8, trust_rate_9, trust_rate_10, create_time, update_time
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	 	<if test="vin != null and vin != ''" >
+	    and vin = #{vin, jdbcType=VARCHAR}
+	</if>
+	<if test="carBrandId != null" >
+	    and car_brand_id = #{carBrandId, jdbcType=INTEGER}
+	</if>
+	 	<if test="carBrandName != null and carBrandName != ''" >
+	    and car_brand_name = #{carBrandName, jdbcType=VARCHAR}
+	</if>
+	<if test="carSeriesId != null" >
+	    and car_series_id = #{carSeriesId, jdbcType=INTEGER}
+	</if>
+	 	<if test="carSeriesName != null and carSeriesName != ''" >
+	    and car_series_name = #{carSeriesName, jdbcType=VARCHAR}
+	</if>
+	<if test="carModelId != null" >
+	    and car_model_id = #{carModelId, jdbcType=INTEGER}
+	</if>
+	 	<if test="carModelName != null and carModelName != ''" >
+	    and car_model_name = #{carModelName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="modelYear != null and modelYear != ''" >
+	    and model_year = #{modelYear, jdbcType=VARCHAR}
+	</if>
+	 	<if test="guidePrice != null and guidePrice != ''" >
+	    and guide_price = #{guidePrice, jdbcType=VARCHAR}
+	</if>
+	<if test="trustRate != null" >
+	    and trust_rate = #{trustRate, jdbcType=INTEGER}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=BOOLEAN}
+	</if>
+	<if test="trustRate0 != null" >
+	    and trust_rate_0 = #{trustRate0, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate1 != null" >
+	    and trust_rate_1 = #{trustRate1, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate2 != null" >
+	    and trust_rate_2 = #{trustRate2, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate3 != null" >
+	    and trust_rate_3 = #{trustRate3, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate4 != null" >
+	    and trust_rate_4 = #{trustRate4, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate5 != null" >
+	    and trust_rate_5 = #{trustRate5, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate6 != null" >
+	    and trust_rate_6 = #{trustRate6, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate7 != null" >
+	    and trust_rate_7 = #{trustRate7, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate8 != null" >
+	    and trust_rate_8 = #{trustRate8, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate9 != null" >
+	    and trust_rate_9 = #{trustRate9, jdbcType=INTEGER}
+	</if>
+	<if test="trustRate10 != null" >
+	    and trust_rate_10 = #{trustRate10, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinSampleEntity" >
+  	insert into vin_sample(
+		vin,
+		car_brand_id,
+		car_brand_name,
+		car_series_id,
+		car_series_name,
+		car_model_id,
+		car_model_name,
+		model_year,
+		guide_price,
+		trust_rate,
+		is_valid,
+		trust_rate_0,
+		trust_rate_1,
+		trust_rate_2,
+		trust_rate_3,
+		trust_rate_4,
+		trust_rate_5,
+		trust_rate_6,
+		trust_rate_7,
+		trust_rate_8,
+		trust_rate_9,
+		trust_rate_10
+	) values (
+		#{vin, jdbcType=VARCHAR},
+		#{carBrandId, jdbcType=INTEGER},
+		#{carBrandName, jdbcType=VARCHAR},
+		#{carSeriesId, jdbcType=INTEGER},
+		#{carSeriesName, jdbcType=VARCHAR},
+		#{carModelId, jdbcType=INTEGER},
+		#{carModelName, jdbcType=VARCHAR},
+		#{modelYear, jdbcType=VARCHAR},
+		#{guidePrice, jdbcType=VARCHAR},
+		#{trustRate, jdbcType=INTEGER},
+		#{isValid, jdbcType=BOOLEAN},
+		#{trustRate0, jdbcType=INTEGER},
+		#{trustRate1, jdbcType=INTEGER},
+		#{trustRate2, jdbcType=INTEGER},
+		#{trustRate3, jdbcType=INTEGER},
+		#{trustRate4, jdbcType=INTEGER},
+		#{trustRate5, jdbcType=INTEGER},
+		#{trustRate6, jdbcType=INTEGER},
+		#{trustRate7, jdbcType=INTEGER},
+		#{trustRate8, jdbcType=INTEGER},
+		#{trustRate9, jdbcType=INTEGER},
+		#{trustRate10, jdbcType=INTEGER}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsertIgnore" parameterType="list" >
+	insert ignore into vin_sample(
+	vin,
+	car_brand_id,
+	car_brand_name,
+	car_series_id,
+	car_series_name,
+	car_model_id,
+	car_model_name,
+	model_year,
+	guide_price,
+	trust_rate,
+	is_valid,
+	trust_rate_0,
+	trust_rate_1,
+	trust_rate_2,
+	trust_rate_3,
+	trust_rate_4,
+	trust_rate_5,
+	trust_rate_6,
+	trust_rate_7,
+	trust_rate_8,
+	trust_rate_9,
+	trust_rate_10
+	) values
+	<foreach collection ="list" item="vinSample" index= "index" separator =",">
+		(
+		#{vinSample.vin, jdbcType=VARCHAR},
+		#{vinSample.carBrandId, jdbcType=INTEGER},
+		#{vinSample.carBrandName, jdbcType=VARCHAR},
+		#{vinSample.carSeriesId, jdbcType=INTEGER},
+		#{vinSample.carSeriesName, jdbcType=VARCHAR},
+		#{vinSample.carModelId, jdbcType=INTEGER},
+		#{vinSample.carModelName, jdbcType=VARCHAR},
+		#{vinSample.modelYear, jdbcType=VARCHAR},
+		#{vinSample.guidePrice, jdbcType=VARCHAR},
+		#{vinSample.trustRate, jdbcType=INTEGER},
+		#{vinSample.isValid, jdbcType=BOOLEAN},
+		#{vinSample.trustRate0, jdbcType=INTEGER},
+		#{vinSample.trustRate1, jdbcType=INTEGER},
+		#{vinSample.trustRate2, jdbcType=INTEGER},
+		#{vinSample.trustRate3, jdbcType=INTEGER},
+		#{vinSample.trustRate4, jdbcType=INTEGER},
+		#{vinSample.trustRate5, jdbcType=INTEGER},
+		#{vinSample.trustRate6, jdbcType=INTEGER},
+		#{vinSample.trustRate7, jdbcType=INTEGER},
+		#{vinSample.trustRate8, jdbcType=INTEGER},
+		#{vinSample.trustRate9, jdbcType=INTEGER},
+		#{vinSample.trustRate10, jdbcType=INTEGER}
+		)
+	</foreach>
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinSampleEntity" >
+	update vin_sample set 
+	<trim  suffixOverrides="," >
+		<if test="carBrandId != null  ">
+			car_brand_id = #{carBrandId, jdbcType=INTEGER},
+		</if>
+		<if test="carBrandName != null  and carBrandName != '' ">
+			car_brand_name = #{carBrandName, jdbcType=VARCHAR},
+		</if>
+		<if test="carSeriesId != null  ">
+			car_series_id = #{carSeriesId, jdbcType=INTEGER},
+		</if>
+		<if test="carSeriesName != null  and carSeriesName != '' ">
+			car_series_name = #{carSeriesName, jdbcType=VARCHAR},
+		</if>
+		<if test="carModelId != null  ">
+			car_model_id = #{carModelId, jdbcType=INTEGER},
+		</if>
+		<if test="carModelName != null  and carModelName != '' ">
+			car_model_name = #{carModelName, jdbcType=VARCHAR},
+		</if>
+		<if test="modelYear != null  and modelYear != '' ">
+			model_year = #{modelYear, jdbcType=VARCHAR},
+		</if>
+		<if test="guidePrice != null  and guidePrice != '' ">
+			guide_price = #{guidePrice, jdbcType=VARCHAR},
+		</if>
+		<if test="trustRate != null  ">
+			trust_rate = #{trustRate, jdbcType=INTEGER},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=BOOLEAN},
+		</if>
+		<if test="trustRate0 != null  ">
+			trust_rate_0 = #{trustRate0, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate1 != null  ">
+			trust_rate_1 = #{trustRate1, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate2 != null  ">
+			trust_rate_2 = #{trustRate2, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate3 != null  ">
+			trust_rate_3 = #{trustRate3, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate4 != null  ">
+			trust_rate_4 = #{trustRate4, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate5 != null  ">
+			trust_rate_5 = #{trustRate5, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate6 != null  ">
+			trust_rate_6 = #{trustRate6, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate7 != null  ">
+			trust_rate_7 = #{trustRate7, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate8 != null  ">
+			trust_rate_8 = #{trustRate8, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate9 != null  ">
+			trust_rate_9 = #{trustRate9, jdbcType=INTEGER},
+		</if>
+		<if test="trustRate10 != null  ">
+			trust_rate_10 = #{trustRate10, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+	</trim> 
+	where vin = #{vin, jdbcType=VARCHAR}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinSampleEntity">
+	delete from vin_sample where vin = #{vin}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.VinSampleEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from vin_sample 
+    <include refid="Where_Clause"/>
+</select>
+
+<select id="countVinSample" parameterType="map" resultType="int">
+	select count(*) from vin_sample
+	<where>
+	<trim  suffixOverrides="," >
+	<if test="trustRateColumn != null and trustRateColumn != ''" >
+		and ${trustRateColumn} is null
+	</if>
+	<if test="true" >
+		and is_valid=1
+	</if>
+	</trim>
+	</where>
+</select>
+
+<select id="selectVinSample" parameterType="map" resultMap="BaseResultMap">
+	select * from vin_sample
+	<where>
+		<trim  suffixOverrides="," >
+			<if test="trustRateColumn != null and trustRateColumn != ''" >
+				and ${trustRateColumn} is null
+			</if>
+			<if test="true" >
+				and is_valid=1
+			</if>
+		</trim>
+	</where>
+	<if test="start!=null">
+		LIMIT #{start}, #{offset};
+	</if>
+</select>
+  	
+</mapper>   

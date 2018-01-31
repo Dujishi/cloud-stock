@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.EpcRequestLogEntity" >
+
+  <sql id="Base_Column_List" >
+    id, service, method, args, status, cost, is_delete, create_time, update_time
+  </sql>
+
+  <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.EpcRequestLogEntity">
+    insert into epc_request_log (service, method, args, status, cost,  create_time, update_time )
+    values (#{service}, #{method}, #{args}, #{status}, #{cost}, #{createTime}, #{updateTime})
+  </insert>
+
+</mapper>

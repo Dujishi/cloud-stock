@@ -1,0 +1,49 @@
+@import '../../assets/less/variable.less';
+
+.v-account-sidebar {
+    .router-link-active {
+        color: @color-primary;
+    }
+}
+
+.v-account-sidebar__info {
+    padding: 20px 0;
+    border-bottom: 1px solid #DFDFDF;
+    text-align: center;
+}
+.v-account-sidebar__avatar {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background: #F6F6F6;
+    border-radius: 50%;
+    i {
+        position: absolute;
+        font-size: 36px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+.v-account-sidebar__name {
+    color: @color-text-dark;
+    margin: 10px 0 5px 0;
+}
+// .v-account-sidebar__role {
+//     margin: 0 auto;
+//     width: 80px;
+//     height: 20px;
+//     line-height: 20px;
+//     border-radius: 10px;
+//     text-align: center;
+//     background-image: linear-gradient(90deg, #EFA844 9%, #FA6456 82%);
+//     color: #fff;
+//     font-size: 12px;
+// }
+.v-account-sidebar__menu {
+    padding: 20px;
+    li {
+        padding: 10px 0;
+    }
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--供应商数据服务接口 -->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.supplier.CloudSupplierDataSoaService"
+                   ref="cloudSupplierDataSoaService"
+                   timeout="5000">
+    </dubbo:service>
+
+    <!--EPC数据服务接口 -->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.epc.SuperEpcSoaService" ref="superEpcSoaService"
+                   timeout="50000">
+    </dubbo:service>
+
+    <!--EPC数据服务接口 -->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.epc.SuperEpcFullCrawlSoaService"
+                   ref="superEpcFullCrawlSoaService"
+                   timeout="50000">
+    </dubbo:service>
+
+    <!-- 内部测试服务接口 -->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.test.ErpNatureTestSoaService" ref="erpNatureTestSoaService"
+                   timeout="5000">
+    </dubbo:service>
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.task.SpecialSupplierTaskSoaService"
+                   ref="specialSupplierTaskSoaService" timeout="5000"/>
+
+    <!--EPC数据服务接口 -->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.epc.CarModelPicMarkManageSoaService"
+                   ref="carModelPicMarkManageSoaService"
+                   timeout="50000">
+    </dubbo:service>
+
+    <!--本地DB与正时接口调用开关-->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.epc.EpcQueryRedisSoaService" ref="epcQueryRedisSoaService"
+                   timeout="5000">
+    </dubbo:service>
+
+    <!--总成图片测试耗时接口-->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.impl.test.EpcQueryTimeSoaService" ref="epcQueryTimeSoaService"
+                   timeout="5000">
+    </dubbo:service>
+
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.order.CsIndentOrderSoaService"
+                   ref="csIndentOrderSoaService"
+                   timeout="5000">
+    </dubbo:service>
+
+    <!-- 007采集的数据统一处理入口 -->
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.crawl.ZeroSevenDataGatherSoaService"
+                   ref="zeroSevenDataGatherSoaService"
+                   timeout="5000">
+    </dubbo:service>
+
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.crawl.ZeroDataCrawlerSoaService"
+                   ref="zeroDataCrawlerSoaService"
+                   timeout="5000">
+    </dubbo:service>
+
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.epc.EpcAggregateSoaService"
+                   ref="epcAggregateSoaService"
+                   timeout="5000">
+    </dubbo:service>
+
+    <dubbo:service interface="com.xiaoka.cloud.stock.soa.api.pay.PayNotifySoaService"
+                   ref="payNotifySoaService"
+                   timeout="5000">
+    </dubbo:service>
+</beans>

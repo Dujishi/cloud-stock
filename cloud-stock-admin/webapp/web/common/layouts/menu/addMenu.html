@@ -1,0 +1,59 @@
+<div ng-app="App" ng-controller="mainCtrlInfo">
+    <div>
+        <div class="padding-md">
+            <ul class="breadcrumb">
+                <li><span class="primary-font"><i class="icon-home"></i></span><a href="index.html"> Home</a></li>
+                <li>Form Elements</li>
+                <li>Form Validation</li>
+            </ul>
+
+            <div class="panel panel-orange " style="margin-bottom:5px;">
+                <div class="panel-heading" >新增菜单</div>
+                <div class="panel-body">
+                                <form class="form-horizontal" name="myForm" novalidate>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">菜单图标</label>
+                                        <div class="col-lg-4">
+                                            <input class="form-control input-sm" type="text" name="icon" ng-model="menu.icon" required>
+                                            <span style="color:red" ng-show="myForm.icon.$invalid && submitted">
+                                                <span ng-show="myForm.icon.$error.required">菜单图标是必须的。</span>
+                                            </span>
+                                        </div>
+                                        <label class="control-label col-lg-2">菜单代码</label>
+                                        <div class="col-lg-4">
+                                            <input class="form-control input-sm" type="text" name="code" ng-model="menu.code" required>
+                                            <span style="color:red" ng-show="myForm.code.$invalid && submitted">
+                                                <span ng-show="myForm.code.$error.required">菜单代码是必须的。</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">菜单名称</label>
+                                        <div class="col-lg-4">
+                                            <input class="form-control input-sm" type="text" name="title" ng-model="menu.title" required>
+                                            <span style="color:red" ng-show="myForm.title.$invalid && submitted">
+                                                <span ng-show="myForm.title.$error.required">菜单名称是必须的。</span>
+                                            </span>
+                                        </div>
+
+                                        <label class="control-label col-lg-2">菜单URL</label>
+                                        <div class="col-lg-4">
+                                            <input class="form-control input-sm" type="text" name="url" ng-model="menu.url">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-right m-top-md">
+                                        <button type="button" class="btn btn-info" ng-click="submitMenuInfo();" >提交</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- ./smart-widget-inner -->
+                </div><!-- /.col-->
+        </div><!-- /.padding-md -->
+    </div><!-- /main-container -->
+</div>
+<script>
+    seajs.use(['js/demo/menu/addMenu'],function () {
+        angular.bootstrap(document, ['App']);
+    });
+</script>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.order.entity.CsCustomerHintEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.order.entity.CsCustomerHintEntity" >
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="seller_code" property="sellerCode" jdbcType="VARCHAR" />
+	<result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+	<result column="contact" property="contact" jdbcType="VARCHAR" />
+	<result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+	<result column="province" property="province" jdbcType="VARCHAR" />
+	<result column="city" property="city" jdbcType="VARCHAR" />
+	<result column="district" property="district" jdbcType="VARCHAR" />
+	<result column="address" property="address" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="BOOLEAN" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+</resultMap>
+       
+<!-- cs_customer_hint table all fields -->
+<sql id="Base_Column_List" >
+	 id, seller_code, customer_name, contact, contact_phone, province, city, district, address, is_valid, create_by, create_time, update_by, update_time
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id = #{id, jdbcType=INTEGER}
+	</if>
+	 	<if test="sellerCode != null and sellerCode != ''" >
+	    and seller_code = #{sellerCode, jdbcType=VARCHAR}
+	</if>
+	 	<if test="customerName != null and customerName != ''" >
+	    and customer_name like "%"#{customerName, jdbcType=VARCHAR}"%"
+	</if>
+	 	<if test="contact != null and contact != ''" >
+	    and contact = #{contact, jdbcType=VARCHAR}
+	</if>
+	 	<if test="contactPhone != null and contactPhone != ''" >
+	    and contact_phone = #{contactPhone, jdbcType=VARCHAR}
+	</if>
+	 	<if test="province != null and province != ''" >
+	    and province = #{province, jdbcType=VARCHAR}
+	</if>
+	 	<if test="city != null and city != ''" >
+	    and city = #{city, jdbcType=VARCHAR}
+	</if>
+	 	<if test="district != null and district != ''" >
+	    and district = #{district, jdbcType=VARCHAR}
+	</if>
+	 	<if test="address != null and address != ''" >
+	    and address = #{address, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=BOOLEAN}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.order.entity.CsCustomerHintEntity" >
+  	insert into cs_customer_hint(
+		id,
+		seller_code,
+		customer_name,
+		contact,
+		contact_phone,
+		province,
+		city,
+		district,
+		address,
+		is_valid,
+		create_by,
+		create_time,
+		update_by,
+		update_time
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{sellerCode, jdbcType=VARCHAR},
+		#{customerName, jdbcType=VARCHAR},
+		#{contact, jdbcType=VARCHAR},
+		#{contactPhone, jdbcType=VARCHAR},
+		#{province, jdbcType=VARCHAR},
+		#{city, jdbcType=VARCHAR},
+		#{district, jdbcType=VARCHAR},
+		#{address, jdbcType=VARCHAR},
+		#{isValid, jdbcType=BOOLEAN},
+		#{createBy, jdbcType=VARCHAR},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.order.entity.CsCustomerHintEntity" >
+	update cs_customer_hint set 
+	<trim  suffixOverrides="," >
+		<if test="sellerCode != null  and sellerCode != '' ">
+			seller_code = #{sellerCode, jdbcType=VARCHAR},
+		</if>
+		<if test="customerName != null  and customerName != '' ">
+			customer_name = #{customerName, jdbcType=VARCHAR},
+		</if>
+		<if test="contact != null  and contact != '' ">
+			contact = #{contact, jdbcType=VARCHAR},
+		</if>
+		<if test="contactPhone != null  and contactPhone != '' ">
+			contact_phone = #{contactPhone, jdbcType=VARCHAR},
+		</if>
+		<if test="province != null  and province != '' ">
+			province = #{province, jdbcType=VARCHAR},
+		</if>
+		<if test="city != null  and city != '' ">
+			city = #{city, jdbcType=VARCHAR},
+		</if>
+		<if test="district != null  and district != '' ">
+			district = #{district, jdbcType=VARCHAR},
+		</if>
+		<if test="address != null  and address != '' ">
+			address = #{address, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=BOOLEAN},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+	</trim> 
+	where id = #{id, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.order.entity.CsCustomerHintEntity">
+	delete from cs_customer_hint where id = #{id}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.order.entity.CsCustomerHintEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from cs_customer_hint 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

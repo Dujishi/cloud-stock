@@ -1,0 +1,25 @@
+@import '../../assets/less/variable.less';
+
+.v-loading {
+    position: fixed;
+    left: 50%;
+    top: 80px;
+    margin-left: -150px;
+    width: 300px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #bfbfbf;
+    z-index: 10001;
+
+    .v-loading__text {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 10px;
+        color: #666;
+    }
+
+    .el-progress-bar__inner {
+        background-color: @color-primary;
+    }
+}

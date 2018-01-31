@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroMarketEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroMarketEntity" >
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="brand" property="brand" jdbcType="VARCHAR" />
+	<result column="market" property="market" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+	<result column="remark" property="remark" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- zero_market table all fields -->
+<sql id="Base_Column_List" >
+	 id, brand, market, is_valid, create_time, create_by, update_time, update_by, remark
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id = #{id, jdbcType=INTEGER}
+	</if>
+	 	<if test="brand != null and brand != ''" >
+	    and brand = #{brand, jdbcType=VARCHAR}
+	</if>
+	 	<if test="market != null and market != ''" >
+	    and market = #{market, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+	 	<if test="remark != null and remark != ''" >
+	    and remark = #{remark, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroMarketEntity" >
+  	insert into zero_market(
+		id,
+		brand,
+		market,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by,
+		remark
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{brand, jdbcType=VARCHAR},
+		#{market, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroMarketEntity" >
+	update zero_market set 
+	<trim  suffixOverrides="," >
+		<if test="brand != null  and brand != '' ">
+			brand = #{brand, jdbcType=VARCHAR},
+		</if>
+		<if test="market != null  and market != '' ">
+			market = #{market, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+		<if test="remark != null  and remark != '' ">
+			remark = #{remark, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where id = #{id, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroMarketEntity">
+	delete from zero_market where id = #{id}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroMarketEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from zero_market 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

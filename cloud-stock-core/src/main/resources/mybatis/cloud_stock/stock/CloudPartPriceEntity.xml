@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartPriceEntity">
+
+    <sql id="insert_columns">
+        part_id,c_part_id,part_name,oe_no,depot_id,c_depot_id,shop_id,cost_price,trade_price,insurance_price,repair_factory_price,repair_station_price,remark
+    </sql>
+
+    <select id="queryCloudPartPriceByConditionList" parameterType="java.util.List"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartPriceEntity">
+        SELECT *
+        FROM cloud_part_price
+        <where>
+            (
+            <foreach collection="list" separator="OR" index="index" item="item">
+                (c_part_id=#{item.cPartId} AND c_depot_id = #{item.cDepotId} AND shop_id = #{item.shopId})
+            </foreach>
+            )
+            AND is_valid = 0
+        </where>
+    </select>
+
+
+    <insert id="insertCloudPartsPriceEntities" parameterType="java.util.List">
+        INSERT INTO cloud_part_price(
+        <include refid="insert_columns"/>
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.partId},
+            #{item.cPartId},
+            #{item.partName},
+            #{item.oeNo},
+            #{item.depotId},
+            #{item.cDepotId},
+            #{item.shopId},
+            #{item.costPrice},
+            #{item.tradePrice},
+            #{item.insurancePrice},
+            #{item.repairFactoryPrice},
+            #{item.repairStationPrice},
+            #{item.remark})
+        </foreach>
+    </insert>
+
+    <update id="casUpdateCloudPartPriceEntities" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            UPDATE cloud_part_price
+            <set>
+                <if test="item.partName != null and item.partName !='' ">
+                    part_name = #{item.partName},
+                </if>
+                <if test="item.costPrice != null and item.costPrice !='' ">
+                    cost_price = #{item.costPrice},
+                </if>
+                <if test="item.tradePrice != null and item.tradePrice !='' ">
+                    trade_price = #{item.tradePrice},
+                </if>
+                <if test="item.insurancePrice != null and item.insurancePrice !='' ">
+                    insurance_price = #{item.insurancePrice},
+                </if>
+                <if test="item.repairFactoryPrice != null and item.repairFactoryPrice !='' ">
+                    repair_factory_price = #{item.repairFactoryPrice},
+                </if>
+                <if test="item.repairStationPrice != null and item.repairStationPrice !='' ">
+                    repair_station_price = #{item.repairStationPrice},
+                </if>
+                <if test="item.version != null and item.version !='' ">
+                    version=#{item.version}+1,
+                </if>
+            </set>
+            <where>
+                c_depot_id=#{item.cDepotId}
+                AND c_part_id=#{item.cPartId}
+                AND shop_id=#{item.shopId}
+                AND is_valid=0
+                AND IFNULL(#{item.version},0) = version
+            </where>
+        </foreach>
+    </update>
+
+    <select id="queryPartsPriceByPartIds" parameterType="java.util.List"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartPriceEntity">
+        SELECT *
+        FROM cloud_part_price
+        WHERE part_id in (
+        <foreach collection="list" item="item" separator="," index="index">
+            #{item}
+        </foreach>
+        )
+    </select>
+
+</mapper>

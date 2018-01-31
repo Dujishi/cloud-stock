@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierUserEntity" >
+
+  <sql id="Base_Column_List" >
+    id, supplier_id, phone, `name`, role_id, is_delete, create_time, update_time
+  </sql>
+
+  <select id="countByPhone" resultType="int" parameterType="String">
+    select COUNT(0)
+    from cloud_supplier_user
+    where phone = #{phone} AND is_delete = 0
+  </select>
+
+  <select id="selectById" resultType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierUserEntity" parameterType="Integer">
+    select
+    <include refid="Base_Column_List" />
+    from cloud_supplier_user
+    where id = #{id} AND is_delete = 0
+  </select>
+
+  <select id="selectByPhone" resultType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierUserEntity" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from cloud_supplier_user
+    where phone = #{phone} AND is_delete = 0 limit 1
+  </select>
+
+  <select id="selectBySupplierId" resultType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierUserEntity" parameterType="Integer">
+    select
+    <include refid="Base_Column_List" />
+    from cloud_supplier_user
+    where supplier_id = #{supplierId} AND is_delete = 0 ORDER BY role_id ASC
+  </select>
+
+  <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierUserEntity" >
+    insert into cloud_supplier_user (supplier_id, phone, `name`, role_id)
+    values (#{supplierId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER})
+  </insert>
+
+  <update id="update" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierUserEntity" >
+    update cloud_supplier_user
+    <set>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="name != null" >
+        `name` = #{name},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="deleteSupplierUser" parameterType="Integer" >
+    update cloud_supplier_user
+    set is_delete = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	<!-- =================================cloud_stock 数据库================================= -->
+
+	<bean id="cloud_stock_dataSourceConfig" abstract="true">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="username" value="${cloud_stock.jdbc.user}" />
+		<property name="password" value="${cloud_stock.jdbc.password}" />
+		<property name="initialSize" value="${cloud_stock.jdbc.initialPoolSize}" />
+		<property name="minIdle" value="1" />
+		<property name="maxActive" value="20" />
+		<property name="maxWait" value="60000" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<property name="filters" value="stat" />
+	</bean>
+
+	<bean id="cloud_stock_masterDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		parent="cloud_stock_dataSourceConfig" destroy-method="close">
+		<property name="url" value="${cloud_stock.jdbc.url.master}" />
+	</bean>
+	<bean id="cloud_stock_slaveDataSource1" class="com.alibaba.druid.pool.DruidDataSource"
+		parent="cloud_stock_dataSourceConfig" destroy-method="close">
+		<property name="url" value="${cloud_stock.jdbc.url.slave1}" />
+	</bean>
+
+	<!-- =================================车典典数据库（临时，过度写法）================================= -->
+
+	<bean id="chediandian_masterDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		  parent="cloud_stock_dataSourceConfig" destroy-method="close">
+		<property name="url" value="${chediandian.jdbc.url.master}" />
+	</bean>
+	<bean id="chediandian_slaveDataSource1" class="com.alibaba.druid.pool.DruidDataSource"
+		  parent="cloud_stock_dataSourceConfig" destroy-method="close">
+		<property name="url" value="${chediandian.jdbc.url.slave1}" />
+	</bean>
+	<bean id="chediandian_slaveDataSource2" class="com.alibaba.druid.pool.DruidDataSource"
+		  parent="cloud_stock_dataSourceConfig" destroy-method="close">
+		<property name="url" value="${chediandian.jdbc.url.slave2}" />
+	</bean>
+
+	<!--<bean id="cloud_stock_slaveDataSource2" class="com.alibaba.druid.pool.DruidDataSource"-->
+		<!--parent="cloud_stock_dataSourceConfig" destroy-method="close">-->
+		<!--<property name="url" value="${cloud_stock.jdbc.url.slave2}" />-->
+	<!--</bean>-->
+
+</beans>

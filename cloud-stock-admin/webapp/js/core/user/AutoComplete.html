@@ -1,0 +1,4 @@
+
+<el-select v-model="modelValue" filterable placeholder="用户名 / 花名" :filter-method="queryUserListByName" :disabled="disabled">
+    <el-option v-for="item in userList" :key="item.name" :label="item.nickName" :value="item.name"></el-option>
+ </el-select>

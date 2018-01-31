@@ -1,0 +1,47 @@
+@import '../variable.less';
+
+// .el-table thead {
+//     tr {
+//         background: #FBFBFB;
+//     }
+// }
+
+// .el-table td, 
+// .el-table th.is-leaf {
+//     border-bottom-color: #EFEFEF;
+// }
+// .el-table--enable-row-hover .el-table__body tr:hover>td {
+//     background-color: #F6F6F6;
+// }
+
+// .el-table thead {
+//     background: red;
+//     tr {
+//         background: #FBFBFB;
+//     }
+//     th {
+//         background: #FBFBFB;
+//         color: @color-text-light;
+//     }
+// }
+body {
+    .el-table {
+        color: @color-text-dark;
+    }
+}
+.el-table__header-wrapper thead div {
+    background: #FBFBFB;
+    color: @color-text-light;
+}
+.el-table__header-wrapper thead th {
+    background: #FBFBFB;
+}
+.el-table td, .el-table th.is-leaf {
+    border-bottom-color: #efefef;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color: #F6F6F6;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #FDFDFD;
+}

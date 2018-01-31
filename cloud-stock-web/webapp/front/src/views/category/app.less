@@ -1,0 +1,103 @@
+@import '../../assets/less/variable.less';
+
+.setItem(@color) {
+    border-color: @color;
+    .iconfont {
+        color: @color;
+    }
+    &:hover {
+        background: @color;
+        div {
+            color: #fff;
+        }
+        .iconfont {
+            color: #fff;
+        }
+    }
+}
+
+.category-page {
+    .empty {
+        text-align: center;
+        margin-top: 85px;
+    }
+    .model-result {
+        height: 50px;
+        padding: 9px 30px;
+        background: #FBFBFB;
+        font-size: 12px;
+        line-height: 32px;
+        strong {
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 20px;
+        }
+    }
+    .view-model-btn {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-right: 10px;
+        border-radius: 14px;
+    }
+    .list {
+        overflow: hidden;
+        padding-left: 30px;
+        padding-bottom: 30px;
+        li {
+            position: relative;
+            float: left;
+            text-align: center;
+            width: 160px;
+            height: 160px;
+            margin-right: 50px;
+            margin-top: 50px;
+            border: 1px solid #FF6B43;
+            box-shadow: 0 1px 6px 0 rgba(0,0,0,0.10);
+            border-radius: 4px;
+            cursor: pointer;
+            i.iconfont {
+                display: block;
+                margin-top: 32px;
+                margin-bottom: 10px;
+                font-size: 60px;
+            }
+            div {
+                font-size: 16px;
+                font-weight: bold;
+                color: #848C97;
+            }
+            // .item__bg {
+            //     position: absolute;
+            //     color: #FBFBFB;
+            //     font-size: 110px;
+            //     right: -20px;
+            //     bottom: -20px;
+            // }
+        }
+        .item-dongli {
+            .setItem(#26D1C1);
+        }
+        .item-biansu {
+            .setItem(#3BCCFF);
+        }
+        .item-dipan {
+            .setItem(#C1B300);
+        }
+        .item-waibu {
+            .setItem(#FF6B43);
+        }
+        .item-neibu {
+            .setItem(#3090D1);
+        }
+        .item-dianqi {
+            .setItem(#8DC63F);
+        }
+        .item-qita {
+            .setItem(#26D1C1);
+        }
+        .item-yuanchang {
+            .setItem(@color-primary);
+        }
+       
+    }
+}

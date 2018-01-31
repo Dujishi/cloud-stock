@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAccountEntity">
+
+    <!-- for accountResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAccountEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="supplier_id" property="supplierId" jdbcType="INTEGER"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="port" property="port" jdbcType="INTEGER"/>
+        <result column="real_ip" property="realIp" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- zero_account table all fields -->
+    <sql id="Base_Column_List">
+	 id,type, supplier_id,phone, password, ip,real_ip, port, is_valid, create_time, update_time
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="type != null">
+                    and type = #{type, jdbcType=INTEGER}
+                </if>
+                <if test="supplierId != null">
+                    and supplier_id = #{supplierId, jdbcType=INTEGER}
+                </if>
+                <if test="phone != null and phone != ''">
+                    and phone = #{phone, jdbcType=VARCHAR}
+                </if>
+                <if test="password != null and password != ''">
+                    and password = #{password, jdbcType=VARCHAR}
+                </if>
+                <if test="ip != null and ip != ''">
+                    and ip = #{ip, jdbcType=VARCHAR}
+                </if>
+                <if test="port != null">
+                    and port = #{port, jdbcType=INTEGER}
+                </if>
+                <if test="realIp != null and realIp != ''">
+                    and real_ip = #{realIp, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAccountEntity">
+        insert into zero_account(
+            id,
+            phone,
+            type,
+            supplier_id,
+            password,
+            ip,
+            port,
+            real_ip,
+            is_valid,
+            create_time,
+            update_time
+        ) values (
+            #{id, jdbcType=INTEGER},
+            #{type, jdbcType=INTEGER},
+            #{supplierId, jdbcType=INTEGER},
+            #{phone, jdbcType=VARCHAR},
+            #{password, jdbcType=VARCHAR},
+            #{ip, jdbcType=VARCHAR},
+            #{port, jdbcType=INTEGER},
+            #{realIp, jdbcType=VARCHAR},
+            #{isValid, jdbcType=INTEGER},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAccountEntity">
+        update zero_account set
+        <trim suffixOverrides=",">
+            <if test="type != null">
+                type = #{type, jdbcType=INTEGER},
+            </if>
+            <if test="supplierId != null">
+                supplier_id = #{supplierId, jdbcType=INTEGER},
+            </if>
+            <if test="phone != null  and phone != '' ">
+                phone = #{phone, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null  and password != '' ">
+                password = #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null  and ip != '' ">
+                ip = #{ip, jdbcType=VARCHAR},
+            </if>
+            <if test="port != null  ">
+                port = #{port, jdbcType=INTEGER},
+            </if>
+            <if test="realIp != null and realIp != ''">
+                real_ip = #{realIp, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAccountEntity">
+	  delete from zero_account where id = #{id}
+    </update>
+
+    <!-- for account查询 -->
+    <select id="select" resultMap="BaseResultMap" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAccountEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_account
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectProxyAccount" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_account
+        where is_valid = 1 and port IS NOT NULL and ip IS NOT NULL
+    </select>
+
+    <select id="accountAmount" resultType="Integer">
+        select count(0) from zero_account
+        where is_valid = 1
+    </select>
+
+    <select id="selectNoIp" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_account
+        where is_valid = 1 and real_ip IS NULL and port IS  NULL
+    </select>
+
+    <update id="updateErrorIp" parameterType="Integer">
+      update zero_account set ip = NULL,port = NULL
+      WHERE id = #{id}
+    </update>
+
+</mapper>   

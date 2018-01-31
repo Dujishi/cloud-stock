@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.xiaoka.cloud-stock</groupId>
+    <artifactId>cloud-stock-pom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!--<parent>-->
+        <!--<groupId>com.xiaoka.app</groupId>-->
+        <!--<artifactId>app-parent</artifactId>-->
+        <!--<version>2.0.0-SNAPSHOT</version>-->
+    <!--</parent>-->
+    <parent>
+        <groupId>com.xiaoka.app</groupId>
+        <artifactId>admin-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <!-- 当前为 POM 工程，其子工程的 ENV 路径共用当前 POM 工程的根目录 -->
+        <xk.build.env.path>../${project.parent.artifactId}</xk.build.env.path>
+        <xk.build.env>int</xk.build.env>
+        <jdk.version>1.8</jdk.version>
+        <xk.version.spring>4.2.5.RELEASE</xk.version.spring>
+        <jar.version.soa.api>0.0.1-SNAPSHOT</jar.version.soa.api>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.xiaoka.cloud-stock</groupId>
+                <artifactId>cloud-stock-soa-api</artifactId>
+                <version>0.0.2-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaoka.cloud-stock</groupId>
+                <artifactId>cloud-stock-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaoka.cloud-stock</groupId>
+                <artifactId>cloud-stock-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaoka.cloud-stock</groupId>
+                <artifactId>cloud-stock-soa-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaoka.cloud-stock</groupId>
+                <artifactId>cloud-stock-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>5.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>transport</artifactId>
+                <version>5.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.6</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>../cloud-stock-service</module>
+        <module>../cloud-stock-soa-api</module>
+        <module>../cloud-stock-soa-impl</module>
+        <module>../cloud-stock-web</module>
+        <module>../cloud-stock-core</module>
+    </modules>
+
+    <build>
+        <filters>
+            <filter>${xk.build.env.path}/env/${xk.build.env}.conf</filter>
+        </filters>
+    </build>
+
+</project>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardPartEntity" >
+
+<!-- sResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardPartEntity" >
+	<result column="standard_part_id" property="standardPartId" jdbcType="INTEGER" />
+	<result column="standard_part_name" property="standardPartName" jdbcType="VARCHAR" />
+	<result column="standard_part_brief_name" property="standardPartBriefName" jdbcType="VARCHAR" />
+	<result column="category_id" property="categoryId" jdbcType="INTEGER" />
+	<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+	<result column="assembly_id" property="assemblyId" jdbcType="INTEGER" />
+	<result column="assembly_name" property="assemblyName" jdbcType="VARCHAR" />
+	<result column="sub_assembly_id" property="subAssemblyId" jdbcType="INTEGER" />
+	<result column="sub_assembly_name" property="subAssemblyName" jdbcType="VARCHAR" />
+	<result column="remark" property="remark" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- standard_part table all fields -->
+<sql id="Base_Column_List" >
+	 standard_part_id, standard_part_name, standard_part_brief_name, category_id, category_name, assembly_id, assembly_name, sub_assembly_id, sub_assembly_name, remark, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+	is_valid = 1
+<trim  suffixOverrides="," >
+	<if test="standardPartId != null" >
+	    and standard_part_id = #{standardPartId, jdbcType=INTEGER}
+	</if>
+	 	<if test="standardPartName != null and standardPartName != ''" >
+	    and standard_part_name = #{standardPartName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="standardPartBriefName != null and standardPartBriefName != ''" >
+	    and standard_part_brief_name = #{standardPartBriefName, jdbcType=VARCHAR}
+	</if>
+	<if test="categoryId != null" >
+	    and category_id = #{categoryId, jdbcType=INTEGER}
+	</if>
+	 	<if test="categoryName != null and categoryName != ''" >
+	    and category_name = #{categoryName, jdbcType=VARCHAR}
+	</if>
+	<if test="assemblyId != null" >
+	    and assembly_id = #{assemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="assemblyName != null and assemblyName != ''" >
+	    and assembly_name = #{assemblyName, jdbcType=VARCHAR}
+	</if>
+	<if test="subAssemblyId != null" >
+	    and sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="subAssemblyName != null and subAssemblyName != ''" >
+	    and sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="remark != null and remark != ''" >
+	    and remark = #{remark, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardPartEntity" >
+  	insert into standard_part(
+		standard_part_id,
+		standard_part_name,
+		standard_part_brief_name,
+		category_id,
+		category_name,
+		assembly_id,
+		assembly_name,
+		sub_assembly_id,
+		sub_assembly_name,
+		remark,
+		create_by
+	) values (
+		#{standardPartId, jdbcType=INTEGER},
+		#{standardPartName, jdbcType=VARCHAR},
+		#{standardPartBriefName, jdbcType=VARCHAR},
+		#{categoryId, jdbcType=INTEGER},
+		#{categoryName, jdbcType=VARCHAR},
+		#{assemblyId, jdbcType=INTEGER},
+		#{assemblyName, jdbcType=VARCHAR},
+		#{subAssemblyId, jdbcType=INTEGER},
+		#{subAssemblyName, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR},
+		#{createBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List">
+	insert into standard_part(
+		standard_part_id,
+		standard_part_name,
+		standard_part_brief_name,
+		category_id,
+		category_name,
+		assembly_id,
+		assembly_name,
+		sub_assembly_id,
+		sub_assembly_name,
+		remark,
+		create_by
+	)
+	values
+	<foreach collection="list" item="item" index="index" separator=",">
+		(
+		#{item.standardPartId, jdbcType=INTEGER},
+		#{item.standardPartName, jdbcType=VARCHAR},
+		#{item.standardPartBriefName, jdbcType=VARCHAR},
+		#{item.categoryId, jdbcType=INTEGER},
+		#{item.categoryName, jdbcType=VARCHAR},
+		#{item.assemblyId, jdbcType=INTEGER},
+		#{item.assemblyName, jdbcType=VARCHAR},
+		#{item.subAssemblyId, jdbcType=INTEGER},
+		#{item.subAssemblyName, jdbcType=VARCHAR},
+		#{item.remark, jdbcType=VARCHAR},
+		#{item.createBy, jdbcType=VARCHAR}
+		)
+	</foreach>
+</insert>
+
+	<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardPartEntity" >
+	update standard_part set 
+	<trim  suffixOverrides="," >
+		<if test="standardPartName != null  and standardPartName != '' ">
+			standard_part_name = #{standardPartName, jdbcType=VARCHAR},
+		</if>
+		<if test="standardPartBriefName != null  and standardPartBriefName != '' ">
+			standard_part_brief_name = #{standardPartBriefName, jdbcType=VARCHAR},
+		</if>
+		<if test="categoryId != null  ">
+			category_id = #{categoryId, jdbcType=INTEGER},
+		</if>
+		<if test="categoryName != null  and categoryName != '' ">
+			category_name = #{categoryName, jdbcType=VARCHAR},
+		</if>
+		<if test="assemblyId != null  ">
+			assembly_id = #{assemblyId, jdbcType=INTEGER},
+		</if>
+		<if test="assemblyName != null  and assemblyName != '' ">
+			assembly_name = #{assemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="subAssemblyId != null  ">
+			sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER},
+		</if>
+		<if test="subAssemblyName != null  and subAssemblyName != '' ">
+			sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="remark != null  and remark != '' ">
+			remark = #{remark, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where standard_part_id = #{standardPartId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardPartEntity">
+	delete from standard_part where standard_part_id = #{standardPartId}
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardPartEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from standard_part 
+    <include refid="Where_Clause"/>
+</select>
+
+<!-- 查询 -->
+<select id="selectIdByIds" resultType="java.lang.Integer"  parameterType="java.util.List">
+	select
+	standard_part_id
+	from standard_part
+	where is_valid = 1 and
+	standard_part_id in
+	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		#{item}
+	</foreach>
+</select>
+
+<select id="getPartIdByNames"  resultMap="BaseResultMap" parameterType="java.util.List">
+	select
+	<include refid="Base_Column_List"/>
+	from standard_part
+	where is_valid = 1 and
+	<foreach item="item" index="index" collection="list" separator="or" >
+		standard_part_name like concat('%',#{item},'%')
+	</foreach>
+
+</select>
+
+</mapper>

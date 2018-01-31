@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSearchLogEntity" >
+
+  <sql id="Base_Column_List" >
+    id, supplier_id, user_id, search_type, content, is_delete, create_time, update_time
+  </sql>
+
+  <select id="selectLateLog" resultType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSearchLogEntity" parameterType="map" >
+    select
+    <include refid="Base_Column_List"/>
+    from cloud_search_log
+    where user_id = #{userId} AND search_type = #{searchType} AND is_delete = 0
+    <if test="content != null">
+      AND content = #{content}
+    </if>
+    ORDER BY create_time DESC limit 10
+  </select>
+
+  <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSearchLogEntity" >
+    insert into cloud_search_log (supplier_id, user_id, search_type, content)
+    values (#{supplierId}, #{userId}, #{searchType}, #{content})
+  </insert>
+
+  <update id="delete" parameterType="Integer">
+    update cloud_search_log set is_delete = 1
+    WHERE id = #{id}
+  </update>
+
+</mapper>

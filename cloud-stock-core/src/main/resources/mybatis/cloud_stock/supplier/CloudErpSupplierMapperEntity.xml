@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudErpSupplierMapperEntity" >
+
+  <sql id="Base_Column_List" >
+    id, erp_id, supplier_id, out_supplier_id, is_delete, create_time, update_time
+  </sql>
+
+  <select id="getSupplierId" parameterType="map" resultType="Integer">
+    select cesm.supplier_id from cloud_erp_firm cef
+    left join cloud_erp_supplier_mapper cesm on cef.id = cesm.erp_id
+    where cef.app_id = #{appId} and cesm.out_supplier_id = #{outSupplierId} and cef.is_delete = 0 and cesm.is_delete = 0
+  </select>
+
+  <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudErpSupplierMapperEntity" >
+    insert into cloud_erp_supplier_mapper (erp_id, supplier_id,out_supplier_id)
+    values ( #{erpId}, #{supplierId}, #{outSupplierId})
+  </insert>
+
+  <update id="update" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudErpSupplierMapperEntity">
+    update cloud_erp_supplier_mapper
+    <set >
+      <if test="erpId != null" >
+        erp_id = #{erpId},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId},
+      </if>
+      <if test="outSupplierId != null" >
+        out_supplier_id = #{outSupplierId},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

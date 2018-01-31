@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroBrandEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroBrandEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="brand" property="brand" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="uri" property="uri" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- zero_brand table all fields -->
+    <sql id="Base_Column_List">
+	 id, brand, name, uri, is_valid, create_time, create_by, update_time, update_by, remark
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="brand != null and brand != ''">
+                    and brand = #{brand, jdbcType=VARCHAR}
+                </if>
+                <if test="name != null and name != ''">
+                    and name = #{name, jdbcType=VARCHAR}
+                </if>
+                <if test="uri != null and uri != ''">
+                    and uri = #{uri, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+                <if test="remark != null and remark != ''">
+                    and remark = #{remark, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroBrandEntity">
+  	insert into zero_brand(
+		id,
+		brand,
+		name,
+		uri,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by,
+		remark
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{brand, jdbcType=VARCHAR},
+		#{name, jdbcType=VARCHAR},
+		#{uri, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR}
+	)
+</insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroBrandEntity">
+        update zero_brand set
+        <trim suffixOverrides=",">
+            <if test="brand != null  and brand != '' ">
+                brand = #{brand, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null  and name != '' ">
+                name = #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="uri != null  and uri != '' ">
+                uri = #{uri, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null  and remark != '' ">
+                remark = #{remark, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroBrandEntity">
+	delete from zero_brand where id = #{id}
+</update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroBrandEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_brand
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByBrands" parameterType="java.util.List"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_brand
+        <where>
+            brand IN
+            <foreach collection="list" separator="," open="(" close=")" index="index" item="item">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertList" parameterType="list">
+        insert into zero_brand(
+        id,
+        brand,
+        name,
+        uri,
+        is_valid,
+        create_time,
+        create_by,
+        update_time,
+        update_by,
+        remark
+        ) values
+        <foreach collection="list" separator="," index="index" item="item">
+            (
+            #{item.id, jdbcType=INTEGER},
+            #{item.brand, jdbcType=VARCHAR},
+            #{item.name, jdbcType=VARCHAR},
+            #{item.uri, jdbcType=VARCHAR},
+            #{item.isValid, jdbcType=INTEGER},
+            #{item.createTime, jdbcType=TIMESTAMP},
+            #{item.createBy, jdbcType=VARCHAR},
+            #{item.updateTime, jdbcType=TIMESTAMP},
+            #{item.updateBy, jdbcType=VARCHAR},
+            #{item.remark, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+</mapper>   

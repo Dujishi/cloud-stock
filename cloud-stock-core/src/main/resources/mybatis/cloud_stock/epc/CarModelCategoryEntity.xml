@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelCategoryEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelCategoryEntity" >
+	<result column="model_id" property="modelId" jdbcType="INTEGER" />
+	<result column="category_id" property="categoryId" jdbcType="INTEGER" />
+	<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+	<result column="assembly_id" property="assemblyId" jdbcType="INTEGER" />
+	<result column="assembly_name" property="assemblyName" jdbcType="VARCHAR" />
+	<result column="sub_assembly_id" property="subAssemblyId" jdbcType="INTEGER" />
+	<result column="sub_assembly_name" property="subAssemblyName" jdbcType="VARCHAR" />
+	<result column="type" property="type" jdbcType="INTEGER" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- car_model_category table all fields -->
+<sql id="Base_Column_List" >
+	 model_id, category_id, category_name, assembly_id, assembly_name, sub_assembly_id, sub_assembly_name, `type`, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+	is_valid = 1
+<trim  suffixOverrides="," >
+	<if test="modelId != null" >
+	    and model_id = #{modelId, jdbcType=INTEGER}
+	</if>
+	<if test="categoryId != null" >
+	    and category_id = #{categoryId, jdbcType=INTEGER}
+	</if>
+	 	<if test="categoryName != null and categoryName != ''" >
+	    and category_name = #{categoryName, jdbcType=VARCHAR}
+	</if>
+	<if test="assemblyId != null" >
+	    and assembly_id = #{assemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="assemblyName != null and assemblyName != ''" >
+	    and assembly_name = #{assemblyName, jdbcType=VARCHAR}
+	</if>
+	<if test="subAssemblyId != null" >
+	    and sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="subAssemblyName != null and subAssemblyName != ''" >
+	    and sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR}
+	</if>
+	<if test="type != null" >
+		and `type` = #{type, jdbcType=INTEGER}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelCategoryEntity" >
+  	insert into car_model_category(
+		model_id,
+		category_id,
+		category_name,
+		assembly_id,
+		assembly_name,
+		sub_assembly_id,
+		sub_assembly_name,
+		`type`,
+		create_by
+	) values (
+		#{modelId, jdbcType=INTEGER},
+		#{categoryId, jdbcType=INTEGER},
+		#{categoryName, jdbcType=VARCHAR},
+		#{assemblyId, jdbcType=INTEGER},
+		#{assemblyName, jdbcType=VARCHAR},
+		#{subAssemblyId, jdbcType=INTEGER},
+		#{subAssemblyName, jdbcType=VARCHAR},
+		#{type, jdbcType=INTEGER},
+		#{createBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List" >
+	insert into car_model_category(
+		model_id,
+		category_id,
+		category_name,
+		assembly_id,
+		assembly_name,
+		sub_assembly_id,
+		sub_assembly_name,
+		`type`,
+		create_by
+	)
+	values
+	<foreach collection="list" item="item" index="index" separator=",">
+		(
+		#{item.modelId, jdbcType=INTEGER},
+		#{item.categoryId, jdbcType=INTEGER},
+		#{item.categoryName, jdbcType=VARCHAR},
+		#{item.assemblyId, jdbcType=INTEGER},
+		#{item.assemblyName, jdbcType=VARCHAR},
+		#{item.subAssemblyId, jdbcType=INTEGER},
+		#{item.subAssemblyName, jdbcType=VARCHAR},
+		#{item.type, jdbcType=INTEGER},
+		#{item.createBy, jdbcType=VARCHAR}
+		)
+	</foreach>
+</insert>
+
+	<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelCategoryEntity" >
+	update car_model_category set 
+	<trim  suffixOverrides="," >
+		<if test="categoryId != null  ">
+			category_id = #{categoryId, jdbcType=INTEGER},
+		</if>
+		<if test="categoryName != null  and categoryName != '' ">
+			category_name = #{categoryName, jdbcType=VARCHAR},
+		</if>
+		<if test="assemblyId != null  ">
+			assembly_id = #{assemblyId, jdbcType=INTEGER},
+		</if>
+		<if test="assemblyName != null  and assemblyName != '' ">
+			assembly_name = #{assemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="subAssemblyId != null  ">
+			sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER},
+		</if>
+		<if test="subAssemblyName != null  and subAssemblyName != '' ">
+			sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="type != null  ">
+			`type` = #{type, jdbcType=INTEGER},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where model_id = #{modelId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelCategoryEntity">
+	delete from car_model_category where model_id = #{modelId}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelCategoryEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from car_model_category 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

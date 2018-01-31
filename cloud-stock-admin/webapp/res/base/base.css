@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+img {
+    border: 0;
+}
+body {
+    font-family: "Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif";
+    font-size: 12px;
+    color: #333;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  clear: both;
+}
+.left {
+    float: left !important;
+}
+.right {
+    float: right !important;
+}
+
+.ui-header {
+    position: relative;
+    background: #242f42;
+}
+.ui-userinfo {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+}
+.ui-userinfo-avatar {
+    color: #fff;
+}
+.ui-userinfo-avatar img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.ui-logo {
+    float: left;
+    margin-right: 50px;
+    line-height: 60px;
+    font-size: 22px;
+    padding: 0 20px;
+    color: #fff;
+}
+.ui-top-menu {
+    float: left;
+    background: #242f42;
+}
+.ui-sidebar {
+    position: absolute;
+    width: 200px;
+    bottom: 0;
+    left: 0;
+    top: 60px;
+    background: #324157;
+    overflow: auto;
+}
+.ui-content {
+    padding: 10px 20px;
+    position: absolute;
+    left: 0px;
+    right: 0;
+    top: 0px;
+    bottom: 0;
+    overflow: auto;
+}
+.ui-title {
+    background: #eef1f6;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+.ui-title-text {
+    float: left;
+    font-size: 16px;
+    line-height: 36px;
+	padding-right: 20px;
+}
+.ui-title-search {
+	vertical-align: middle;
+	padding-left: 20px;
+	float: left;
+    border-left: 1px dashed #ccc;
+    margin-bottom: 0px;
+}
+/* 样式覆盖 */
+.ui-title-search .el-form-item {
+    margin: 0px; 
+}
+.ui-title-actions {
+    float: right;
+}
+.ui-actions {
+    margin-top: 20px;
+}
+
+/* 全局 element 样式覆盖 */
+/* .el-form-item { */
+/*     margin: 10px 0px;  */
+/* } */
+/* 组件样式 */
+.fx-item-group {
+	background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 0px 6px 0px;
+    border: 1px solid rgb(209, 219, 229);
+    border-radius: 4px;
+    margin: 10px 0px 10px 0px;
+}
+.fx-item-group_header {
+    position: relative; top: 0px;
+    background: #fff; padding: 0px 8px 0px 8px;
+}
+.fx-item-group_body {
+	padding: 10px;
+}
+
+
+body .el-table__empty-block{
+	height: auto;
+	max-height: 100%;
+}
+body .el-dialog__body{
+	padding: 20px 20px;
+}
+body .el-form--label-top .el-form-item__label{
+	padding: 0 0 0px;
+}

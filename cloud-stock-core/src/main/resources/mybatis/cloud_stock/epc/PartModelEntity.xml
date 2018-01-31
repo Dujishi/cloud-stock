@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.PartModelEntity">
+
+
+    <sql id="insert_columns">
+        part_code,
+		brand_id,
+		brand_name,
+		make_id,
+		make_name,
+		series_id,
+		series_name,
+		model_id,
+		model_name,
+		structure,
+		type,
+		timer_type,
+		epc_no,
+		create_by,
+		update_by
+    </sql>
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.PartModelEntity">
+        <result column="part_code" property="partCode" jdbcType="VARCHAR"/>
+        <result column="brand_id" property="brandId" jdbcType="INTEGER"/>
+        <result column="brand_name" property="brandName" jdbcType="VARCHAR"/>
+        <result column="make_id" property="makeId" jdbcType="INTEGER"/>
+        <result column="make_name" property="makeName" jdbcType="VARCHAR"/>
+        <result column="series_id" property="seriesId" jdbcType="INTEGER"/>
+        <result column="series_name" property="seriesName" jdbcType="VARCHAR"/>
+        <result column="model_id" property="modelId" jdbcType="INTEGER"/>
+        <result column="model_name" property="modelName" jdbcType="VARCHAR"/>
+        <result column="structure" property="structure" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="timer_type" property="timerType" jdbcType="VARCHAR"/>
+        <result column="epc_no" property="epcNo" jdbcType="INTEGER"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- part_model table all fields -->
+    <sql id="Base_Column_List">
+	 part_code, brand_id, brand_name, make_id, make_name, series_id, series_name, model_id, model_name, structure, type, timer_type, epc_no, is_valid, create_time, create_by, update_time, update_by
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="partCode != null and partCode != ''">
+                    and part_code = #{partCode, jdbcType=VARCHAR}
+                </if>
+                <if test="brandId != null">
+                    and brand_id = #{brandId, jdbcType=INTEGER}
+                </if>
+                <if test="brandName != null and brandName != ''">
+                    and brand_name = #{brandName, jdbcType=VARCHAR}
+                </if>
+                <if test="makeId != null">
+                    and make_id = #{makeId, jdbcType=INTEGER}
+                </if>
+                <if test="makeName != null and makeName != ''">
+                    and make_name = #{makeName, jdbcType=VARCHAR}
+                </if>
+                <if test="seriesId != null">
+                    and series_id = #{seriesId, jdbcType=INTEGER}
+                </if>
+                <if test="seriesName != null and seriesName != ''">
+                    and series_name = #{seriesName, jdbcType=VARCHAR}
+                </if>
+                <if test="modelId != null">
+                    and model_id = #{modelId, jdbcType=INTEGER}
+                </if>
+                <if test="modelName != null and modelName != ''">
+                    and model_name = #{modelName, jdbcType=VARCHAR}
+                </if>
+                <if test="structure != null and structure != ''">
+                    and structure = #{structure, jdbcType=VARCHAR}
+                </if>
+                <if test="type != null and type != ''">
+                    and type = #{type, jdbcType=VARCHAR}
+                </if>
+                <if test="timerType != null and timerType != ''">
+                    and timer_type = #{timerType, jdbcType=VARCHAR}
+                </if>
+                <if test="epcNo != null">
+                    and epc_no = #{epcNo, jdbcType=INTEGER}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartModelEntity">
+  	insert into part_model(
+		part_code,
+		brand_id,
+		brand_name,
+		make_id,
+		make_name,
+		series_id,
+		series_name,
+		model_id,
+		model_name,
+		structure,
+		type,
+		timer_type,
+		epc_no,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{partCode, jdbcType=VARCHAR},
+		#{brandId, jdbcType=INTEGER},
+		#{brandName, jdbcType=VARCHAR},
+		#{makeId, jdbcType=INTEGER},
+		#{makeName, jdbcType=VARCHAR},
+		#{seriesId, jdbcType=INTEGER},
+		#{seriesName, jdbcType=VARCHAR},
+		#{modelId, jdbcType=INTEGER},
+		#{modelName, jdbcType=VARCHAR},
+		#{structure, jdbcType=VARCHAR},
+		#{type, jdbcType=VARCHAR},
+		#{timerType, jdbcType=VARCHAR},
+		#{epcNo, jdbcType=INTEGER},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into part_model(
+        <include refid="insert_columns"/>
+        )
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+            #{item.partCode},
+            #{item.brandId},
+            #{item.brandName},
+            #{item.makeId},
+            #{item.makeName},
+            #{item.seriesId},
+            #{item.seriesName},
+            #{item.modelId},
+            #{item.modelName},
+            #{item.structure},
+            #{item.type},
+            #{item.timerType},
+            #{item.epcNo},
+            #{item.createBy},
+            #{item.updateBy}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartModelEntity">
+        update part_model set
+        <trim suffixOverrides=",">
+            <if test="brandId != null  ">
+                brand_id = #{brandId, jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null  and brandName != '' ">
+                brand_name = #{brandName, jdbcType=VARCHAR},
+            </if>
+            <if test="makeId != null  ">
+                make_id = #{makeId, jdbcType=INTEGER},
+            </if>
+            <if test="makeName != null  and makeName != '' ">
+                make_name = #{makeName, jdbcType=VARCHAR},
+            </if>
+            <if test="seriesId != null  ">
+                series_id = #{seriesId, jdbcType=INTEGER},
+            </if>
+            <if test="seriesName != null  and seriesName != '' ">
+                series_name = #{seriesName, jdbcType=VARCHAR},
+            </if>
+            <if test="modelId != null  ">
+                model_id = #{modelId, jdbcType=INTEGER},
+            </if>
+            <if test="modelName != null  and modelName != '' ">
+                model_name = #{modelName, jdbcType=VARCHAR},
+            </if>
+            <if test="structure != null  and structure != '' ">
+                structure = #{structure, jdbcType=VARCHAR},
+            </if>
+            <if test="type != null  and type != '' ">
+                type = #{type, jdbcType=VARCHAR},
+            </if>
+            <if test="timerType != null  and timerType != '' ">
+                timer_type = #{timerType, jdbcType=VARCHAR},
+            </if>
+            <if test="epcNo != null  ">
+                epc_no = #{epcNo, jdbcType=INTEGER},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where part_code = #{partCode, jdbcType=VARCHAR}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartModelEntity">
+	delete from part_model where part_code = #{partCode}
+</update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartModelEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from part_model
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="queryPartModelListByCode" parameterType="java.lang.String"
+            resultType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartModelEntity">
+        SELECT *
+        FROM part_model
+        WHERE part_code = #{code} AND is_valid=1
+    </select>
+
+</mapper>   

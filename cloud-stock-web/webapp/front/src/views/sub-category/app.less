@@ -1,0 +1,102 @@
+@import '../../assets/less/variable.less';
+
+.sub-category-page {
+    .panel {
+        padding-left: 30px;
+    }
+    .change-category {
+        height: 50px;
+        padding: 7px 0;
+        border-bottom: 1px solid #EFEFEF;
+        .iconfont {
+            position: relative;
+            top: 4px;
+            font-size: 30px;
+            margin-right: 10px;
+        }
+        strong {
+            font-weight: bold;
+        }
+    }
+
+    .el-dropdown-link {
+        cursor: pointer;
+        color: @color-text-dark;
+        i {
+            color: #888D98;
+        }
+    }
+
+    .tab {
+        overflow: hidden;
+        padding: 13px;
+        line-height: 30px;
+        border-bottom: 1px solid #E8EDF0;
+        span {
+            float: left;
+            margin-right: 20px;
+            color: #AEAFAF;
+        }
+        a {
+            float: left;
+            margin-right: 60px;
+
+
+            &.selected {
+                color: @color-primary;
+                font-weight: bold;
+            }
+
+            &.is-spe{
+                display: block;
+                float: none;
+                border-bottom: 1px dotted #E8EDF0;
+                margin-right: 4px;
+                margin-left: 80px;
+            }
+        }
+    }
+
+    .list {
+        overflow: hidden;
+        margin-top: 30px;
+        li {
+            cursor: pointer;
+            float: left;
+            width: 24.2%;
+            margin-right: 1%;
+
+            &:nth-child(4n){
+                margin-right: 0;
+            }
+
+            margin-bottom: 30px;
+            img {
+                border: 1px solid #D8D8D8;
+                border-radius: 4px;
+                width: 240px;
+                height: 240px;
+            }
+            p {
+                font-size: 12px;
+                color: #848C97;
+                line-height: 18px;
+                margin-top: 7px;
+                height: 18px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            &:hover {
+                img {
+                    border-color: #A2A2A2;
+                    box-shadow: 0 1px 8px 0 rgba(0,0,0,0.10);
+                }
+                p {
+                    color: @color-text-dark;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,108 @@
+@import '../../assets/less/variable.less';
+.stock-page {
+
+    .money-symble::before {
+        content: "￥",
+    }
+
+    td {
+        position: relative;
+    }
+
+    .serial-number {
+        .icon-shouqing,
+            .icon-zanwu, {
+                position: absolute;
+                left: 0px;
+                top: 7px;
+                font-size: 60px;
+                color: @color-text-light;
+            }
+    }
+   
+    
+    .panel {
+        padding: 20px 30px 0 30px;
+
+        &.detailPanel {
+            padding: 0;
+        }
+    }
+    .table-hd {
+        .iconfont {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+        font-weight: bold;
+    }
+    .table-bd {
+        margin-top: 20px;
+        margin-bottom: 33px;
+    }
+    .el-table .cell, 
+    .el-table th>div {
+        padding-left: 0;
+        padding-right: 0;
+        line-height: 16px;
+    }
+
+    .el-table__expand-column {
+        .cell {
+            display: none;
+        }
+    }
+    .el-table__expanded-cell {
+        background: #FFF8F8;
+    }
+    .expand-row {
+        position: relative;
+        padding-left: 30px;
+        .expand-row__hd {
+            color: @color-primary;
+            font-weight: bold;
+        }
+        .expand-row__bd {
+            margin-top: 5px;
+            line-height: 28px;
+            overflow: hidden;
+        }
+        .expand-row__code {
+            display: inline-block;
+            border-radius: 14px;
+            background: #fff;
+            padding: 0 12px;
+            margin-right: 6px;
+        }
+        .expand-row__item {
+            float: left;
+        }
+        .vline {
+            position: relative;
+            top: 5px;
+            float: left;
+            height: 16px;
+            width: 1px;
+            background: #DFDFDF;
+            margin: 0 30px;
+        }
+    }
+
+    .el-table__expanded-cell {
+        box-shadow: none;
+        &:hover {
+            background-color: #FFF8F8 !important;
+        }
+    }
+
+    .row-sellout,
+    .row-none {
+        td {
+            position: relative;
+            background: #FFF8F8 !important;
+            &:nth-child(1),
+            &:nth-child(2) {
+                border-bottom-color: #FFF8F8;
+            }
+        }
+    }
+}

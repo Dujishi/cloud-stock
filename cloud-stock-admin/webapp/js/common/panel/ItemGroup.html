@@ -1,0 +1,9 @@
+
+<div class="fx-item-group" :style="borderStyle" >
+	<div :style="'line-height:0px; text-align:' + titleAlign" v-if="title">
+		<span class="fx-item-group_header" :style="headerStyle">{{title}}</span>
+	</div>
+	<div class="fx-item-group_body">
+		<slot></slot>
+	</div>
+</div>

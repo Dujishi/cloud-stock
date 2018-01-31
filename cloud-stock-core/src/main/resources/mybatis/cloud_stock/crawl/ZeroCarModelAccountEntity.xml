@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarModelAccountEntity">
+
+    <!-- for car model accountResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarModelAccountEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="brand" property="brand" jdbcType="VARCHAR"/>
+        <result column="car_model" property="carModel" jdbcType="VARCHAR"/>
+        <result column="market" property="market" jdbcType="VARCHAR"/>
+        <result column="year" property="year" jdbcType="VARCHAR"/>
+        <result column="engine" property="engine" jdbcType="VARCHAR"/>
+        <result column="gear_box" property="gearBox" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- zero_car_model_account table all fields -->
+    <sql id="Base_Column_List">
+	 id, phone, brand, car_model, market, year, engine, gear_box, is_valid, create_time, update_time
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="phone != null and phone != ''">
+                    and phone = #{phone, jdbcType=VARCHAR}
+                </if>
+                <if test="brand != null and brand != ''">
+                    and brand = #{brand, jdbcType=VARCHAR}
+                </if>
+                <if test="carModel != null and carModel != ''">
+                    and car_model = #{carModel, jdbcType=VARCHAR}
+                </if>
+                <if test="market != null and market != ''">
+                    and market = #{market, jdbcType=VARCHAR}
+                </if>
+                <if test="year != null and year != ''">
+                    and year = #{year, jdbcType=VARCHAR}
+                </if>
+                <if test="engine != null and engine != ''">
+                    and engine = #{engine, jdbcType=VARCHAR}
+                </if>
+                <if test="gearBox != null and gearBox != ''">
+                    and gear_box = #{gearBox, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarModelAccountEntity">
+        insert into zero_car_model_account(
+            phone,
+            brand,
+            car_model,
+            market,
+            year,
+            engine,
+            gear_box
+        ) values (
+            #{phone, jdbcType=VARCHAR},
+            #{brand, jdbcType=VARCHAR},
+            #{carModel, jdbcType=VARCHAR},
+            #{market, jdbcType=VARCHAR},
+            #{year, jdbcType=VARCHAR},
+            #{engine, jdbcType=VARCHAR},
+            #{gearBox, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarModelAccountEntity">
+        update zero_car_model_account set
+        <trim suffixOverrides=",">
+            <if test="phone != null  and phone != '' ">
+                phone = #{phone, jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null  and brand != '' ">
+                brand = #{brand, jdbcType=VARCHAR},
+            </if>
+            <if test="carModel != null  and carModel != '' ">
+                car_model = #{carModel, jdbcType=VARCHAR},
+            </if>
+            <if test="market != null  and market != '' ">
+                market = #{market, jdbcType=VARCHAR},
+            </if>
+            <if test="year != null  and year != '' ">
+                year = #{year, jdbcType=VARCHAR},
+            </if>
+            <if test="engine != null  and engine != '' ">
+                engine = #{engine, jdbcType=VARCHAR},
+            </if>
+            <if test="gearBox != null  and gearBox != '' ">
+                gear_box = #{gearBox, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarModelAccountEntity">
+	delete from zero_car_model_account where id = #{id}
+</update>
+
+    <!-- for car model account查询 -->
+    <select id="select" resultMap="BaseResultMap" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarModelAccountEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_car_model_account
+        <include refid="Where_Clause"/>
+    </select>
+
+</mapper>   

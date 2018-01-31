@@ -1,0 +1,79 @@
+@import '../../assets/less/variable.less';
+
+.v-login-dialog {
+
+    button.el-button:hover {
+        color: #fff;
+    }
+    .el-dialog {
+        width: 380px;
+    }
+    .el-dialog__header {
+        display: none;
+    }
+    .el-dialog__body {
+        padding: 28px 30px 45px 30px;
+    }
+    .hd {
+        border-bottom: 1px solid #DFDFDF;
+        h2 {
+            position: relative;
+            bottom: -1px;
+            float: left;
+            font-size: 24px;
+            color: @color-text-dark;
+            border-bottom: 2px solid @color-primary;
+            padding-bottom: 10px;
+        }
+    }
+    .bd {
+        margin-top: 30px;
+    }
+    .v-login-dialog__input {
+        position: relative;
+        .iconfont {
+            position: absolute;
+            z-index: 1;
+            left: 20px;
+            top: 50%;
+            margin-top: -9px;
+            font-size: 16px;
+            color: @color-text-light;
+        }
+        & + .v-login-dialog__input {
+            margin-top: 14px;
+        }
+    }
+
+    .ft {
+        margin-top: 47px;
+        .forget-pw {
+            color: @color-primary;
+            font-size: 12px;
+        }
+        .el-button {
+            display: block;
+            width: 100%;
+            border-radius: 24px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            margin-top: 18px;
+        }
+    }
+    
+    .el-input__inner {
+        height: 42px;
+        padding-left: 44px;
+        // padding: 6px 20px 6px 44px;
+        border-radius: 21px;
+    }
+
+    .v-login-dialog__close {
+        position: absolute;
+        font-size: 24px;
+        color: #fff;
+        right: -34px;
+        top: -34px;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardSubAssemblyEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardSubAssemblyEntity" >
+	<result column="sub_assembly_id" property="subAssemblyId" jdbcType="INTEGER" />
+	<result column="sub_assembly_name" property="subAssemblyName" jdbcType="VARCHAR" />
+	<result column="category_id" property="categoryId" jdbcType="INTEGER" />
+	<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+	<result column="assembly_id" property="assemblyId" jdbcType="INTEGER" />
+	<result column="assembly_name" property="assemblyName" jdbcType="VARCHAR" />
+	<result column="remark" property="remark" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- standard_sub_assembly table all fields -->
+<sql id="Base_Column_List" >
+	 sub_assembly_id, sub_assembly_name, category_id, category_name, assembly_id, assembly_name, remark, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+	is_valid = 1
+<trim  suffixOverrides="," >
+	<if test="subAssemblyId != null" >
+	    and sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="subAssemblyName != null and subAssemblyName != ''" >
+	    and sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR}
+	</if>
+	<if test="categoryId != null" >
+	    and category_id = #{categoryId, jdbcType=INTEGER}
+	</if>
+	 	<if test="categoryName != null and categoryName != ''" >
+	    and category_name = #{categoryName, jdbcType=VARCHAR}
+	</if>
+	<if test="assemblyId != null" >
+	    and assembly_id = #{assemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="assemblyName != null and assemblyName != ''" >
+	    and assembly_name = #{assemblyName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="remark != null and remark != ''" >
+	    and remark = #{remark, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardSubAssemblyEntity" >
+  	insert into standard_sub_assembly(
+		sub_assembly_id,
+		sub_assembly_name,
+		category_id,
+		category_name,
+		assembly_id,
+		assembly_name,
+		remark,
+		create_by
+	) values (
+		#{subAssemblyId, jdbcType=INTEGER},
+		#{subAssemblyName, jdbcType=VARCHAR},
+		#{categoryId, jdbcType=INTEGER},
+		#{categoryName, jdbcType=VARCHAR},
+		#{assemblyId, jdbcType=INTEGER},
+		#{assemblyName, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR},
+		#{createBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List" >
+	insert into standard_sub_assembly(
+	sub_assembly_id,
+	sub_assembly_name,
+	category_id,
+	category_name,
+	assembly_id,
+	assembly_name,
+	remark,
+	create_by
+	)
+	values
+	<foreach collection="list" item="item" index="index" separator=",">
+		(
+		#{item.subAssemblyId, jdbcType=INTEGER},
+		#{item.subAssemblyName, jdbcType=VARCHAR},
+		#{item.categoryId, jdbcType=INTEGER},
+		#{item.categoryName, jdbcType=VARCHAR},
+		#{item.assemblyId, jdbcType=INTEGER},
+		#{item.assemblyName, jdbcType=VARCHAR},
+		#{item.remark, jdbcType=VARCHAR},
+		#{item.createBy, jdbcType=VARCHAR}
+		)
+	</foreach>
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardSubAssemblyEntity" >
+	update standard_sub_assembly set 
+	<trim  suffixOverrides="," >
+		<if test="subAssemblyName != null  and subAssemblyName != '' ">
+			sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="categoryId != null  ">
+			category_id = #{categoryId, jdbcType=INTEGER},
+		</if>
+		<if test="categoryName != null  and categoryName != '' ">
+			category_name = #{categoryName, jdbcType=VARCHAR},
+		</if>
+		<if test="assemblyId != null  ">
+			assembly_id = #{assemblyId, jdbcType=INTEGER},
+		</if>
+		<if test="assemblyName != null  and assemblyName != '' ">
+			assembly_name = #{assemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="remark != null  and remark != '' ">
+			remark = #{remark, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardSubAssemblyEntity">
+	delete from standard_sub_assembly where sub_assembly_id = #{subAssemblyId}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardSubAssemblyEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from standard_sub_assembly 
+    <include refid="Where_Clause"/>
+</select>
+
+<!-- 查询 -->
+<select id="selectIdByIds" resultType="java.lang.Integer"  parameterType="java.util.List">
+	select
+	sub_assembly_id
+	from standard_sub_assembly
+	where is_valid = 1 and
+	sub_assembly_id in
+	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		#{item}
+	</foreach>
+</select>
+
+<!--根据大类id获取分总成-->
+<select id="selectSusAssemblyIdByCategoryId" parameterType="Integer" resultType="Integer">
+	SELECT ssa.sub_assembly_id
+	FROM standard_assembly sa LEFT JOIN standard_sub_assembly ssa ON sa.assembly_id=ssa.assembly_id
+	WHERE sa.category_id = #{categoryId} AND sa.is_valid = 1 AND ssa.is_valid = 1
+</select>
+
+</mapper>   

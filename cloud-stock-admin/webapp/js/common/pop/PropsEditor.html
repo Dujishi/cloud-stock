@@ -1,0 +1,26 @@
+<span id="fx-props-editor">
+	<el-popover ref="popover" placement="top" :width="width" trigger="click" v-model="popShow" @show="onPopShow">
+		<p style="text-align:center">
+			<template v-if="type=='select'">
+				<el-select v-model="inputValue" placeholder="请选择">
+					<el-option v-for="(value, key) in selectItems" :key="key" :label="value" :value="key"></el-option>
+				</el-select>
+			</template>
+			<template v-if="type=='input'">
+				<el-input ref="editorInput" v-model="inputValue" :autofocus="true" @focus="$event.currentTarget.select();" placeholder="请输入内容"></el-input>
+			</template>
+			<template v-if="type=='password'">
+				<el-input ref="editorInput" type="password" :autofocus="true" @focus="$event.currentTarget.select();" v-model="inputValue" placeholder="请输入内容"></el-input>
+			</template>
+			<template v-if="type=='date'">
+				<el-date-picker v-model="inputValue" type="date" placeholder="选择日期" :picker-options="params.datePickerOptions"></el-date-picker>
+			</template>
+		</p>
+		<div style="text-align: right; margin: 0; padding-top:10px;">
+		    <el-button size="mini" type="text" icon="el-icon-close" @click="popShow=false"></el-button>
+		    <el-button type="primary" size="mini" icon="el-icon-check" @click="submit"></el-button>
+		</div>
+	</el-popover>
+	<span :style="contentAlign"><slot>{{initValue}}</slot></span>
+	<span :style="iconAlign"><el-button type="text" icon="el-icon-edit" v-popover:popover></el-button></span>
+</span>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartPriceEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartPriceEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="brand" property="brand" jdbcType="VARCHAR"/>
+        <result column="pid" property="pid" jdbcType="VARCHAR"/>
+        <result column="channel" property="channel" jdbcType="VARCHAR"/>
+        <result column="factory_type" property="factoryType" jdbcType="VARCHAR"/>
+        <result column="cost_price" property="costPrice" jdbcType="VARCHAR"/>
+        <result column="eot_price" property="eotPrice" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="VARCHAR"/>
+        <result column="part_type" property="partType" jdbcType="VARCHAR"/>
+        <result column="mill" property="mill" jdbcType="VARCHAR"/>
+        <result column="location" property="location" jdbcType="VARCHAR"/>
+        <result column="amount" property="amount" jdbcType="VARCHAR"/>
+        <result column="origin" property="origin" jdbcType="VARCHAR"/>
+        <result column="supplier" property="supplier" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- zero_part_price table all fields -->
+    <sql id="Base_Column_List">
+	 id, brand, pid, channel, factory_type, cost_price, eot_price, price, part_type, mill, location, amount, origin, supplier, is_valid, create_time, create_by, update_time, update_by, remark
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="brand != null and brand != ''">
+                    and brand = #{brand, jdbcType=VARCHAR}
+                </if>
+                <if test="pid != null and pid != ''">
+                    and pid = #{pid, jdbcType=VARCHAR}
+                </if>
+                <if test="channel != null and channel != ''">
+                    and channel = #{channel, jdbcType=VARCHAR}
+                </if>
+                <if test="factoryType != null and factoryType != ''">
+                    and factory_type = #{factoryType, jdbcType=VARCHAR}
+                </if>
+                <if test="costPrice != null and costPrice != ''">
+                    and cost_price = #{costPrice, jdbcType=VARCHAR}
+                </if>
+                <if test="eotPrice != null and eotPrice != ''">
+                    and eot_price = #{eotPrice, jdbcType=VARCHAR}
+                </if>
+                <if test="price != null and price != ''">
+                    and price = #{price, jdbcType=VARCHAR}
+                </if>
+                <if test="partType != null and partType != ''">
+                    and part_type = #{partType, jdbcType=VARCHAR}
+                </if>
+                <if test="mill != null and mill != ''">
+                    and mill = #{mill, jdbcType=VARCHAR}
+                </if>
+                <if test="location != null and location != ''">
+                    and location = #{location, jdbcType=VARCHAR}
+                </if>
+                <if test="amount != null and amount != ''">
+                    and amount = #{amount, jdbcType=VARCHAR}
+                </if>
+                <if test="origin != null and origin != ''">
+                    and origin = #{origin, jdbcType=VARCHAR}
+                </if>
+                <if test="supplier != null and supplier != ''">
+                    and supplier = #{supplier, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+                <if test="remark != null and remark != ''">
+                    and remark = #{remark, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartPriceEntity">
+  	insert into zero_part_price(
+		id,
+		brand,
+		pid,
+		channel,
+		factory_type,
+		cost_price,
+		eot_price,
+		price,
+		part_type,
+		mill,
+		location,
+		amount,
+		origin,
+		supplier,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by,
+		remark
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{brand, jdbcType=VARCHAR},
+		#{pid, jdbcType=VARCHAR},
+		#{channel, jdbcType=VARCHAR},
+		#{factoryType, jdbcType=VARCHAR},
+		#{costPrice, jdbcType=VARCHAR},
+		#{eotPrice, jdbcType=VARCHAR},
+		#{price, jdbcType=VARCHAR},
+		#{partType, jdbcType=VARCHAR},
+		#{mill, jdbcType=VARCHAR},
+		#{location, jdbcType=VARCHAR},
+		#{amount, jdbcType=VARCHAR},
+		#{origin, jdbcType=VARCHAR},
+		#{supplier, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR}
+	)
+</insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartPriceEntity">
+        update zero_part_price set
+        <trim suffixOverrides=",">
+            <if test="brand != null  and brand != '' ">
+                brand = #{brand, jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null  and pid != '' ">
+                pid = #{pid, jdbcType=VARCHAR},
+            </if>
+            <if test="channel != null  and channel != '' ">
+                channel = #{channel, jdbcType=VARCHAR},
+            </if>
+            <if test="factoryType != null  and factoryType != '' ">
+                factory_type = #{factoryType, jdbcType=VARCHAR},
+            </if>
+            <if test="costPrice != null  and costPrice != '' ">
+                cost_price = #{costPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="eotPrice != null  and eotPrice != '' ">
+                eot_price = #{eotPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="price != null  and price != '' ">
+                price = #{price, jdbcType=VARCHAR},
+            </if>
+            <if test="partType != null  and partType != '' ">
+                part_type = #{partType, jdbcType=VARCHAR},
+            </if>
+            <if test="mill != null  and mill != '' ">
+                mill = #{mill, jdbcType=VARCHAR},
+            </if>
+            <if test="location != null  and location != '' ">
+                location = #{location, jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null  and amount != '' ">
+                amount = #{amount, jdbcType=VARCHAR},
+            </if>
+            <if test="origin != null  and origin != '' ">
+                origin = #{origin, jdbcType=VARCHAR},
+            </if>
+            <if test="supplier != null  and supplier != '' ">
+                supplier = #{supplier, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null  and remark != '' ">
+                remark = #{remark, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartPriceEntity">
+	  delete from zero_part_price where id = #{id}
+    </update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroPartPriceEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_part_price
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByConditions" parameterType="java.util.List"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from zero_part_price
+        <where>
+            <foreach collection="list" item="item" separator="OR" close=")" open="(" index="index">
+                (brand = #{item.brand, jdbcType=VARCHAR}
+                AND
+                pid = #{item.pid, jdbcType=VARCHAR}
+                AND
+                channel = #{item.channel, jdbcType=VARCHAR})
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into zero_part_price(
+        brand,
+        pid,
+        channel,
+        factory_type,
+        cost_price,
+        eot_price,
+        price,
+        part_type,
+        mill,
+        location,
+        amount,
+        origin,
+        supplier,
+        remark
+        ) values
+        <foreach collection="list" index="index" separator="," item="item">
+            (
+            #{item.brand, jdbcType=VARCHAR},
+            #{item.pid, jdbcType=VARCHAR},
+            #{item.channel, jdbcType=VARCHAR},
+            #{item.factoryType, jdbcType=VARCHAR},
+            #{item.costPrice, jdbcType=VARCHAR},
+            #{item.eotPrice, jdbcType=VARCHAR},
+            #{item.price, jdbcType=VARCHAR},
+            #{item.partType, jdbcType=VARCHAR},
+            #{item.mill, jdbcType=VARCHAR},
+            #{item.location, jdbcType=VARCHAR},
+            #{item.amount, jdbcType=VARCHAR},
+            #{item.origin, jdbcType=VARCHAR},
+            #{item.supplier, jdbcType=VARCHAR},
+            #{item.remark, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateList" parameterType="java.util.List">
+        <foreach collection="list" index="index" separator=";" item="item">
+            UPDATE zero_part_price
+            SET factory_type=#{item.factoryType},
+            cost_price = #{item.costPrice},
+            eot_price = #{item.eotPrice},
+            price = #{item.price},
+            part_type = #{item.partType},
+            mill = #{item.mill},
+            location = #{item.location},
+            amount = #{item.amount},
+            origin = #{item.origin},
+            supplier = #{item.supplier},
+            remark = #{item.remark}
+            WHERE brand = #{item.brand, jdbcType=VARCHAR}
+            AND
+            pid = #{item.pid, jdbcType=VARCHAR}
+            AND
+            channel = #{item.channel, jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+</mapper>   

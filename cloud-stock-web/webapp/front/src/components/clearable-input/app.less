@@ -1,0 +1,27 @@
+@import '../../assets/less/variable.less';
+
+.v-clearable-input {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    .iconfont {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #E6E6E6;
+        &:hover {
+            color: #888D98;
+        }
+    }
+    .el-textarea + .iconfont {
+        top: 10px;
+        transform: translateY(0);
+    }
+    .el-input__inner {
+        padding-right: 30px;
+    }
+    .el-textarea__inner {
+        padding-right: 30px;
+    }
+}

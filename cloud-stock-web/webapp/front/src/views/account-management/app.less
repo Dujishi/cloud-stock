@@ -1,0 +1,83 @@
+@import '../../assets/less/variable.less';
+
+.account-management-page {
+    padding: 40px;
+
+    .el-button--v-primary:hover {
+            color: #fff;
+    }
+    
+    .add-btn {
+        width: 190px;
+        height: 40px;
+        border-radius: 20px;
+        .iconfont {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+    }
+    .list {
+        padding-bottom: 20px;
+        li {
+            position: relative;
+            margin-top: 20px;
+            border: 1px solid #E8EDF0;
+            padding: 20px 30px;
+            .name {
+                display: inline-block;
+                // min-width: 52px;
+                margin-right: 10px;
+                font-weight: bold;
+                vertical-align: middle;
+            }
+            .bd {
+                margin-top: 20px;
+                color: @color-text-dark;
+                span {
+                    color: @color-text-light;
+                    margin-right: 10px;
+                }
+            }
+            .actions {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 30px;
+                // width: 225px;
+                .el-button {
+                    float: left;
+                }
+                .w1 {
+                    width: 60px;
+                }
+                .w2 {
+                    width: 83px;
+                }
+            }
+        }
+    }
+    .delete-dialog {
+        .el-dialog {
+            width: 460px;
+        }
+        .el-dialog__body {
+            padding-left: 40px;
+        }
+        .delete-dialog-text {
+            color: #222;
+            .iconfont {
+                font-size: 20px;
+                color: @color-primary;
+                margin-right: 10px;
+                vertical-align: middle;
+            }
+        }
+        .delete-dialog-tips {
+            margin-top: 10px;
+            color: @color-text-light;
+            font-size: 12px;
+            margin-left: 30px;
+            margin-bottom: 10px;
+        }
+    }
+}

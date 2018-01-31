@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPartEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPartEntity" >
+	<result column="model_id" property="modelId" jdbcType="INTEGER" />
+	<result column="part_code" property="partCode" jdbcType="VARCHAR" />
+	<result column="part_name" property="partName" jdbcType="VARCHAR" />
+	<result column="per_use_num" property="perUseNum" jdbcType="VARCHAR" />
+	<result column="pic_name" property="picName" jdbcType="VARCHAR" />
+	<result column="pic_num" property="picNum" jdbcType="VARCHAR" />
+	<result column="pic_path" property="picPath" jdbcType="VARCHAR" />
+	<result column="original_assembly_name" property="originalAssemblyName" jdbcType="VARCHAR" />
+	<result column="original_sub_assembly_name" property="originalSubAssemblyName" jdbcType="VARCHAR" />
+	<result column="pic_sequence" property="picSequence" jdbcType="VARCHAR" />
+	<result column="remark_brief" property="remarkBrief" jdbcType="VARCHAR" />
+	<result column="remark_detail" property="remarkDetail" jdbcType="VARCHAR" />
+	<result column="standard_part_id" property="standardPartId" jdbcType="INTEGER" />
+	<result column="assembly_id" property="assemblyId" jdbcType="INTEGER" />
+	<result column="assembly_name" property="assemblyName" jdbcType="VARCHAR" />
+	<result column="sub_assembly_id" property="subAssemblyId" jdbcType="INTEGER" />
+	<result column="sub_assembly_name" property="subAssemblyName" jdbcType="VARCHAR" />
+	<result column="epc_no" property="epcNo" jdbcType="INTEGER" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- car_model_part table all fields -->
+<sql id="Base_Column_List" >
+	 model_id, part_code, part_name, per_use_num, pic_name, pic_num, pic_path, original_assembly_name, original_sub_assembly_name, pic_sequence, remark_brief, remark_detail, standard_part_id, assembly_id, assembly_name, sub_assembly_id, sub_assembly_name, epc_no, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="modelId != null" >
+	    and model_id = #{modelId, jdbcType=INTEGER}
+	</if>
+	 	<if test="partCode != null and partCode != ''" >
+	    and part_code = #{partCode, jdbcType=VARCHAR}
+	</if>
+	 	<if test="partName != null and partName != ''" >
+	    and part_name = #{partName, jdbcType=VARCHAR}
+	</if>
+	<if test="perUseNum != null" >
+	    and per_use_num = #{perUseNum, jdbcType=VARCHAR}
+	</if>
+	 	<if test="picName != null and picName != ''" >
+	    and pic_name = #{picName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="picNum != null and picNum != ''" >
+	    and pic_num = #{picNum, jdbcType=VARCHAR}
+	</if>
+	 	<if test="picPath != null and picPath != ''" >
+	    and pic_path = #{picPath, jdbcType=VARCHAR}
+	</if>
+	 	<if test="originalAssemblyName != null and originalAssemblyName != ''" >
+	    and original_assembly_name = #{originalAssemblyName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="originalSubAssemblyName != null and originalSubAssemblyName != ''" >
+	    and original_sub_assembly_name = #{originalSubAssemblyName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="picSequence != null and picSequence != ''" >
+	    and pic_sequence = #{picSequence, jdbcType=VARCHAR}
+	</if>
+	 	<if test="remarkBrief != null and remarkBrief != ''" >
+	    and remark_brief = #{remarkBrief, jdbcType=VARCHAR}
+	</if>
+	 	<if test="remarkDetail != null and remarkDetail != ''" >
+	    and remark_detail = #{remarkDetail, jdbcType=VARCHAR}
+	</if>
+	<if test="standardPartId != null" >
+	    and standard_part_id = #{standardPartId, jdbcType=INTEGER}
+	</if>
+	<if test="assemblyId != null" >
+	    and assembly_id = #{assemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="assemblyName != null and assemblyName != ''" >
+	    and assembly_name = #{assemblyName, jdbcType=VARCHAR}
+	</if>
+	<if test="subAssemblyId != null" >
+	    and sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER}
+	</if>
+	 	<if test="subAssemblyName != null and subAssemblyName != ''" >
+	    and sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR}
+	</if>
+	<if test="epcNo != null" >
+	    and epc_no = #{epcNo, jdbcType=INTEGER}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPartEntity" >
+  	insert into car_model_part(
+		model_id,
+		part_code,
+		part_name,
+		per_use_num,
+		pic_name,
+		pic_num,
+		pic_path,
+		original_assembly_name,
+		original_sub_assembly_name,
+		pic_sequence,
+		remark_brief,
+		remark_detail,
+		standard_part_id,
+		assembly_id,
+		assembly_name,
+		sub_assembly_id,
+		sub_assembly_name,
+		epc_no,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{modelId, jdbcType=INTEGER},
+		#{partCode, jdbcType=VARCHAR},
+		#{partName, jdbcType=VARCHAR},
+		#{perUseNum, jdbcType=INTEGER},
+		#{picName, jdbcType=VARCHAR},
+		#{picNum, jdbcType=VARCHAR},
+		#{picPath, jdbcType=VARCHAR},
+		#{originalAssemblyName, jdbcType=VARCHAR},
+		#{originalSubAssemblyName, jdbcType=VARCHAR},
+		#{picSequence, jdbcType=VARCHAR},
+		#{remarkBrief, jdbcType=VARCHAR},
+		#{remarkDetail, jdbcType=VARCHAR},
+		#{standardPartId, jdbcType=INTEGER},
+		#{assemblyId, jdbcType=INTEGER},
+		#{assemblyName, jdbcType=VARCHAR},
+		#{subAssemblyId, jdbcType=INTEGER},
+		#{subAssemblyName, jdbcType=VARCHAR},
+		#{epcNo, jdbcType=INTEGER},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List" >
+  	insert into car_model_part(
+		model_id,
+		part_code,
+		part_name,
+		per_use_num,
+		pic_name,
+		pic_num,
+		pic_path,
+		original_assembly_name,
+		original_sub_assembly_name,
+		pic_sequence,
+		remark_brief,
+		remark_detail,
+		standard_part_id,
+		assembly_id,
+		assembly_name,
+		sub_assembly_id,
+		sub_assembly_name,
+		epc_no,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+	<foreach collection="list" item="item" open="" close="" separator="),(">
+		#{item.modelId, jdbcType=INTEGER},
+		#{item.partCode, jdbcType=VARCHAR},
+		#{item.partName, jdbcType=VARCHAR},
+		#{item.perUseNum, jdbcType=INTEGER},
+		#{item.picName, jdbcType=VARCHAR},
+		#{item.picNum, jdbcType=VARCHAR},
+		#{item.picPath, jdbcType=VARCHAR},
+		#{item.originalAssemblyName, jdbcType=VARCHAR},
+		#{item.originalSubAssemblyName, jdbcType=VARCHAR},
+		#{item.picSequence, jdbcType=VARCHAR},
+		#{item.remarkBrief, jdbcType=VARCHAR},
+		#{item.remarkDetail, jdbcType=VARCHAR},
+		#{item.standardPartId, jdbcType=INTEGER},
+		#{item.assemblyId, jdbcType=INTEGER},
+		#{item.assemblyName, jdbcType=VARCHAR},
+		#{item.subAssemblyId, jdbcType=INTEGER},
+		#{item.subAssemblyName, jdbcType=VARCHAR},
+		#{item.epcNo, jdbcType=INTEGER},
+		#{item.isValid, jdbcType=INTEGER},
+		#{item.createTime, jdbcType=TIMESTAMP},
+		#{item.createBy, jdbcType=VARCHAR},
+		#{item.updateTime, jdbcType=TIMESTAMP},
+		#{item.updateBy, jdbcType=VARCHAR}
+	</foreach>
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPartEntity" >
+	update car_model_part set 
+	<trim  suffixOverrides="," >
+		<if test="partCode != null  and partCode != '' ">
+			part_code = #{partCode, jdbcType=VARCHAR},
+		</if>
+		<if test="partName != null  and partName != '' ">
+			part_name = #{partName, jdbcType=VARCHAR},
+		</if>
+		<if test="perUseNum != null  ">
+			per_use_num = #{perUseNum, jdbcType=VARCHAR},
+		</if>
+		<if test="picName != null  and picName != '' ">
+			pic_name = #{picName, jdbcType=VARCHAR},
+		</if>
+		<if test="picNum != null  and picNum != '' ">
+			pic_num = #{picNum, jdbcType=VARCHAR},
+		</if>
+		<if test="picPath != null  and picPath != '' ">
+			pic_path = #{picPath, jdbcType=VARCHAR},
+		</if>
+		<if test="originalAssemblyName != null  and originalAssemblyName != '' ">
+			original_assembly_name = #{originalAssemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="originalSubAssemblyName != null  and originalSubAssemblyName != '' ">
+			original_sub_assembly_name = #{originalSubAssemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="picSequence != null  and picSequence != '' ">
+			pic_sequence = #{picSequence, jdbcType=VARCHAR},
+		</if>
+		<if test="remarkBrief != null  and remarkBrief != '' ">
+			remark_brief = #{remarkBrief, jdbcType=VARCHAR},
+		</if>
+		<if test="remarkDetail != null  and remarkDetail != '' ">
+			remark_detail = #{remarkDetail, jdbcType=VARCHAR},
+		</if>
+		<if test="standardPartId != null  ">
+			standard_part_id = #{standardPartId, jdbcType=INTEGER},
+		</if>
+		<if test="assemblyId != null  ">
+			assembly_id = #{assemblyId, jdbcType=INTEGER},
+		</if>
+		<if test="assemblyName != null  and assemblyName != '' ">
+			assembly_name = #{assemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="subAssemblyId != null  ">
+			sub_assembly_id = #{subAssemblyId, jdbcType=INTEGER},
+		</if>
+		<if test="subAssemblyName != null  and subAssemblyName != '' ">
+			sub_assembly_name = #{subAssemblyName, jdbcType=VARCHAR},
+		</if>
+		<if test="epcNo != null  ">
+			epc_no = #{epcNo, jdbcType=INTEGER},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where model_id = #{modelId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPartEntity">
+	delete from car_model_part where model_id = #{modelId}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPartEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from car_model_part 
+    <include refid="Where_Clause"/>
+</select>
+
+<select id="getCarPartByCarIdAndPartId" resultMap="BaseResultMap" parameterType="map">
+	select
+	<include refid="Base_Column_List"/>
+	from car_model_part
+	where model_id = #{modelId} and standard_part_id in
+	<foreach item="item" index="index" collection="partIdList" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+</select>
+
+<select id="selectGroupByPicNumAndPicName" resultMap="BaseResultMap" parameterType="map">
+	select model_id, pic_num, pic_name, group_concat(pic_sequence) as pic_sequence, pic_path
+	from car_model_part
+	where model_id = #{modelId}
+	group by pic_num, pic_name;
+</select>
+
+	<select id="selectListByCodesAndModelId" resultMap="BaseResultMap" parameterType="java.util.List">
+		SELECT *
+		FROM car_model_part
+		<where>
+			is_valid=1 AND
+			<foreach collection="list" item="item" index="index" separator="OR" close=")" open="(">
+				(model_id = #{item.modelId} and part_code=#{item.partCode})
+			</foreach>
+		</where>
+	</select>
+  	
+</mapper>   

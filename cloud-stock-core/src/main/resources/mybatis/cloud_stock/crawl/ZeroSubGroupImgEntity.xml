@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupImgEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupImgEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="group_id" property="groupId" jdbcType="INTEGER"/>
+        <result column="sub_group_id" property="subGroupId" jdbcType="INTEGER"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="sub_group" property="subGroup" jdbcType="VARCHAR"/>
+        <result column="sub_group_name" property="subGroupName" jdbcType="VARCHAR"/>
+        <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
+        <result column="up_img_url" property="upImgUrl" jdbcType="VARCHAR"/>
+        <result column="width" property="width" jdbcType="DECIMAL"/>
+        <result column="height" property="height" jdbcType="DECIMAL"/>
+        <result column="it_id" property="itId" jdbcType="VARCHAR"/>
+        <result column="x1" property="x1" jdbcType="DECIMAL"/>
+        <result column="y1" property="y1" jdbcType="DECIMAL"/>
+        <result column="x2" property="x2" jdbcType="DECIMAL"/>
+        <result column="y2" property="y2" jdbcType="DECIMAL"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- zero_sub_group_img table all fields -->
+    <sql id="Base_Column_List">
+        id, group_id, sub_group_id, it_id,group_name, sub_group, sub_group_name, img_url, up_img_url,width, height, x1, y1, x2, y2, is_valid, create_time, create_by, update_time, update_by, remark
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="groupId != null">
+                    and group_id = #{groupId, jdbcType=INTEGER}
+                </if>
+                <if test="subGroupId != null">
+                    and sub_group_id = #{subGroupId, jdbcType=INTEGER}
+                </if>
+                <if test="groupName != null and groupName != ''">
+                    and group_name = #{groupName, jdbcType=VARCHAR}
+                </if>
+                <if test="subGroup != null and subGroup != ''">
+                    and sub_group = #{subGroup, jdbcType=VARCHAR}
+                </if>
+                <if test="subGroupName != null and subGroupName != ''">
+                    and sub_group_name = #{subGroupName, jdbcType=VARCHAR}
+                </if>
+                <if test="imgUrl != null and imgUrl != ''">
+                    and img_url = #{imgUrl, jdbcType=VARCHAR}
+                </if>
+                <if test="width != null">
+                    and width = #{width, jdbcType=DECIMAL}
+                </if>
+                <if test="height != null">
+                    and height = #{height, jdbcType=DECIMAL}
+                </if>
+                <if test="x1 != null">
+                    and x1 = #{x1, jdbcType=DECIMAL}
+                </if>
+                <if test="y1 != null">
+                    and y1 = #{y1, jdbcType=DECIMAL}
+                </if>
+                <if test="x2 != null">
+                    and x2 = #{x2, jdbcType=DECIMAL}
+                </if>
+                <if test="y2 != null">
+                    and y2 = #{y2, jdbcType=DECIMAL}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+                <if test="remark != null and remark != ''">
+                    and remark = #{remark, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupImgEntity">
+        insert into zero_sub_group_img(
+        id,
+        group_id,
+        sub_group_id,
+        group_name,
+        sub_group,
+        sub_group_name,
+        img_url,
+        width,
+        height,
+        x1,
+        y1,
+        x2,
+        y2,
+        is_valid,
+        create_time,
+        create_by,
+        update_time,
+        update_by,
+        remark
+        ) values (
+        #{id, jdbcType=INTEGER},
+        #{groupId, jdbcType=INTEGER},
+        #{subGroupId, jdbcType=INTEGER},
+        #{groupName, jdbcType=VARCHAR},
+        #{subGroup, jdbcType=VARCHAR},
+        #{subGroupName, jdbcType=VARCHAR},
+        #{imgUrl, jdbcType=VARCHAR},
+        #{width, jdbcType=DECIMAL},
+        #{height, jdbcType=DECIMAL},
+        #{x1, jdbcType=DECIMAL},
+        #{y1, jdbcType=DECIMAL},
+        #{x2, jdbcType=DECIMAL},
+        #{y2, jdbcType=DECIMAL},
+        #{isValid, jdbcType=INTEGER},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{createBy, jdbcType=VARCHAR},
+        #{updateTime, jdbcType=TIMESTAMP},
+        #{updateBy, jdbcType=VARCHAR},
+        #{remark, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupImgEntity">
+        update zero_sub_group_img set
+        <trim suffixOverrides=",">
+            <if test="groupId != null  ">
+                group_id = #{groupId, jdbcType=INTEGER},
+            </if>
+            <if test="subGroupId != null  ">
+                sub_group_id = #{subGroupId, jdbcType=INTEGER},
+            </if>
+            <if test="groupName != null  and groupName != '' ">
+                group_name = #{groupName, jdbcType=VARCHAR},
+            </if>
+            <if test="subGroup != null  and subGroup != '' ">
+                sub_group = #{subGroup, jdbcType=VARCHAR},
+            </if>
+            <if test="subGroupName != null  and subGroupName != '' ">
+                sub_group_name = #{subGroupName, jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl != null  and imgUrl != '' ">
+                img_url = #{imgUrl, jdbcType=VARCHAR},
+            </if>
+            <if test="width != null  ">
+                width = #{width, jdbcType=DECIMAL},
+            </if>
+            <if test="height != null  ">
+                height = #{height, jdbcType=DECIMAL},
+            </if>
+            <if test="x1 != null  ">
+                x1 = #{x1, jdbcType=DECIMAL},
+            </if>
+            <if test="y1 != null  ">
+                y1 = #{y1, jdbcType=DECIMAL},
+            </if>
+            <if test="x2 != null  ">
+                x2 = #{x2, jdbcType=DECIMAL},
+            </if>
+            <if test="y2 != null  ">
+                y2 = #{y2, jdbcType=DECIMAL},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null  and remark != '' ">
+                remark = #{remark, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupImgEntity">
+        delete from zero_sub_group_img where id = #{id}
+    </update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_sub_group_img
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByConditions" parameterType="java.util.List"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_sub_group_img
+        <where>
+            <foreach collection="list" index="index" item="item" separator="OR" open="(" close=")">
+                (
+                group_id = #{item.groupId, jdbcType=INTEGER}
+                AND
+                sub_group_id = #{item.subGroupId, jdbcType=INTEGER}
+                AND
+                img_url = #{item.imgUrl, jdbcType=VARCHAR}
+                )
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into zero_sub_group_img(
+        group_id,
+        sub_group_id,
+        group_name,
+        sub_group,
+        sub_group_name,
+        img_url,
+        width,
+        height,
+        it_id,
+        x1,
+        y1,
+        x2,
+        y2
+        ) values
+        <foreach collection="list" separator="," item="item" index="index">
+            (
+            #{item.groupId, jdbcType=INTEGER},
+            #{item.subGroupId, jdbcType=INTEGER},
+            #{item.groupName, jdbcType=VARCHAR},
+            #{item.subGroup, jdbcType=VARCHAR},
+            #{item.subGroupName, jdbcType=VARCHAR},
+            #{item.imgUrl, jdbcType=VARCHAR},
+            #{item.width, jdbcType=DECIMAL},
+            #{item.height, jdbcType=DECIMAL},
+            #{item.itId, jdbcType=VARCHAR},
+            #{item.x1, jdbcType=DECIMAL},
+            #{item.y1, jdbcType=DECIMAL},
+            #{item.x2, jdbcType=DECIMAL},
+            #{item.y2, jdbcType=DECIMAL}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectSumCount" parameterType="com.xiaoka.freework.help.page.PageList"
+            resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM zero_sub_group_img
+    </select>
+
+    <select id="selectPage" parameterType="com.xiaoka.freework.help.page.PageList"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM zero_sub_group_img
+        ORDER BY id ASC
+        LIMIT #{start}, #{pageSize}
+    </select>
+
+    <update id="updateImgUrls" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=";" index="index">
+            UPDATE zero_sub_group_img
+            SET up_img_url=#{item.newUrl}
+            WHERE img_url=#{item.oldUrl}
+        </foreach>
+    </update>
+
+</mapper>

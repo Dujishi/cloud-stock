@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAdapterCarModelEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAdapterCarModelEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="brand" property="brand" jdbcType="VARCHAR"/>
+        <result column="pid" property="pid" jdbcType="VARCHAR"/>
+        <result column="car_model" property="carModel" jdbcType="VARCHAR"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="main_group_name" property="mainGroupName" jdbcType="VARCHAR"/>
+        <result column="market" property="market" jdbcType="VARCHAR"/>
+        <result column="year" property="year" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- zero_adapter_car_model table all fields -->
+    <sql id="Base_Column_List">
+	 id, brand, pid, car_model, group_name, main_group_name, market, year, is_valid, create_time, create_by, update_time, update_by, remark
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="brand != null and brand != ''">
+                    and brand = #{brand, jdbcType=VARCHAR}
+                </if>
+                <if test="pid != null and pid != ''">
+                    and pid = #{pid, jdbcType=VARCHAR}
+                </if>
+                <if test="carModel != null and carModel != ''">
+                    and car_model = #{carModel, jdbcType=VARCHAR}
+                </if>
+                <if test="groupName != null and groupName != ''">
+                    and group_name = #{groupName, jdbcType=VARCHAR}
+                </if>
+                <if test="mainGroupName != null and mainGroupName != ''">
+                    and main_group_name = #{mainGroupName, jdbcType=VARCHAR}
+                </if>
+                <if test="market != null and market != ''">
+                    and market = #{market, jdbcType=VARCHAR}
+                </if>
+                <if test="year != null and year != ''">
+                    and year = #{year, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+                <if test="remark != null and remark != ''">
+                    and remark = #{remark, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAdapterCarModelEntity">
+  	insert into zero_adapter_car_model(
+		id,
+		brand,
+		pid,
+		car_model,
+		group_name,
+		main_group_name,
+		market,
+		year,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by,
+		remark
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{brand, jdbcType=VARCHAR},
+		#{pid, jdbcType=VARCHAR},
+		#{carModel, jdbcType=VARCHAR},
+		#{groupName, jdbcType=VARCHAR},
+		#{mainGroupName, jdbcType=VARCHAR},
+		#{market, jdbcType=VARCHAR},
+		#{year, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR}
+	)
+</insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective"
+            parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAdapterCarModelEntity">
+        update zero_adapter_car_model set
+        <trim suffixOverrides=",">
+            <if test="brand != null  and brand != '' ">
+                brand = #{brand, jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null  and pid != '' ">
+                pid = #{pid, jdbcType=VARCHAR},
+            </if>
+            <if test="carModel != null  and carModel != '' ">
+                car_model = #{carModel, jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null  and groupName != '' ">
+                group_name = #{groupName, jdbcType=VARCHAR},
+            </if>
+            <if test="mainGroupName != null  and mainGroupName != '' ">
+                main_group_name = #{mainGroupName, jdbcType=VARCHAR},
+            </if>
+            <if test="market != null  and market != '' ">
+                market = #{market, jdbcType=VARCHAR},
+            </if>
+            <if test="year != null  and year != '' ">
+                year = #{year, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null  and remark != '' ">
+                remark = #{remark, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAdapterCarModelEntity">
+	delete from zero_adapter_car_model where id = #{id}
+</update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroAdapterCarModelEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_adapter_car_model
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByConditions" parameterType="java.util.List"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from zero_adapter_car_model
+        <where>
+            <foreach collection="list" item="item" separator="OR" close=")" open="(" index="index">
+                (
+                brand = #{item.brand, jdbcType=VARCHAR}
+                AND
+                pid = #{item.pid, jdbcType=VARCHAR}
+                AND
+                car_model = #{item.carModel, jdbcType=VARCHAR}
+                )
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into zero_adapter_car_model(
+        brand,
+        pid,
+        car_model,
+        group_name,
+        main_group_name,
+        market,
+        year,
+        remark
+        ) values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+            #{item.brand, jdbcType=VARCHAR},
+            #{item.pid, jdbcType=VARCHAR},
+            #{item.carModel, jdbcType=VARCHAR},
+            #{item.groupName, jdbcType=VARCHAR},
+            #{item.mainGroupName, jdbcType=VARCHAR},
+            #{item.market, jdbcType=VARCHAR},
+            #{item.year, jdbcType=VARCHAR},
+            #{item.remark, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateList" parameterType="java.util.List">
+        <foreach collection="list" index="index" separator=";" item="item">
+            UPDATE zero_adapter_car_model
+            SET group_name = #{item.groupName},main_group_name=#{item.mainGroupName},
+            market = #{item.market},year = #{item.year},remark=#{item.remark}
+            WHERE brand=#{item.brand} and pid = #{item.pid} and car_model = #{item.carModel}
+        </foreach>
+    </update>
+</mapper>   

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.smsmessage.entity.SmsMessageEntity">
+
+    <sql id="fields">
+        id,sms_code,sms_context,sms_status,sms_type,phone,create_time,update_time
+    </sql>
+
+    <select id="selectSmsMessageByPhoneAndType" parameterType="com.xiaoka.cloud.stock.core.smsmessage.entity.SmsMessageEntity"
+            resultType="com.xiaoka.cloud.stock.core.smsmessage.entity.SmsMessageEntity">
+        SELECT <include refid="fields"/>
+        FROM sms_message
+        WHERE phone = #{phone} AND sms_type=#{smsType}
+        ORDER BY id DESC LIMIT 1
+    </select>
+
+    <insert id="insertSmsMessage" parameterType="com.xiaoka.cloud.stock.core.smsmessage.entity.SmsMessageEntity">
+        INSERT INTO sms_message
+        (sms_code,sms_context,sms_status,sms_type,phone)
+        VALUES
+            (#{smsCode},#{smsContext},#{smsStatus},#{smsType},#{phone})
+    </insert>
+
+    <update id="updateSmsMessageStatus" parameterType="com.xiaoka.cloud.stock.core.smsmessage.entity.SmsMessageEntity">
+        UPDATE sms_message
+        <set>
+            <if test="smsStatus != null">
+                sms_status = #{smsStatus},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="closeOldSmsMessageStatusByPhoneAndType" parameterType="com.xiaoka.cloud.stock.core.smsmessage.entity.SmsMessageEntity">
+        UPDATE sms_message
+        <set>
+            <if test="smsStatus != null">
+                sms_status = #{smsStatus},
+            </if>
+        </set>
+        WHERE phone = #{phone} AND sms_type=#{smsType} AND sms_status=1
+    </update>
+</mapper>

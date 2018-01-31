@@ -1,0 +1,71 @@
+<div>
+    <div class="panel panel-info " style="margin-bottom:0px;">
+        <div class="panel-heading">新增菜单</div>
+        <div class="panel-body">
+            <form class="form-horizontal" name="myForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">菜单图标</label>
+                    <div class="col-lg-4">
+                        <input class="form-control input-sm" type="text" name="icon" ng-model="menu.icon" required>
+                        <span class="help-block"  ng-show="myForm.icon.$invalid && submitted">
+                            <span ng-show="myForm.icon.$error.required" style="color:red;">菜单图标是必须的。</span>
+                        </span>
+                    </div>
+                    <label class="control-label col-lg-2">菜单代码</label>
+                    <div class="col-lg-4">
+                        <input class="form-control input-sm" type="text" name="code" ng-model="menu.code" required>
+                        <span  ng-show="myForm.code.$invalid && submitted">
+                                                <span ng-show="myForm.code.$error.required" style="color:red">菜单代码是必须的。</span>
+                                            </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">菜单名称</label>
+                    <div class="col-lg-4">
+                        <input class="form-control input-sm" type="text" name="title" ng-model="menu.title" ng-c
+                               required>
+                        <span class="help-block" ng-show="myForm.title.$invalid && submitted">
+                                                <span ng-show="myForm.title.$error.required" style="color:red">菜单名称是必须的。</span>
+                        </span>
+                    </div>
+
+                    <label class="control-label col-lg-2">菜单URL</label>
+                    <div class="col-lg-4">
+                        <input class="form-control input-sm" type="text" name="url" ng-model="menu.url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">邮箱地址</label>
+                    <div class="col-lg-4">
+                        <input class="form-control input-sm" type="text" name="email" ng-model="user.email" required>
+                        <span class="help-block" ng-show="myForm.email.$invalid && submitted">
+                              <span ng-show="myForm.email.$error.required" style="color:#d02d2d">邮箱地址必须填写</span>
+                        </span>
+                    </div>
+
+                    <label class="control-label col-lg-2">是否有效</label>
+                    <div class="col-lg-4">
+                        <div class="radio inline-block">
+                            <div class="custom-radio m-right-xs">
+                                <input type="radio" id="inlineRadio1" name="inlineRadio" checked="checked">
+                                <label for="inlineRadio1"></label>
+                            </div>
+                            <div class="inline-block vertical-top">有效</div>
+                        </div>
+                        <div class="radio inline-block">
+                            <div class="custom-radio m-right-xs">
+                                <input type="radio" id="inlineRadio2" name="inlineRadio">
+                                <label for="inlineRadio2"></label>
+                            </div>
+                            <div class="inline-block vertical-top">无效</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right m-top-md">
+                    <button type="button" class="btn btn-info" ng-click="submitMenuInfo();">提交</button>
+                    <button type="button" class="btn btn-info" ng-click="cancel();">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div><!-- ./smart-widget-inner -->
+</div><!-- /main-container -->

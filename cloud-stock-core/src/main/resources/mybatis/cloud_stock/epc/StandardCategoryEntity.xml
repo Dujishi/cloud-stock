@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardCategoryEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardCategoryEntity" >
+	<result column="category_id" property="categoryId" jdbcType="INTEGER" />
+	<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+	<result column="logo_path" property="logoPath" jdbcType="VARCHAR" />
+	<result column="remark" property="remark" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- standard_category table all fields -->
+<sql id="Base_Column_List" >
+	 category_id, category_name, logo_path, remark, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+	is_valid = 1
+<trim  suffixOverrides="," >
+	<if test="categoryId != null" >
+	    and category_id = #{categoryId, jdbcType=INTEGER}
+	</if>
+	 	<if test="categoryName != null and categoryName != ''" >
+	    and category_name = #{categoryName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="logoPath != null and logoPath != ''" >
+	    and logo_path = #{logoPath, jdbcType=VARCHAR}
+	</if>
+	 	<if test="remark != null and remark != ''" >
+	    and remark = #{remark, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardCategoryEntity" >
+  	insert into standard_category(
+		category_id,
+		category_name,
+		logo_path,
+		remark,
+		create_by
+	) values (
+		#{categoryId, jdbcType=INTEGER},
+		#{categoryName, jdbcType=VARCHAR},
+		#{logoPath, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR},
+		#{createBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List">
+	insert into standard_category(
+		category_name,
+		logo_path,
+		remark,
+		create_by
+	)
+	values
+	<foreach collection="list" item="item" index="index" separator=",">
+		(
+		#{item.categoryName, jdbcType=VARCHAR},
+		#{item.logoPath, jdbcType=VARCHAR},
+		#{item.remark, jdbcType=VARCHAR},
+		#{item.createBy, jdbcType=VARCHAR}
+		)
+	</foreach>
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardCategoryEntity" >
+	update standard_category set 
+	<trim  suffixOverrides="," >
+		<if test="categoryName != null  and categoryName != '' ">
+			category_name = #{categoryName, jdbcType=VARCHAR},
+		</if>
+		<if test="logoPath != null  and logoPath != '' ">
+			logo_path = #{logoPath, jdbcType=VARCHAR},
+		</if>
+		<if test="remark != null  and remark != '' ">
+			remark = #{remark, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where category_id = #{categoryId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardCategoryEntity">
+	delete from standard_category where category_id = #{categoryId}
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardCategoryEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from standard_category 
+    <include refid="Where_Clause"/>
+</select>
+
+<!-- 查询 -->
+<select id="selectAll" resultMap="BaseResultMap" >
+	select
+	<include refid="Base_Column_List"/>
+	from standard_category
+	where is_valid = 1
+</select>
+
+<!-- 查询 -->
+<select id="selectIdByNames" resultType="java.lang.String"  parameterType="java.util.List">
+	select
+	category_name
+	from standard_category
+	where is_valid = 1 and
+	category_name in
+	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		#{item}
+	</foreach>
+</select>
+
+<!-- for car brand查询 -->
+<select id="checkIsExist" resultType="java.lang.Integer"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.StandardCategoryEntity">
+	select
+	1
+	from standard_category
+	<include refid="Where_Clause"/>
+	limit 1
+</select>
+
+</mapper>   

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartPriceUncertainEntity">
+
+    <sql id="insert_columns">
+        part_id,c_part_id,part_name,depot_id,c_depot_id,shop_id,c_supplier_id,oe_no,price_code,price,remark
+    </sql>
+
+    <select id="queryCloudPartPriceUncertainByConditionList" parameterType="java.util.List"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartPriceUncertainEntity">
+        SELECT *
+        FROM cloud_part_price_uncertain
+        <where>
+            (
+            <foreach collection="list" separator="OR" index="index" item="item">
+                (c_part_id=#{item.cPartId} AND c_depot_id = #{item.cDepotId} AND shop_id = #{item.shopId})
+            </foreach>
+            )
+            AND is_valid = 0
+        </where>
+    </select>
+
+
+    <insert id="insertCloudPartsPriceUncertainEntities" parameterType="java.util.List">
+        INSERT INTO cloud_part_price_uncertain(
+        <include refid="insert_columns"/>
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.partId},
+            #{item.cPartId},
+            #{item.partName},
+            #{item.depotId},
+            #{item.cDepotId},
+            #{item.shopId},
+            #{item.cSupplierId},
+            #{item.oeNo},
+            #{item.priceCode},
+            #{item.price},
+            #{item.remark})
+        </foreach>
+    </insert>
+
+    <update id="casUpdateCloudPartPriceUncertainEntities" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            UPDATE cloud_part_price_uncertain
+            <set>
+                <if test="item.price != null and item.price !='' ">
+                    price = #{item.price},
+                </if>
+                <if test="item.version != null and item.version !='' ">
+                    version=#{item.version}+1,
+                </if>
+            </set>
+            <where>
+                c_depot_id=#{item.cDepotId}
+                AND price_code = #{item.priceCode}
+                AND c_part_id=#{item.cPartId}
+                AND shop_id=#{item.shopId}
+                AND is_valid=0
+                AND IFNULL(#{item.version},0) = version
+            </where>
+        </foreach>
+    </update>
+</mapper>

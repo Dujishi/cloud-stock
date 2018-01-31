@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupEntity" >
+
+	<!-- for car brandResult Map-->
+	<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupEntity" >
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="c_id" property="cId" jdbcType="INTEGER"/>
+		<result column="group_id" property="groupId" jdbcType="INTEGER" />
+		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
+		<result column="group_img" property="groupImg" jdbcType="VARCHAR" />
+		<result column="sub_group" property="subGroup" jdbcType="VARCHAR" />
+		<result column="sub_group_name" property="subGroupName" jdbcType="VARCHAR" />
+		<result column="sub_group_url" property="subGroupUrl" jdbcType="VARCHAR" />
+		<result column="sub_model" property="subModel" jdbcType="VARCHAR" />
+		<result column="sub_mid" property="subMid" jdbcType="VARCHAR" />
+		<result column="sub_desc" property="subDesc" jdbcType="VARCHAR" />
+		<result column="car_model" property="carModel" jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="market" property="market" jdbcType="VARCHAR" />
+		<result column="year" property="year" jdbcType="VARCHAR" />
+		<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- zero_sub_group table all fields -->
+	<sql id="Base_Column_List" >
+		id, c_id, group_id, group_name, group_img, sub_group, sub_group_name, sub_group_url, sub_model, sub_mid, sub_desc, car_model, brand, market, year, is_valid, create_time, create_by, update_time, update_by, remark
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Where_Clause">
+		<where>
+			<trim  suffixOverrides="," >
+				<if test="id != null" >
+					and id = #{id, jdbcType=INTEGER}
+				</if>
+				<if test="cId != null">
+					and c_id = #{cId, jdbcType=INTEGER}
+				</if>
+				<if test="groupId != null" >
+					and group_id = #{groupId, jdbcType=INTEGER}
+				</if>
+				<if test="groupName != null and groupName != ''" >
+					and group_name = #{groupName, jdbcType=VARCHAR}
+				</if>
+				<if test="groupImg != null and groupImg != ''" >
+					and group_img = #{groupImg, jdbcType=VARCHAR}
+				</if>
+				<if test="subGroup != null and subGroup != ''" >
+					and sub_group = #{subGroup, jdbcType=VARCHAR}
+				</if>
+				<if test="subGroupName != null and subGroupName != ''" >
+					and sub_group_name = #{subGroupName, jdbcType=VARCHAR}
+				</if>
+				<if test="subGroupUrl != null and subGroupUrl != ''" >
+					and sub_group_url = #{subGroupUrl, jdbcType=VARCHAR}
+				</if>
+				<if test="subModel != null and subModel != ''" >
+					and sub_model = #{subModel, jdbcType=VARCHAR}
+				</if>
+				<if test="subMid != null and subMid != ''" >
+					and sub_mid = #{subMid, jdbcType=VARCHAR}
+				</if>
+				<if test="subDesc != null and subDesc != ''" >
+					and sub_desc = #{subDesc, jdbcType=VARCHAR}
+				</if>
+				<if test="carModel != null and carModel != ''" >
+					and car_model = #{carModel, jdbcType=VARCHAR}
+				</if>
+				<if test="brand != null and brand != ''" >
+					and brand = #{brand, jdbcType=VARCHAR}
+				</if>
+				<if test="market != null and market != ''" >
+					and market = #{market, jdbcType=VARCHAR}
+				</if>
+				<if test="year != null and year != ''" >
+					and year = #{year, jdbcType=VARCHAR}
+				</if>
+				<if test="isValid != null" >
+					and is_valid = #{isValid, jdbcType=INTEGER}
+				</if>
+				<if test="createTime != null" >
+					and create_time = #{createTime, jdbcType=TIMESTAMP}
+				</if>
+				<if test="createBy != null and createBy != ''" >
+					and create_by = #{createBy, jdbcType=VARCHAR}
+				</if>
+				<if test="updateTime != null" >
+					and update_time = #{updateTime, jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateBy != null and updateBy != ''" >
+					and update_by = #{updateBy, jdbcType=VARCHAR}
+				</if>
+				<if test="remark != null and remark != ''" >
+					and remark = #{remark, jdbcType=VARCHAR}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupEntity" >
+		insert into zero_sub_group(
+		id,
+		c_id,
+		group_id,
+		group_name,
+		group_img,
+		sub_group,
+		sub_group_name,
+		sub_group_url,
+		sub_model,
+		sub_mid,
+		sub_desc,
+		car_model,
+		brand,
+		market,
+		year,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by,
+		remark
+		) values (
+		#{id, jdbcType=INTEGER},
+		#{cId, jdbcType=INTEGER},
+		#{groupId, jdbcType=INTEGER},
+		#{groupName, jdbcType=VARCHAR},
+		#{groupImg, jdbcType=VARCHAR},
+		#{subGroup, jdbcType=VARCHAR},
+		#{subGroupName, jdbcType=VARCHAR},
+		#{subGroupUrl, jdbcType=VARCHAR},
+		#{subModel, jdbcType=VARCHAR},
+		#{subMid, jdbcType=VARCHAR},
+		#{subDesc, jdbcType=VARCHAR},
+		#{carModel, jdbcType=VARCHAR},
+		#{brand, jdbcType=VARCHAR},
+		#{market, jdbcType=VARCHAR},
+		#{year, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<!-- 根据所选内容更新 -->
+	<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupEntity" >
+		update zero_sub_group set
+		<trim  suffixOverrides="," >
+			<if test="groupId != null  ">
+				group_id = #{groupId, jdbcType=INTEGER},
+			</if>
+			<if test="groupName != null  and groupName != '' ">
+				group_name = #{groupName, jdbcType=VARCHAR},
+			</if>
+			<if test="groupImg != null  and groupImg != '' ">
+				group_img = #{groupImg, jdbcType=VARCHAR},
+			</if>
+			<if test="subGroup != null  and subGroup != '' ">
+				sub_group = #{subGroup, jdbcType=VARCHAR},
+			</if>
+			<if test="subGroupName != null  and subGroupName != '' ">
+				sub_group_name = #{subGroupName, jdbcType=VARCHAR},
+			</if>
+			<if test="subGroupUrl != null  and subGroupUrl != '' ">
+				sub_group_url = #{subGroupUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="subModel != null  and subModel != '' ">
+				sub_model = #{subModel, jdbcType=VARCHAR},
+			</if>
+			<if test="subMid != null  and subMid != '' ">
+				sub_mid = #{subMid, jdbcType=VARCHAR},
+			</if>
+			<if test="subDesc != null  and subDesc != '' ">
+				sub_desc = #{subDesc, jdbcType=VARCHAR},
+			</if>
+			<if test="carModel != null  and carModel != '' ">
+				car_model = #{carModel, jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null  and brand != '' ">
+				brand = #{brand, jdbcType=VARCHAR},
+			</if>
+			<if test="market != null  and market != '' ">
+				market = #{market, jdbcType=VARCHAR},
+			</if>
+			<if test="year != null  and year != '' ">
+				year = #{year, jdbcType=VARCHAR},
+			</if>
+			<if test="isValid != null  ">
+				is_valid = #{isValid, jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null  ">
+				create_time = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null  and createBy != '' ">
+				create_by = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null  ">
+				update_time = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null  and updateBy != '' ">
+				update_by = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null  and remark != '' ">
+				remark = #{remark, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where id = #{id, jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除 -->
+	<update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupEntity">
+	delete from zero_sub_group where id = #{id}
+</update>
+
+	<!-- for car brand查询 -->
+	<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroSubGroupEntity">
+		select
+		<include refid="Base_Column_List"/>
+		from zero_sub_group
+		<include refid="Where_Clause"/>
+	</select>
+
+    <select id="selectHasExistedSubGroup" resultMap="BaseResultMap" parameterType="java.util.List">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_sub_group
+        <where>
+            <foreach collection="list" open="(" close=")" index="index" item="item" separator="OR">
+                (group_id = #{item.groupId}
+                AND
+                sub_group_name = #{item.subGroupName})
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into zero_sub_group(
+		c_id,
+        group_id,
+        group_name,
+        group_img,
+        sub_group,
+        sub_group_name,
+        sub_group_url,
+        sub_model,
+        sub_mid,
+        sub_desc,
+        car_model,
+        brand,
+        market,
+        year
+        ) values
+        <foreach collection="list" separator="," item="item" index="index">
+            (
+			#{item.cId, jdbcType=INTEGER},
+            #{item.groupId, jdbcType=INTEGER},
+            #{item.groupName, jdbcType=VARCHAR},
+            #{item.groupImg, jdbcType=VARCHAR},
+            #{item.subGroup, jdbcType=VARCHAR},
+            #{item.subGroupName, jdbcType=VARCHAR},
+            #{item.subGroupUrl, jdbcType=VARCHAR},
+            #{item.subModel, jdbcType=VARCHAR},
+            #{item.subMid, jdbcType=VARCHAR},
+            #{item.subDesc, jdbcType=VARCHAR},
+            #{item.carModel, jdbcType=VARCHAR},
+            #{item.brand, jdbcType=VARCHAR},
+            #{item.market, jdbcType=VARCHAR},
+            #{item.year, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

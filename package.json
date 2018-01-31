@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@xkeshi/vue-qrcode": "xkeshi/vue-qrcode",
+    "clipboard": "^1.7.1"
+  }
+}

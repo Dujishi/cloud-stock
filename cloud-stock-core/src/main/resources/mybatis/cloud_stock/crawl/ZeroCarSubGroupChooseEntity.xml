@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarSubGroupChooseEntity">
+
+    <!-- for car sub groupResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarSubGroupChooseEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="inner_group_id" property="innerGroupId" jdbcType="INTEGER"/>
+        <result column="inner_sub_group_id" property="innerSubGroupId" jdbcType="INTEGER"/>
+        <result column="success_status" property="successStatus" jdbcType="INTEGER"/>
+        <result column="uri" property="uri" jdbcType="VARCHAR"/>
+        <result column="group_id" property="groupId" jdbcType="INTEGER"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="auth" property="auth" jdbcType="VARCHAR"/>
+        <result column="sub_group_name" property="subGroupName" jdbcType="VARCHAR"/>
+        <result column="sub_group" property="subGroup" jdbcType="VARCHAR"/>
+        <result column="num" property="num" jdbcType="VARCHAR"/>
+        <result column="mid" property="mid" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- zero_car_sub_group_choose table all fields -->
+    <sql id="Base_Column_List">
+	 id, success_status,inner_group_id, inner_sub_group_id, group_id, group_name, auth,uri, sub_group_name, sub_group, num, mid, url, is_valid, create_time, update_time
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="innerGroupId != null">
+                    and inner_group_id = #{innerGroupId, jdbcType=INTEGER}
+                </if>
+                <if test="innerSubGroupId != null">
+                    and inner_sub_group_id = #{innerSubGroupId, jdbcType=INTEGER}
+                </if>
+                <if test="successStatus != null">
+                    and success_status = #{successStatus, jdbcType=INTEGER}
+                </if>
+                <if test="groupId != null">
+                    and group_id = #{groupId, jdbcType=INTEGER}
+                </if>
+                <if test="groupName != null and groupName != ''">
+                    and group_name = #{groupName, jdbcType=VARCHAR}
+                </if>
+                <if test="auth != null and auth != ''">
+                    and auth = #{auth, jdbcType=VARCHAR}
+                </if>
+                <if test="subGroupName != null and subGroupName != ''">
+                    and sub_group_name = #{subGroupName, jdbcType=VARCHAR}
+                </if>
+                <if test="subGroup != null and subGroup != ''">
+                    and sub_group = #{subGroup, jdbcType=VARCHAR}
+                </if>
+                <if test="num != null and num != ''">
+                    and num = #{num, jdbcType=VARCHAR}
+                </if>
+                <if test="mid != null and mid != ''">
+                    and mid = #{mid, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarSubGroupChooseEntity">
+        insert into zero_car_sub_group_choose(
+            inner_group_id,
+            inner_sub_group_id,
+            group_id,
+            group_name,
+            auth,
+            uri,
+            sub_group_name,
+            sub_group,
+            num,
+            mid,
+            url
+        ) values (
+            #{innerGroupId, jdbcType=INTEGER},
+            #{innerSubGroupId, jdbcType=INTEGER},
+            #{groupId, jdbcType=INTEGER},
+            #{groupName, jdbcType=VARCHAR},
+            #{auth, jdbcType=VARCHAR},
+            #{uri, jdbcType=VARCHAR},
+            #{subGroupName, jdbcType=VARCHAR},
+            #{subGroup, jdbcType=VARCHAR},
+            #{num, jdbcType=VARCHAR},
+            #{mid, jdbcType=VARCHAR},
+            #{url, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO
+        zero_car_sub_group_choose( inner_group_id, inner_sub_group_id, group_id,group_name, auth, uri, sub_group_name, sub_group, num, mid, url)
+        VALUE
+        <foreach collection="list" item="item" separator=",">
+            (#{item.innerGroupId},
+            #{item.innerSubGroupId},
+            #{item.groupId},
+            #{item.groupName},
+            #{item.auth},
+            #{item.uri},
+            #{item.subGroupName},
+            #{item.subGroup},
+            #{item.num},
+            #{item.mid},
+            #{item.url}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarSubGroupChooseEntity">
+        update zero_car_sub_group_choose set
+        <trim suffixOverrides=",">
+            <if test="innerGroupId != null">
+                inner_group_id = #{innerGroupId, jdbcType=INTEGER},
+            </if>
+            <if test="innerSubGroupId != null">
+                inner_sub_group_id = #{innerSubGroupId, jdbcType=INTEGER},
+            </if>
+            <if test="successStatus != null">
+                success_status = #{successStatus, jdbcType=INTEGER},
+            </if>
+            <if test="groupId != null  ">
+                group_id = #{groupId, jdbcType=INTEGER},
+            </if>
+            <if test="groupName != null and groupName != ''">
+                group_name = #{groupName, jdbcType=VARCHAR},
+            </if>
+            <if test="auth != null  and auth != '' ">
+                auth = #{auth, jdbcType=VARCHAR},
+            </if>
+            <if test="subGroupName != null  and subGroupName != '' ">
+                sub_group_name = #{subGroupName, jdbcType=VARCHAR},
+            </if>
+            <if test="subGroup != null  and subGroup != '' ">
+                sub_group = #{subGroup, jdbcType=VARCHAR},
+            </if>
+            <if test="num != null  and num != '' ">
+                num = #{num, jdbcType=VARCHAR},
+            </if>
+            <if test="mid != null  and mid != '' ">
+                mid = #{mid, jdbcType=VARCHAR},
+            </if>
+            <if test="url != null  and url != '' ">
+                url = #{url, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarSubGroupChooseEntity">
+	  delete from zero_car_sub_group_choose where id = #{id}
+    </update>
+
+    <!-- for car sub group查询 -->
+    <select id="select" resultMap="BaseResultMap" parameterType="com.xiaoka.cloud.stock.core.crawl.repo.entity.ZeroCarSubGroupChooseEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_car_sub_group_choose
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="batchSelectByAuth" resultMap="BaseResultMap" parameterType="list">
+        select
+        <include refid="Base_Column_List"/>
+        from zero_car_sub_group_choose
+        where is_valid=1 and auth in
+        <foreach collection="list" close=")" open="(" separator="," item="auth">
+            #{auth}
+        </foreach>
+    </select>
+
+    <select id="getSubGroupChooseCountByCId" parameterType="int" resultType="int">
+        SELECT COUNT(DISTINCT(sgc.inner_sub_group_id))
+        FROM zero_car_model_choose mc LEFT JOIN zero_car_group_choose gc ON mc.id=gc.c_id
+        RIGHT JOIN zero_car_sub_group_choose sgc  ON sgc.group_id=gc.id
+        WHERE mc.id = #{id}
+    </select>
+
+    <select id="getSubGroupCountByCId" parameterType="Integer" resultType="int">
+        SELECT COUNT(DISTINCT(sub_group_id)) FROM zero_sub_group_parts
+        WHERE c_id = #{id}
+    </select>
+
+    <delete id="deleteData">
+        delete from zero_car_sub_group_choose
+    </delete>
+
+</mapper>   

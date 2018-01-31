@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.UserBrandEntity" >
+
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.UserBrandEntity" >
+	<result column="cs_user_id" property="csUserId" jdbcType="INTEGER" />
+	<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- user_brand table all fields -->
+<sql id="Base_Column_List" >
+	 cs_user_id, brand_id, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	is_valid = 1
+	<if test="csUserId != null" >
+	    and cs_user_id = #{csUserId, jdbcType=INTEGER}
+	</if>
+	<if test="brandId != null" >
+	    and brand_id = #{brandId, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.UserBrandEntity" >
+  	insert into user_brand(
+		cs_user_id,
+		brand_id,
+		create_by
+	) values (
+		#{csUserId, jdbcType=INTEGER},
+		#{brandId, jdbcType=INTEGER},
+		#{createBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List" >
+	insert into user_brand(
+		cs_user_id,
+		brand_id,
+		create_by
+	) values (
+	<foreach collection="list" item="item" open="" close="" separator="),(">
+		#{item.csUserId, jdbcType=INTEGER},
+		#{item.brandId, jdbcType=INTEGER},
+		#{item.createBy, jdbcType=VARCHAR}
+	</foreach>
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.UserBrandEntity" >
+	update user_brand set 
+	<trim  suffixOverrides="," >
+		<if test="brandId != null  ">
+			brand_id = #{brandId, jdbcType=INTEGER},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where cs_user_id = #{csUserId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.UserBrandEntity">
+	update user_brand
+	set is_valid=0
+	<include refid="Where_Clause"/>
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.UserBrandEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from user_brand 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

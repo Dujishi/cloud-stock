@@ -1,0 +1,206 @@
+@import '../../../assets/less/variable.less';
+
+.order-page-box {
+    padding: 0 0 30px;
+}
+.order-detail-page {
+    position: relative;
+    margin: -50px auto 30px;
+    padding: 21px 30px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0 1px 6px 0 rgba(173,173,173,0.50);
+            box-shadow: 0 1px 6px 0 rgba(173,173,173,0.50);
+    min-height: 500px;
+    max-width: 1400px;
+
+    .detail-header {
+        position: relative;
+        padding-bottom: 27px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        text-align: center;
+        border-bottom: 1px solid #888D98;
+
+        &::after {
+            content: '';
+            width: 100%;
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            border-bottom: 3px solid #888D98;
+        }
+
+        .qr-text {    
+            margin-top: -18px;
+            color: #222; 
+            font-size: 12px;  
+            overflow: hidden; 
+        }
+
+        .qrcode-box {
+           
+            div {
+                padding: 10px 14px 28px;
+                width: 148px;
+                height: 158px;
+                background: #DADDE3;
+                font-size: 12px;
+
+                img {
+                    width: 120px;
+                    height: 120px;
+                }
+            }
+            p {
+                color: #333;
+
+                button {
+                    margin-top: 16px;
+                    padding: 4px 11px;
+                    background: #FFFFFF;
+                    border: 1px solid #888D98;
+                    border-radius: 3px;
+                }
+            }
+        }
+
+        .order-info {
+            h1 {
+                font-size: 32px;
+                color: #222;
+            }
+            .order-no {
+                margin: 6px 0;
+                font-size: 12px;
+                color: #222;
+
+                span {
+                    font-weight: bold;
+                }
+            }
+            .order-status {
+                 span {
+                    margin: 0 auto;
+                }
+            }
+        }
+        .print-btn {
+            padding: 8px 12px;
+            background: @color-primary;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 12px;
+            -ms-flex-item-align: end;
+                align-self: flex-end;
+            cursor: pointer;
+        }
+
+       
+    }
+
+    .order-buy-info {
+        margin: 30px 0 20px;
+
+        div {
+            display: inline-block;
+            margin-right: 250px;
+        }
+
+        .buy-info-item {
+            margin-bottom: 20px;
+
+            span:nth-of-type(2) {
+                font-weight: bold;
+                color: #101010;
+            }
+        }
+    }
+
+    .order-price {
+        padding: 20px 0 10px;
+        font-size: 16px;
+        color: #101010;
+
+        p {
+            margin-bottom: 11px;
+
+            span:nth-of-type(1) {
+                margin-right: 40px;
+                font-size:14px;
+                color: #222;
+            }
+
+            .color-primary {
+                color: @color-primary;
+            }
+        }
+    }
+}
+
+.order-detail-btn {
+    margin:0 auto;
+    text-align: center;
+    max-width: 1400px;
+
+    .btn-box {
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+    .return {
+        float: left;
+        margin-left: 10px;
+        font-size: 12px;
+        color: #666;
+        cursor: pointer;
+
+        &:hover {
+            color: @color-primary;
+        }
+
+        .iconfont {
+            font-size: 18px;
+            vertical-align: text-bottom;
+        }
+    }
+
+    button {
+        padding: 6px 12px;
+        background: #FFFFFF;
+        border: 1px solid #D8D8D8;
+        border-radius: 3px;
+        font-size: 14px;
+        color: #555;
+        cursor: pointer;
+
+        &:hover {
+            border: 1px solid @color-primary;
+            color: @color-primary;
+        }
+    }
+}
+.print {
+    display: none;
+}
+
+@media print {
+        .no-print {
+            display: none;
+        }
+        .print {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        @page {
+            size: 794px 1123px;  /* or size: 794px 1123px;   */
+            size: 397mm 420mm;  /* or size: 1123px 1588px;  */
+        }
+    }

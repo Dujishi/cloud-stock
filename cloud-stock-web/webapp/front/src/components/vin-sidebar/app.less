@@ -1,0 +1,53 @@
+@import '../../assets/less/variable.less';
+
+.v-vin-sidebar {
+    .el-icon-circle-close {
+        cursor: pointer;
+    }
+}
+
+.v-vin-sidebar__query-btn {
+    width: 100%;
+    margin-top: 15px;
+}
+.v-vin-sidebar__input {
+    padding-top: 20px;
+    position: relative;
+    label {
+        position: absolute;
+        z-index: 1;
+        top: 14px;
+        left: 15px;
+        padding: 0 10px;
+        background: #fff;
+        font-weight: bold;
+    }
+    .el-input__inner, 
+    .el-textarea__inner {
+        font-size: 12px;
+        padding-left: 23px;
+        border-color: #D8D8D8;
+    }
+    .el-input__inner:hover {
+        border-color: #A2A2A2;
+    }
+    .el-input.is-active .el-input__inner,
+    .el-input__inner:focus {
+        border-color: #A2A2A2;
+    }
+
+    .el-textarea__inner:hover {
+        border-color: #A2A2A2;
+    }
+    .el-textarea.is-active .el-textarea__inner,
+    .el-textarea__inner:focus {
+        border-color: #A2A2A2;
+    }
+    .el-input__inner {
+        padding-top: 5px;
+        height: 48px;
+    }
+    .el-textarea__inner {
+        padding-top: 15px;
+    }
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.xiaoka.freework.cache.annotation.ServiceCacheAnnotationAspect">
+		<property name="serviceCache">
+			<ref bean="serviceApiCache" />
+		</property>
+	</bean>
+
+
+	<bean id="serviceApiCache" class="com.xiaoka.freework.cache.support.WrapperCache">
+		<property name="cache">
+			<ref bean="apiCache" />
+		</property>
+		<property name="prefixKey">
+			<value>SRV_</value>
+		</property>
+	</bean>
+
+	<!-- 创建分布式缓存 -->
+	<bean id="apiCache" class="com.xiaoka.freework.cache.memcached.MemcacheFactoryBean">
+		<property name="servers" value="${memcached.api.servers}" />
+		<property name="expire" value="${memcached.api.expire}" />
+		<property name="useSpy" value="${memcached.useSpy}" />
+		<property name="minConn" value="${memcached.minConn}" />
+		<property name="maxConn" value="${memcached.maxConn}" />
+		<property name="maxIdle" value="${memcached.maxIdle}" />
+		<property name="maxBusyTime" value="${memcached.maxBusyTime}" />
+	</bean>
+
+	<!-- 创建集群缓存 -->
+	<bean id="clusterCache" class="com.xiaoka.freework.cache.memcached.MemcacheFactoryBean">
+		<property name="servers" value="${memcached.cluster.servers}" />
+		<property name="expire" value="${memcached.cluster.expire}" />
+		<property name="useSpy" value="${memcached.useSpy}" />
+		<property name="minConn" value="${memcached.minConn}" />
+		<property name="maxConn" value="${memcached.maxConn}" />
+		<property name="maxIdle" value="${memcached.maxIdle}" />
+		<property name="maxBusyTime" value="${memcached.maxBusyTime}" />
+	</bean>
+
+</beans>

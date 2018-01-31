@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task.xsd
+	">
+
+    <task:annotation-driven/>
+    <!-- 激活@Controller模式，自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="com.xiaoka.freework.container.spring.converter.StringHttpMessageConverter"></bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <constructor-arg>
+                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+                        <!-- 处理responseBody里面日期类型 -->
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                            </bean>
+                        </property>
+                        <property name="objectMapper">
+                            <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                                <property name="timeZone">
+                                    <bean class="java.util.TimeZone" factory-method="getTimeZone">
+                                        <constructor-arg value="GMT+08"/>
+                                    </bean>
+                                </property>
+                            </bean>
+                        </property>
+                        <!-- 字段为null时不显示 -->
+                        <property name="serializationInclusion">
+                            <value>NON_NULL</value>
+                        </property>
+                        <property name="featuresToDisable">
+                            <bean class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+                                <!-- Map中值为null的键值对不显示 -->
+                                <property name="staticField"
+                                          value="com.fasterxml.jackson.databind.SerializationFeature.WRITE_NULL_MAP_VALUES"/>
+                            </bean>
+                        </property>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <aop:aspectj-autoproxy/>
+
+    <!-- 文件上传表单的视图解析器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="20971520"/><!-- 20MB -->
+    </bean>
+
+    <!-- ViewResolver配置 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <!-- 业务级异常处理类 -->
+    <bean id="apiExceptionHandler" class="com.xiaoka.freework.help.api.ApiExceptionHandler"/>
+
+    <!-- 全局异常处理类 -->
+    <bean id="globalExceptionHandler" class="com.xiaoka.freework.container.exception.GlobalExceptionHandler">
+        <property name="errorPage">
+            <value>errors/exception</value>
+        </property>
+    </bean>
+    <!-- 全局异常处理 -->
+    <bean id="exceptionResolver" class="com.xiaoka.freework.container.exception.HandlerMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!-- 遇到ApiException异常时，采用 apiExceptionHandler 处理 -->
+                <prop key="com.xiaoka.freework.help.api.ApiException">handler:apiExceptionHandler</prop>
+            </props>
+        </property>
+        <!-- 全局异常：在exceptionMappings里面找不到对应的异常时，采用 globalExceptionHandler 处理 -->
+        <property name="defaultErrorView" value="handler:globalExceptionHandler"/>
+        <property name="defaultStatusCode" value="200"/>
+    </bean>
+
+    <mvc:interceptors>
+        <bean class="com.xiaoka.freework.container.log.AccessLoggerInterceptor"/>
+        <!-- IP访问拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/openApi/**"/>
+            <bean class="com.xiaoka.cloud.stock.service.core.interceptor.RequestIpAccessInterceptor"/>
+        </mvc:interceptor>
+        <!-- 用户拦截拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/openApi/**"/>
+            <bean class="com.xiaoka.cloud.stock.web.common.SessionAuthInterceptor"/>
+        </mvc:interceptor>
+        <!-- 签名校验 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/openApi/**"/>
+            <bean class="com.xiaoka.cloud.stock.service.core.interceptor.SignAuthCheckInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 对包中的所有类进行扫描类上的注解，以完成Bean创建和自动依赖注入的功能 需要更改 -->
+    <context:component-scan base-package="com.xiaoka.cloud.stock.web" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources location="/dist/" mapping="/dist/**"></mvc:resources>
+
+    <bean class="com.xiaoka.cloud.stock.web.action.WildcardController">
+        <property name="extension" value=".html"/>
+    </bean>
+
+</beans>

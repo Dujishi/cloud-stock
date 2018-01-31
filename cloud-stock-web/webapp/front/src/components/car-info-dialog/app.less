@@ -1,0 +1,55 @@
+@import '../../assets/less/variable.less';
+
+.v-car-info-dialog {
+    .el-dialog {
+        width: 800px;
+    }
+    .el-dialog__body {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .v-car-info-dialog__hd {
+        color: @color-text-dark;
+        .iconfont {
+            font-size: 22px;
+            vertical-align: middle;
+            color: #888D98;
+            margin-right: 15px;
+        }
+    }
+    .v-car-info-dialog__bd {
+        margin-top: 18px;
+        font-size: 12px;
+        border: 1px solid #EFEFEF;
+        overflow: hidden;
+
+        li {
+            padding: 17px 0;
+            float: left;
+            width: 369px;
+            border-top: 1px solid #EFEFEF;
+            &:nth-child(1),
+            &:nth-child(2) {
+                border-top: 0;
+            }
+            &:nth-child(4n-2),
+            &:nth-child(4n-3) {
+                background: #FDFDFD;
+            }
+            &:last-child:nth-child(2n + 1) {
+                width: 738px;
+            }
+        }
+        .item1 {
+            float: left;
+            width: 150px;
+            padding-left: 40px;
+            color: @color-text-light;
+        }
+        .item2 {
+            float: left;
+            font-weight: bold;
+            color: @color-text-dark;
+        }
+    }
+}

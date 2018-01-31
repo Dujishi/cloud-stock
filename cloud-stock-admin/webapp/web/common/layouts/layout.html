@@ -1,0 +1,170 @@
+<style>
+.test {
+	color: #ffffff;
+}
+.childrenActive{
+	color: #ffffff;
+}
+</style>
+<div class="wrapper preload" ng-controller="mainCtrl">
+	<header class="top-nav" id="top-nav">
+		<div class="top-nav-inner">
+			<div class="nav-header">
+				<button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleSM">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+
+				<a href="/fuxi/" class="brand"> <span class="brand-name">{{systemName}}</span>
+				</a>
+			</div>
+			<div class="nav-container">
+				<button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleLG">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<div class="pull-left m-right-sm" ng-if="isExistBreadcrumb">
+					<ul class="breadcrumb">
+						<li ng-repeat="b in breadcrumb">
+							<span ng-if="b.path && b.type != 3" ><a href="#" style="color: #FFFFFF" ng-click="breadcrumbJump(b);">{{b.name}}</a></span>
+							<span ng-if="!b.path && b.type != 3" style="color: #FFFFFF">{{b.name}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="pull-right m-right-sm">
+                    <span class="hello-user">
+                        您好，{{nickName}}，欢迎来到{{systemName}}!
+                    </span>
+					<div class="pull-right">
+						<!--<a href="/user/message/" class="header-link header-link-message">-->
+						<!--站内信-->
+						<!--<span class="header-message-count hide"></span>-->
+						<!--</a>-->
+						<!--<a href="/" target="/" class="header-link header-link-home">官网首页</a>-->
+						<div class="user-block hidden-xs header-link header-link-system " style="border-left: 1px solid #0aaae5;">
+							<a href="#" id="userToggle" data-toggle="dropdown">
+								<div class="user-detail inline-block">
+									切换系统
+									<i class="fa fa-angle-down"></i>
+								</div>
+							</a>
+							<div class="panel border dropdown-menu user-panel" >
+								<div class="panel-body paddingTB-sm">
+									<ul>
+										<li ng-repeat="s in systems" style="height: 25px;line-height: 25px;">
+											<a href="#" ng-click="openSystem(s.path);">
+												{{s.name}}
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<a href="#" class="header-link header-link-logout" ng-click="logout();">退出登录</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- ./top-nav-inner -->
+	</header>
+	<aside class="sidebar-menu fixed">
+		<div class="sidebar-inner scrollable-sidebar">
+			<div class="main-menu">
+				<ul class="accordion">
+					<li ng-repeat="n in menus" ng-if="n.isVirtual != 1" ng-class="n.children != null ? 'openable bg-palette3' : 'bg-palette2'"
+						my-post-repeat-directive><a href="javascript:;" ng-click="open(n,'')" id="n.id"> <span
+							class="menu-content block"> <span class="menu-icon" ng-class="n.selected ? 'test' : ''"><i
+									class="fa fa-desktop"></i></span> <span class="text m-left-sm" ng-bind="n.name" ng-class="n.selected ? 'test' : ''"></span>
+								<span class="submenu-icon" ng-show="n.children != null"></span>
+						</span> <span class="menu-content-hover block"> {{n.name}} </span>
+					</a>
+						<ul class="submenu bg-palette4" ng-if="n.children != null" ng-style="{display:(n.selected)?'block':'none'}">
+							<li ng-repeat="c in n.children" ng-if="c.isVirtual != 1">
+								<a href="javascript:void(0)" ng-click="open(c,'')" id="c.id" ng-style="{'background-color': c.selected ? '#009fd9':''}"> <!--<span class="menu-icon"><i ng-class="c.icon"></i></span>-->
+									<span class="submenu-label" ng-class="c.selected ? 'childrenActive' : ''" ng-bind="c.name"></span>
+								</a>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+			<!--<div class="sidebar-fix-bottom clearfix">-->
+				<!--<div class="user-dropdown dropup pull-left">-->
+					<!--<a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i class="fa fa-list fa-lg"></i> </a>-->
+					<!--<ul class="dropdown-menu">-->
+						<!--<li ng-repeat="s in systems">-->
+							<!--<a href="#" ng-click="openSystem(s.rootPath);">{{s.name}}-->
+							<!--</a>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+				<!--&lt;!&ndash;<a href="lockscreen.html" class="pull-right font-18"><i class="ion-social-vimeo"></i></a>&ndash;&gt;-->
+			<!--</div>-->
+		</div>
+		<!-- sidebar-inner -->
+	</aside>
+
+	<div class="main-container" id="main">
+		<iframe src="" class="iframe" name="main" id="content_iframe" ng-style="{height:(heightStyle+'px')}"></iframe>
+	</div>
+	<!-- /main-container -->
+
+</div>
+<!-- /wrapper -->
+
+<a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+
+<!-- Delete Widget Confirmation -->
+<!-- <div class="custom-popup delete-widget-popup delete-confirmation-popup" id="deleteWidgetConfirm"> -->
+<!-- 	<div class="popup-header text-center"> -->
+<!-- 		<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-2x"></i> <i -->
+<!-- 			class="fa fa-lock fa-stack-1x fa-inverse"></i> -->
+<!-- 		</span> -->
+<!-- 	</div> -->
+<!-- 	<div class="popup-body text-center"> -->
+<!-- 		<h5>Are you sure to delete this widget?</h5> -->
+<!-- 		<strong class="block m-top-xs"><i class="fa fa-exclamation-circle m-right-xs text-danger"></i>This action -->
+<!-- 			cannot be undone</strong> -->
+
+<!-- 		<div class="text-center m-top-lg"> -->
+<!-- 			<a class="btn btn-success m-right-sm remove-widget-btn">Delete</a> <a -->
+<!-- 				class="btn btn-default deleteWidgetConfirm_close">Cancel</a> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+<script>
+	seajs.use([ 'js/common/layouts/layout' ], function() {
+		angular.bootstrap(document, [ 'App' ]);
+	});
+</script>
+<script>
+// 	$('.chart').easyPieChart({
+// 		easing : 'easeOutBounce',
+// 		size : '140',
+// 		lineWidth : '7',
+// 		barColor : '#7266ba',
+// 		onStep : function(from, to, percent) {
+// 			$(this.el).find('.percent').text(Math.round(percent));
+// 		}
+// 	});
+
+// 	$('.sortable-list').sortable();
+
+	$('.todo-checkbox').click(function() {
+
+		var _activeCheckbox = $(this).find('input[type="checkbox"]');
+
+		if (_activeCheckbox.is(':checked')) {
+			$(this).parent().addClass('selected');
+		} else {
+			$(this).parent().removeClass('selected');
+		}
+
+	});
+
+	//Delete Widget Confirmation
+// 	$('#deleteWidgetConfirm').popup({
+// 		vertical : 'top',
+// 		pagecontainer : '.container',
+// 		transition : 'all 0.3s'
+// 	});
+</script>

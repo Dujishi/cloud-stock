@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelEntity">
+
+    <!-- Result Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelEntity">
+        <result column="model_id" property="modelId" jdbcType="INTEGER"/>
+        <result column="model_name" property="modelName" jdbcType="VARCHAR"/>
+        <result column="model_year" property="modelYear" jdbcType="VARCHAR"/>
+        <result column="capacity_in_litre_l" property="capacityInLitreL" jdbcType="VARCHAR"/>
+        <result column="capacity_in_litre_cc" property="capacityInLitreCc" jdbcType="VARCHAR"/>
+        <result column="transmission_type" property="transmissionType" jdbcType="VARCHAR"/>
+        <result column="first_letter" property="firstLetter" jdbcType="VARCHAR"/>
+        <result column="brand_id" property="brandId" jdbcType="INTEGER"/>
+        <result column="brand_name" property="brandName" jdbcType="VARCHAR"/>
+        <result column="make_id" property="makeId" jdbcType="INTEGER"/>
+        <result column="make_name" property="makeName" jdbcType="VARCHAR"/>
+        <result column="series_id" property="seriesId" jdbcType="INTEGER"/>
+        <result column="series_name" property="seriesName" jdbcType="VARCHAR"/>
+        <result column="series_bbg" property="seriesBbg" jdbcType="VARCHAR"/>
+        <result column="dmp_imp" property="dmpImp" jdbcType="VARCHAR"/>
+        <result column="msrp_new_launach" property="msrpNewLaunach" jdbcType="VARCHAR"/>
+        <result column="msrp_newest" property="msrpNewest" jdbcType="VARCHAR"/>
+        <result column="car_body" property="carBody" jdbcType="VARCHAR"/>
+        <result column="drive_form" property="driveForm" jdbcType="VARCHAR"/>
+        <result column="engine_model" property="engineModel" jdbcType="VARCHAR"/>
+        <result column="fuel_type" property="fuelType" jdbcType="VARCHAR"/>
+        <result column="mixture_preparation" property="mixturePreparation" jdbcType="VARCHAR"/>
+        <result column="model_eop" property="modelEop" jdbcType="VARCHAR"/>
+        <result column="model_interior_code" property="modelInteriorCode" jdbcType="VARCHAR"/>
+        <result column="model_sop" property="modelSop" jdbcType="VARCHAR"/>
+        <result column="nm_of_transmission_gear" property="nmOfTransmissionGear" jdbcType="VARCHAR"/>
+        <result column="platform" property="platform" jdbcType="VARCHAR"/>
+        <result column="power" property="power" jdbcType="VARCHAR"/>
+        <result column="qty_of_chairs" property="qtyOfChairs" jdbcType="VARCHAR"/>
+        <result column="qty_of_doors" property="qtyOfDoors" jdbcType="VARCHAR"/>
+        <result column="structure" property="structure" jdbcType="VARCHAR"/>
+        <result column="super_charger" property="superCharger" jdbcType="VARCHAR"/>
+        <result column="timer_grade" property="timerGrade" jdbcType="VARCHAR"/>
+        <result column="standard_model_id" property="standardModelId" jdbcType="VARCHAR"/>
+        <result column="standard_model_name" property="standardModelName" jdbcType="VARCHAR"/>
+        <result column="remark_transmission_type" property="remarkTransmissionType" jdbcType="VARCHAR"/>
+        <result column="standard_type_id" property="standardTypeId" jdbcType="VARCHAR"/>
+        <result column="standard_type_name" property="standardTypeName" jdbcType="VARCHAR"/>
+        <result column="type_of_at_transmission" property="typeOfAtTransmission" jdbcType="VARCHAR"/>
+        <result column="epc_no" property="epcNo" jdbcType="INTEGER"/>
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="hl_version" property="hlVersion" jdbcType="VARCHAR"/>
+        <result column="xid" property="xid" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="batch" property="batch" jdbcType="VARCHAR"/>
+        <result column="t_capacity_in_litrel" property="tCapacityInLitrel" jdbcType="VARCHAR"/>
+        <result column="t_car_year" property="tCarYear" jdbcType="VARCHAR"/>
+        <result column="t_cylinder_num" property="tCylinderNum" jdbcType="VARCHAR"/>
+        <result column="t_drv_mode" property="tDrvMode" jdbcType="VARCHAR"/>
+        <result column="t_e_suffix" property="tESuffix" jdbcType="VARCHAR"/>
+        <result column="t_env_standard" property="tEnvStandard" jdbcType="VARCHAR"/>
+        <result column="t_mode_name_without_year" property="tModeNameWithoutYear" jdbcType="VARCHAR"/>
+        <result column="t_paragraph" property="tParagraph" jdbcType="VARCHAR"/>
+        <result column="t_post_code" property="tPostCode" jdbcType="VARCHAR"/>
+        <result column="t_power_type" property="tPowerType" jdbcType="VARCHAR"/>
+        <result column="t_set_num" property="tSetNum" jdbcType="VARCHAR"/>
+        <result column="t_transmission" property="tTransmission" jdbcType="VARCHAR"/>
+        <result column="t_type_name" property="tTypeName" jdbcType="VARCHAR"/>
+        <result column="t_valid" property="tValid" jdbcType="VARCHAR"/>
+        <result column="series_bbg_eop_year" property="seriesBbgEopYear" jdbcType="VARCHAR"/>
+        <result column="series_bbg_sop_year" property="seriesBbgSopYear" jdbcType="VARCHAR"/>
+        <result column="zc_update_time" property="zcUpdateTime" jdbcType="VARCHAR"/>
+        <result column="oem" property="oem" jdbcType="VARCHAR"/>
+        <result column="oem_abbrebiation" property="oemAbbrebiation" jdbcType="VARCHAR"/>
+        <result column="series" property="series" jdbcType="VARCHAR"/>
+        <result column="variant_eop" property="variantEop" jdbcType="VARCHAR"/>
+        <result column="variant_sop" property="variantSop" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- car_model table all fields -->
+    <sql id="Base_Column_List">
+	 model_id, model_name, model_year, capacity_in_litre_l, capacity_in_litre_cc, transmission_type, first_letter, brand_id, brand_name, make_id, make_name, series_id, series_name, series_bbg, dmp_imp, msrp_new_launach, msrp_newest, car_body, drive_form, engine_model, fuel_type, mixture_preparation, model_eop, model_interior_code, model_sop, nm_of_transmission_gear, platform, power, qty_of_chairs, qty_of_doors, structure, super_charger, timer_grade, standard_model_id, standard_model_name, remark_transmission_type, standard_type_id, standard_type_name, type_of_at_transmission, epc_no, id, hl_version, xid, is_valid, create_time, create_by, update_time, update_by, batch, t_capacity_in_litrel, t_car_year, t_cylinder_num, t_drv_mode, t_e_suffix, t_env_standard, t_mode_name_without_year, t_paragraph, t_post_code, t_power_type, t_set_num, t_transmission, t_type_name, t_valid, series_bbg_eop_year, series_bbg_sop_year, zc_update_time, oem, oem_abbrebiation, series, variant_eop, variant_sop
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                is_valid = 1
+                <if test="modelId != null">
+                    and model_id = #{modelId, jdbcType=INTEGER}
+                </if>
+                <if test="modelName != null and modelName != ''">
+                    and model_name = #{modelName, jdbcType=VARCHAR}
+                </if>
+                <if test="modelYear != null and modelYear != ''">
+                    and model_year = #{modelYear, jdbcType=VARCHAR}
+                </if>
+                <if test="capacityInLitreL != null and capacityInLitreL != ''">
+                    and capacity_in_litre_l = #{capacityInLitreL, jdbcType=VARCHAR}
+                </if>
+                <if test="capacityInLitreCc != null and capacityInLitreCc != ''">
+                    and capacity_in_litre_cc = #{capacityInLitreCc, jdbcType=VARCHAR}
+                </if>
+                <if test="transmissionType != null and transmissionType != ''">
+                    and transmission_type = #{transmissionType, jdbcType=VARCHAR}
+                </if>
+                <if test="firstLetter != null and firstLetter != ''">
+                    and first_letter = #{firstLetter, jdbcType=VARCHAR}
+                </if>
+                <if test="brandId != null">
+                    and brand_id = #{brandId, jdbcType=INTEGER}
+                </if>
+                <if test="brandName != null and brandName != ''">
+                    and brand_name = #{brandName, jdbcType=VARCHAR}
+                </if>
+                <if test="makeId != null">
+                    and make_id = #{makeId, jdbcType=INTEGER}
+                </if>
+                <if test="makeName != null and makeName != ''">
+                    and make_name = #{makeName, jdbcType=VARCHAR}
+                </if>
+                <if test="seriesId != null">
+                    and series_id = #{seriesId, jdbcType=INTEGER}
+                </if>
+                <if test="seriesName != null and seriesName != ''">
+                    and series_name = #{seriesName, jdbcType=VARCHAR}
+                </if>
+                <if test="seriesBbg != null and seriesBbg != ''">
+                    and series_bbg = #{seriesBbg, jdbcType=VARCHAR}
+                </if>
+                <if test="dmpImp != null and dmpImp != ''">
+                    and dmp_imp = #{dmpImp, jdbcType=VARCHAR}
+                </if>
+                <if test="msrpNewLaunach != null and msrpNewLaunach != ''">
+                    and msrp_new_launach = #{msrpNewLaunach, jdbcType=VARCHAR}
+                </if>
+                <if test="msrpNewest != null">
+                    and msrp_newest = #{msrpNewest, jdbcType=VARCHAR}
+                </if>
+                <if test="carBody != null and carBody != ''">
+                    and car_body = #{carBody, jdbcType=VARCHAR}
+                </if>
+                <if test="driveForm != null and driveForm != ''">
+                    and drive_form = #{driveForm, jdbcType=VARCHAR}
+                </if>
+                <if test="engineModel != null and engineModel != ''">
+                    and engine_model = #{engineModel, jdbcType=VARCHAR}
+                </if>
+                <if test="fuelType != null and fuelType != ''">
+                    and fuel_type = #{fuelType, jdbcType=VARCHAR}
+                </if>
+                <if test="mixturePreparation != null and mixturePreparation != ''">
+                    and mixture_preparation = #{mixturePreparation, jdbcType=VARCHAR}
+                </if>
+                <if test="modelEop != null and modelEop != ''">
+                    and model_eop = #{modelEop, jdbcType=VARCHAR}
+                </if>
+                <if test="modelInteriorCode != null and modelInteriorCode != ''">
+                    and model_interior_code = #{modelInteriorCode, jdbcType=VARCHAR}
+                </if>
+                <if test="modelSop != null and modelSop != ''">
+                    and model_sop = #{modelSop, jdbcType=VARCHAR}
+                </if>
+                <if test="nmOfTransmissionGear != null and nmOfTransmissionGear != ''">
+                    and nm_of_transmission_gear = #{nmOfTransmissionGear, jdbcType=VARCHAR}
+                </if>
+                <if test="platform != null and platform != ''">
+                    and platform = #{platform, jdbcType=VARCHAR}
+                </if>
+                <if test="power != null and power != ''">
+                    and power = #{power, jdbcType=VARCHAR}
+                </if>
+                <if test="qtyOfChairs != null">
+                    and qty_of_chairs = #{qtyOfChairs, jdbcType=VARCHAR}
+                </if>
+                <if test="qtyOfDoors != null">
+                    and qty_of_doors = #{qtyOfDoors, jdbcType=VARCHAR}
+                </if>
+                <if test="structure != null and structure != ''">
+                    and structure = #{structure, jdbcType=VARCHAR}
+                </if>
+                <if test="superCharger != null and superCharger != ''">
+                    and super_charger = #{superCharger, jdbcType=VARCHAR}
+                </if>
+                <if test="timerGrade != null and timerGrade != ''">
+                    and timer_grade = #{timerGrade, jdbcType=VARCHAR}
+                </if>
+                <if test="standardModelId != null and standardModelId != ''">
+                    and standard_model_id = #{standardModelId, jdbcType=VARCHAR}
+                </if>
+                <if test="standardModelName != null and standardModelName != ''">
+                    and standard_model_name = #{standardModelName, jdbcType=VARCHAR}
+                </if>
+                <if test="remarkTransmissionType != null and remarkTransmissionType != ''">
+                    and remark_transmission_type = #{remarkTransmissionType, jdbcType=VARCHAR}
+                </if>
+                <if test="standardTypeId != null">
+                    and standard_type_id = #{standardTypeId, jdbcType=VARCHAR}
+                </if>
+                <if test="standardTypeName != null and standardTypeName != ''">
+                    and standard_type_name = #{standardTypeName, jdbcType=VARCHAR}
+                </if>
+                <if test="typeOfAtTransmission != null and typeOfAtTransmission != ''">
+                    and type_of_at_transmission = #{typeOfAtTransmission, jdbcType=VARCHAR}
+                </if>
+                <if test="epcNo != null">
+                    and epc_no = #{epcNo, jdbcType=INTEGER}
+                </if>
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="hlVersion != null and hlVersion != ''">
+                    and hl_version = #{hlVersion, jdbcType=VARCHAR}
+                </if>
+                <if test="xid != null and xid != ''">
+                    and xid = #{xid, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+                <if test="batch != null and batch != ''">
+                    and batch = #{batch, jdbcType=VARCHAR}
+                </if>
+                <if test="tCapacityInLitrel != null and tCapacityInLitrel != ''">
+                    and t_capacity_in_litrel = #{tCapacityInLitrel, jdbcType=VARCHAR}
+                </if>
+                <if test="tCarYear != null and tCarYear != ''">
+                    and t_car_year = #{tCarYear, jdbcType=VARCHAR}
+                </if>
+                <if test="tCylinderNum != null and tCylinderNum != ''">
+                    and t_cylinder_num = #{tCylinderNum, jdbcType=VARCHAR}
+                </if>
+                <if test="tDrvMode != null and tDrvMode != ''">
+                    and t_drv_mode = #{tDrvMode, jdbcType=VARCHAR}
+                </if>
+                <if test="tESuffix != null and tESuffix != ''">
+                    and t_e_suffix = #{tESuffix, jdbcType=VARCHAR}
+                </if>
+                <if test="tEnvStandard != null and tEnvStandard != ''">
+                    and t_env_standard = #{tEnvStandard, jdbcType=VARCHAR}
+                </if>
+                <if test="tModeNameWithoutYear != null and tModeNameWithoutYear != ''">
+                    and t_mode_name_without_year = #{tModeNameWithoutYear, jdbcType=VARCHAR}
+                </if>
+                <if test="tParagraph != null and tParagraph != ''">
+                    and t_paragraph = #{tParagraph, jdbcType=VARCHAR}
+                </if>
+                <if test="tPostCode != null and tPostCode != ''">
+                    and t_post_code = #{tPostCode, jdbcType=VARCHAR}
+                </if>
+                <if test="tPowerType != null and tPowerType != ''">
+                    and t_power_type = #{tPowerType, jdbcType=VARCHAR}
+                </if>
+                <if test="tSetNum != null and tSetNum != ''">
+                    and t_set_num = #{tSetNum, jdbcType=VARCHAR}
+                </if>
+                <if test="tTransmission != null and tTransmission != ''">
+                    and t_transmission = #{tTransmission, jdbcType=VARCHAR}
+                </if>
+                <if test="tTypeName != null and tTypeName != ''">
+                    and t_type_name = #{tTypeName, jdbcType=VARCHAR}
+                </if>
+                <if test="tValid != null and tValid != ''">
+                    and t_valid = #{tValid, jdbcType=VARCHAR}
+                </if>
+                <if test="seriesBbgEopYear != null and seriesBbgEopYear != ''">
+                    and series_bbg_eop_year = #{seriesBbgEopYear, jdbcType=VARCHAR}
+                </if>
+                <if test="seriesBbgSopYear != null and seriesBbgSopYear != ''">
+                    and series_bbg_sop_year = #{seriesBbgSopYear, jdbcType=VARCHAR}
+                </if>
+                <if test="zcUpdateTime != null and zcUpdateTime != ''">
+                    and zc_update_time = #{zcUpdateTime, jdbcType=VARCHAR}
+                </if>
+                <if test="oem != null and oem != ''">
+                    and oem = #{oem, jdbcType=VARCHAR}
+                </if>
+                <if test="oemAbbrebiation != null and oemAbbrebiation != ''">
+                    and oem_abbrebiation = #{oemAbbrebiation, jdbcType=VARCHAR}
+                </if>
+                <if test="series != null and series != ''">
+                    and series = #{series, jdbcType=VARCHAR}
+                </if>
+                <if test="variantEop != null and variantEop != ''">
+                    and variant_eop = #{variantEop, jdbcType=VARCHAR}
+                </if>
+                <if test="variantSop != null and variantSop != ''">
+                    and variant_sop = #{variantSop, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into car_model(
+        model_id,
+        model_name,
+        model_year,
+        capacity_in_litre_l,
+        capacity_in_litre_cc,
+        transmission_type,
+        first_letter,
+        brand_id,
+        brand_name,
+        make_id,
+        make_name,
+        series_id,
+        series_name,
+        series_bbg,
+        dmp_imp,
+        msrp_new_launach,
+        msrp_newest,
+        car_body,
+        drive_form,
+        engine_model,
+        fuel_type,
+        mixture_preparation,
+        model_eop,
+        model_interior_code,
+        model_sop,
+        nm_of_transmission_gear,
+        platform,
+        power,
+        qty_of_chairs,
+        qty_of_doors,
+        structure,
+        super_charger,
+        timer_grade,
+        standard_model_id,
+        standard_model_name,
+        remark_transmission_type,
+        standard_type_id,
+        standard_type_name,
+        type_of_at_transmission,
+        epc_no,
+        id,
+        hl_version,
+        xid,
+        is_valid,
+        create_time,
+        create_by,
+        update_time,
+        update_by,
+        batch,
+        t_capacity_in_litrel,
+        t_car_year,
+        t_cylinder_num,
+        t_drv_mode,
+        t_e_suffix,
+        t_env_standard,
+        t_mode_name_without_year,
+        t_paragraph,
+        t_post_code,
+        t_power_type,
+        t_set_num,
+        t_transmission,
+        t_type_name,
+        t_valid,
+        series_bbg_eop_year,
+        series_bbg_sop_year,
+        zc_update_time,
+        oem,
+        oem_abbrebiation,
+        series,
+        variant_eop,
+        variant_sop
+        ) values (
+        <foreach collection="list" item="item" open="" close="" separator="),(">
+            #{item.modelId, jdbcType=INTEGER},
+            #{item.modelName, jdbcType=VARCHAR},
+            #{item.modelYear, jdbcType=VARCHAR},
+            #{item.capacityInLitreL, jdbcType=VARCHAR},
+            #{item.capacityInLitreCc, jdbcType=VARCHAR},
+            #{item.transmissionType, jdbcType=VARCHAR},
+            #{item.firstLetter, jdbcType=VARCHAR},
+            #{item.brandId, jdbcType=INTEGER},
+            #{item.brandName, jdbcType=VARCHAR},
+            #{item.makeId, jdbcType=INTEGER},
+            #{item.makeName, jdbcType=VARCHAR},
+            #{item.seriesId, jdbcType=INTEGER},
+            #{item.seriesName, jdbcType=VARCHAR},
+            #{item.seriesBbg, jdbcType=VARCHAR},
+            #{item.dmpImp, jdbcType=VARCHAR},
+            #{item.msrpNewLaunach, jdbcType=VARCHAR},
+            #{item.msrpNewest, jdbcType=VARCHAR},
+            #{item.carBody, jdbcType=VARCHAR},
+            #{item.driveForm, jdbcType=VARCHAR},
+            #{item.engineModel, jdbcType=VARCHAR},
+            #{item.fuelType, jdbcType=VARCHAR},
+            #{item.mixturePreparation, jdbcType=VARCHAR},
+            #{item.modelEop, jdbcType=VARCHAR},
+            #{item.modelInteriorCode, jdbcType=VARCHAR},
+            #{item.modelSop, jdbcType=VARCHAR},
+            #{item.nmOfTransmissionGear, jdbcType=VARCHAR},
+            #{item.platform, jdbcType=VARCHAR},
+            #{item.power, jdbcType=VARCHAR},
+            #{item.qtyOfChairs, jdbcType=INTEGER},
+            #{item.qtyOfDoors, jdbcType=INTEGER},
+            #{item.structure, jdbcType=VARCHAR},
+            #{item.superCharger, jdbcType=VARCHAR},
+            #{item.timerGrade, jdbcType=VARCHAR},
+            #{item.standardModelId, jdbcType=VARCHAR},
+            #{item.standardModelName, jdbcType=VARCHAR},
+            #{item.remarkTransmissionType, jdbcType=VARCHAR},
+            #{item.standardTypeId, jdbcType=VARCHAR},
+            #{item.standardTypeName, jdbcType=VARCHAR},
+            #{item.typeOfAtTransmission, jdbcType=VARCHAR},
+            #{item.epcNo, jdbcType=INTEGER},
+            #{item.id, jdbcType=INTEGER},
+            #{item.hlVersion, jdbcType=VARCHAR},
+            #{item.xid, jdbcType=VARCHAR},
+            #{item.isValid, jdbcType=INTEGER},
+            #{item.createTime, jdbcType=TIMESTAMP},
+            #{item.createBy, jdbcType=VARCHAR},
+            #{item.updateTime, jdbcType=TIMESTAMP},
+            #{item.updateBy, jdbcType=VARCHAR},
+            #{item.batch, jdbcType=VARCHAR},
+            #{item.tCapacityInLitrel, jdbcType=VARCHAR},
+            #{item.tCarYear, jdbcType=VARCHAR},
+            #{item.tCylinderNum, jdbcType=VARCHAR},
+            #{item.tDrvMode, jdbcType=VARCHAR},
+            #{item.tESuffix, jdbcType=VARCHAR},
+            #{item.tEnvStandard, jdbcType=VARCHAR},
+            #{item.tModeNameWithoutYear, jdbcType=VARCHAR},
+            #{item.tParagraph, jdbcType=VARCHAR},
+            #{item.tPostCode, jdbcType=VARCHAR},
+            #{item.tPowerType, jdbcType=VARCHAR},
+            #{item.tSetNum, jdbcType=VARCHAR},
+            #{item.tTransmission, jdbcType=VARCHAR},
+            #{item.tTypeName, jdbcType=VARCHAR},
+            #{item.tValid, jdbcType=VARCHAR},
+            #{item.seriesBbgEopYear, jdbcType=VARCHAR},
+            #{item.seriesBbgSopYear, jdbcType=VARCHAR},
+            #{item.zcUpdateTime, jdbcType=VARCHAR},
+            #{item.oem, jdbcType=VARCHAR},
+            #{item.oemAbbrebiation, jdbcType=VARCHAR},
+            #{item.series, jdbcType=VARCHAR},
+            #{item.variantEop, jdbcType=VARCHAR},
+            #{item.variantSop, jdbcType=VARCHAR}
+        </foreach>
+        )
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelEntity">
+        update car_model set
+        <trim suffixOverrides=",">
+            <if test="modelName != null  and modelName != '' ">
+                model_name = #{modelName, jdbcType=VARCHAR},
+            </if>
+            <if test="modelYear != null  and modelYear != '' ">
+                model_year = #{modelYear, jdbcType=VARCHAR},
+            </if>
+            <if test="capacityInLitreL != null  and capacityInLitreL != '' ">
+                capacity_in_litre_l = #{capacityInLitreL, jdbcType=VARCHAR},
+            </if>
+            <if test="capacityInLitreCc != null  and capacityInLitreCc != '' ">
+                capacity_in_litre_cc = #{capacityInLitreCc, jdbcType=VARCHAR},
+            </if>
+            <if test="transmissionType != null  and transmissionType != '' ">
+                transmission_type = #{transmissionType, jdbcType=VARCHAR},
+            </if>
+            <if test="firstLetter != null  and firstLetter != '' ">
+                first_letter = #{firstLetter, jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null  ">
+                brand_id = #{brandId, jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null  and brandName != '' ">
+                brand_name = #{brandName, jdbcType=VARCHAR},
+            </if>
+            <if test="makeId != null  ">
+                make_id = #{makeId, jdbcType=INTEGER},
+            </if>
+            <if test="makeName != null  and makeName != '' ">
+                make_name = #{makeName, jdbcType=VARCHAR},
+            </if>
+            <if test="seriesId != null  ">
+                series_id = #{seriesId, jdbcType=INTEGER},
+            </if>
+            <if test="seriesName != null  and seriesName != '' ">
+                series_name = #{seriesName, jdbcType=VARCHAR},
+            </if>
+            <if test="seriesBbg != null  and seriesBbg != '' ">
+                series_bbg = #{seriesBbg, jdbcType=VARCHAR},
+            </if>
+            <if test="dmpImp != null  and dmpImp != '' ">
+                dmp_imp = #{dmpImp, jdbcType=VARCHAR},
+            </if>
+            <if test="msrpNewLaunach != null  and msrpNewLaunach != '' ">
+                msrp_new_launach = #{msrpNewLaunach, jdbcType=VARCHAR},
+            </if>
+            <if test="msrpNewest != null  ">
+                msrp_newest = #{msrpNewest, jdbcType=VARCHAR},
+            </if>
+            <if test="carBody != null  and carBody != '' ">
+                car_body = #{carBody, jdbcType=VARCHAR},
+            </if>
+            <if test="driveForm != null  and driveForm != '' ">
+                drive_form = #{driveForm, jdbcType=VARCHAR},
+            </if>
+            <if test="engineModel != null  and engineModel != '' ">
+                engine_model = #{engineModel, jdbcType=VARCHAR},
+            </if>
+            <if test="fuelType != null  and fuelType != '' ">
+                fuel_type = #{fuelType, jdbcType=VARCHAR},
+            </if>
+            <if test="mixturePreparation != null  and mixturePreparation != '' ">
+                mixture_preparation = #{mixturePreparation, jdbcType=VARCHAR},
+            </if>
+            <if test="modelEop != null  and modelEop != '' ">
+                model_eop = #{modelEop, jdbcType=VARCHAR},
+            </if>
+            <if test="modelInteriorCode != null  and modelInteriorCode != '' ">
+                model_interior_code = #{modelInteriorCode, jdbcType=VARCHAR},
+            </if>
+            <if test="modelSop != null  and modelSop != '' ">
+                model_sop = #{modelSop, jdbcType=VARCHAR},
+            </if>
+            <if test="nmOfTransmissionGear != null  and nmOfTransmissionGear != '' ">
+                nm_of_transmission_gear = #{nmOfTransmissionGear, jdbcType=VARCHAR},
+            </if>
+            <if test="platform != null  and platform != '' ">
+                platform = #{platform, jdbcType=VARCHAR},
+            </if>
+            <if test="power != null  and power != '' ">
+                power = #{power, jdbcType=VARCHAR},
+            </if>
+            <if test="qtyOfChairs != null  ">
+                qty_of_chairs = #{qtyOfChairs, jdbcType=VARCHAR},
+            </if>
+            <if test="qtyOfDoors != null  ">
+                qty_of_doors = #{qtyOfDoors, jdbcType=VARCHAR},
+            </if>
+            <if test="structure != null  and structure != '' ">
+                structure = #{structure, jdbcType=VARCHAR},
+            </if>
+            <if test="superCharger != null  and superCharger != '' ">
+                super_charger = #{superCharger, jdbcType=VARCHAR},
+            </if>
+            <if test="timerGrade != null  and timerGrade != '' ">
+                timer_grade = #{timerGrade, jdbcType=VARCHAR},
+            </if>
+            <if test="standardModelId != null  and standardModelId != '' ">
+                standard_model_id = #{standardModelId, jdbcType=VARCHAR},
+            </if>
+            <if test="standardModelName != null  and standardModelName != '' ">
+                standard_model_name = #{standardModelName, jdbcType=VARCHAR},
+            </if>
+            <if test="remarkTransmissionType != null  and remarkTransmissionType != '' ">
+                remark_transmission_type = #{remarkTransmissionType, jdbcType=VARCHAR},
+            </if>
+            <if test="standardTypeId != null  ">
+                standard_type_id = #{standardTypeId, jdbcType=VARCHAR},
+            </if>
+            <if test="standardTypeName != null  and standardTypeName != '' ">
+                standard_type_name = #{standardTypeName, jdbcType=VARCHAR},
+            </if>
+            <if test="typeOfAtTransmission != null  and typeOfAtTransmission != '' ">
+                type_of_at_transmission = #{typeOfAtTransmission, jdbcType=VARCHAR},
+            </if>
+            <if test="epcNo != null  ">
+                epc_no = #{epcNo, jdbcType=INTEGER},
+            </if>
+            <if test="id != null  ">
+                id = #{id, jdbcType=INTEGER},
+            </if>
+            <if test="hlVersion != null  and hlVersion != '' ">
+                hl_version = #{hlVersion, jdbcType=VARCHAR},
+            </if>
+            <if test="xid != null  and xid != '' ">
+                xid = #{xid, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+            <if test="batch != null  and batch != '' ">
+                batch = #{batch, jdbcType=VARCHAR},
+            </if>
+            <if test="tCapacityInLitrel != null  and tCapacityInLitrel != '' ">
+                t_capacity_in_litrel = #{tCapacityInLitrel, jdbcType=VARCHAR},
+            </if>
+            <if test="tCarYear != null  and tCarYear != '' ">
+                t_car_year = #{tCarYear, jdbcType=VARCHAR},
+            </if>
+            <if test="tCylinderNum != null  and tCylinderNum != '' ">
+                t_cylinder_num = #{tCylinderNum, jdbcType=VARCHAR},
+            </if>
+            <if test="tDrvMode != null  and tDrvMode != '' ">
+                t_drv_mode = #{tDrvMode, jdbcType=VARCHAR},
+            </if>
+            <if test="tESuffix != null  and tESuffix != '' ">
+                t_e_suffix = #{tESuffix, jdbcType=VARCHAR},
+            </if>
+            <if test="tEnvStandard != null  and tEnvStandard != '' ">
+                t_env_standard = #{tEnvStandard, jdbcType=VARCHAR},
+            </if>
+            <if test="tModeNameWithoutYear != null  and tModeNameWithoutYear != '' ">
+                t_mode_name_without_year = #{tModeNameWithoutYear, jdbcType=VARCHAR},
+            </if>
+            <if test="tParagraph != null  and tParagraph != '' ">
+                t_paragraph = #{tParagraph, jdbcType=VARCHAR},
+            </if>
+            <if test="tPostCode != null  and tPostCode != '' ">
+                t_post_code = #{tPostCode, jdbcType=VARCHAR},
+            </if>
+            <if test="tPowerType != null  and tPowerType != '' ">
+                t_power_type = #{tPowerType, jdbcType=VARCHAR},
+            </if>
+            <if test="tSetNum != null  and tSetNum != '' ">
+                t_set_num = #{tSetNum, jdbcType=VARCHAR},
+            </if>
+            <if test="tTransmission != null  and tTransmission != '' ">
+                t_transmission = #{tTransmission, jdbcType=VARCHAR},
+            </if>
+            <if test="tTypeName != null  and tTypeName != '' ">
+                t_type_name = #{tTypeName, jdbcType=VARCHAR},
+            </if>
+            <if test="tValid != null  and tValid != '' ">
+                t_valid = #{tValid, jdbcType=VARCHAR},
+            </if>
+            <if test="seriesBbgEopYear != null  and seriesBbgEopYear != '' ">
+                series_bbg_eop_year = #{seriesBbgEopYear, jdbcType=VARCHAR},
+            </if>
+            <if test="seriesBbgSopYear != null  and seriesBbgSopYear != '' ">
+                series_bbg_sop_year = #{seriesBbgSopYear, jdbcType=VARCHAR},
+            </if>
+            <if test="zcUpdateTime != null  and zcUpdateTime != '' ">
+                zc_update_time = #{zcUpdateTime, jdbcType=VARCHAR},
+            </if>
+            <if test="oem != null and oem != ''">
+                and oem = #{oem, jdbcType=VARCHAR},
+            </if>
+            <if test="oemAbbrebiation != null and oemAbbrebiation != ''">
+                and oem_abbrebiation = #{oemAbbrebiation, jdbcType=VARCHAR},
+            </if>
+            <if test="series != null and series != ''">
+                and series = #{series, jdbcType=VARCHAR},
+            </if>
+            <if test="variant_eop != null and variant_eop != ''">
+                and variant_eop = #{variant_eop, jdbcType=VARCHAR},
+            </if>
+            <if test="variant_sop != null and variant_sop != ''">
+                and variant_sop = #{variant_sop, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where model_id = #{modelId, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelEntity">
+	delete from car_model where model_id = #{modelId}
+</update>
+
+    <!-- 查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from car_model
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from car_model
+        where is_valid = 1 and model_id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 查询 -->
+    <select id="selectGroupByCarSeries" resultMap="BaseResultMap">
+	select brand_id, brand_name, first_letter,
+	series_id, series, series_name, series_bbg, series_bbg_eop_year, series_bbg_sop_year,
+	make_id, make_name
+	from cloud_stock.car_model
+	group by series_id;
+</select>
+
+    <select id="selectGroupByModelId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select model_id
+        from cloud_stock.car_model
+        <where>
+            <trim suffixOverrides=",">
+                <if test="modelId != null">
+                    and model_id = #{modelId, jdbcType=INTEGER}
+                </if>
+            </trim>
+        </where>
+        group by model_id
+        <if test="start!=null">
+            LIMIT #{start}, #{offset};
+        </if>
+    </select>
+
+    <select id="countDistinctModelId" resultType="java.lang.Integer">
+	select count(distinct model_id) from cloud_stock.car_model
+</select>
+
+    <select id="selectModelsByNames" parameterType="java.util.List" resultMap="BaseResultMap">
+        SELECT *
+        FROM car_model
+        WHERE is_valid = 1 and model_name IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectAllCarModels" parameterType="java.util.List" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM car_model
+        WHERE is_valid = 1 and model_id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectListBySeries" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM car_model
+        WHERE is_valid = 1 and series_id = #{seriesId}
+    </select>
+
+    <select id="selectModelYearBySeries" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        series_id, series_name, model_year
+        FROM car_model
+        WHERE is_valid = 1 and brand_id = #{brandId} and series = #{series} group by model_year order by model_year desc
+    </select>
+
+    <select id="selectBrandByModelName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        brand_id, brand_name, first_letter
+        FROM car_model
+        WHERE is_valid = 1
+         and
+         (
+         model_name like concat('%',#{modelCondition},'%')
+         or standard_model_name like concat('%',#{modelCondition},'%')
+         or standard_type_name like concat('%',#{modelCondition},'%')
+         )
+         group by brand_id order by brand_name
+    </select>
+
+    <select id="selectModelYearByModelName" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        series_id, series_name, model_year
+        FROM car_model
+        WHERE is_valid = 1 and brand_id = #{brandId}
+        and
+        (
+        model_name like concat('%',#{modelCondition},'%')
+        or standard_model_name like concat('%',#{modelCondition},'%')
+        or standard_type_name like concat('%',#{modelCondition},'%')
+        )
+        group by model_year order by model_year desc
+    </select>
+
+    <select id="selectModelBySearch" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM car_model
+        WHERE is_valid = 1 and brand_id = #{brandId} and model_year = #{modelYear}
+        and
+        (
+        model_name like concat('%',#{modelCondition},'%')
+        or standard_model_name like concat('%',#{modelCondition},'%')
+        or standard_type_name like concat('%',#{modelCondition},'%')
+        )
+    </select>
+
+    <select id="selectByModelName" parameterType="Map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM car_model
+        WHERE is_valid = 1 and model_name like concat('%',#{modelCondition},'%')
+        and brand_id in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        group by model_id
+        order by series_id
+    </select>
+
+</mapper>   

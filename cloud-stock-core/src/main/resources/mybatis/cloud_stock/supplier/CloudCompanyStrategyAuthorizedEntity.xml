@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudCompanyStrategyAuthorizedEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap"
+               type="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudCompanyStrategyAuthorizedEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="flag" property="flag" jdbcType="INTEGER"/>
+        <result column="is_delete" property="isDelete" jdbcType="BOOLEAN"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- cloud_company_strategy_authorized table all fields -->
+    <sql id="Base_Column_List">
+	 id, company_id, user_id, phone, flag, is_delete, create_time, update_time
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="id != null">
+                    and id = #{id, jdbcType=INTEGER}
+                </if>
+                <if test="companyId != null">
+                    and company_id = #{companyId, jdbcType=INTEGER}
+                </if>
+                <if test="userId != null">
+                    and user_id = #{userId, jdbcType=INTEGER}
+                </if>
+                <if test="phone != null">
+                    and phone = #{phone, jdbcType=INTEGER}
+                </if>
+                <if test="flag != null">
+                    and flag = #{flag, jdbcType=INTEGER}
+                </if>
+                <if test="isDelete != null">
+                    and is_delete = #{isDelete, jdbcType=BOOLEAN}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert"
+            parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudCompanyStrategyAuthorizedEntity">
+  	insert into cloud_company_strategy_authorized(
+		id,
+		company_id,
+		user_id,
+		phone,
+		flag,
+		is_delete,
+		create_time,
+		update_time
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{companyId, jdbcType=INTEGER},
+		#{userId, jdbcType=INTEGER},
+		#{phone, jdbcType=INTEGER},
+		#{flag, jdbcType=INTEGER},
+		#{isDelete, jdbcType=BOOLEAN},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{updateTime, jdbcType=TIMESTAMP}
+	)
+</insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective"
+            parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudCompanyStrategyAuthorizedEntity">
+        update cloud_company_strategy_authorized set
+        <trim suffixOverrides=",">
+            <if test="companyId != null  ">
+                company_id = #{companyId, jdbcType=INTEGER},
+            </if>
+            <if test="userId != null  ">
+                user_id = #{userId, jdbcType=INTEGER},
+            </if>
+            <if test="phone != null  ">
+                phone = #{phone},
+            </if>
+            <if test="flag != null  ">
+                flag = #{flag, jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null  ">
+                is_delete = #{isDelete, jdbcType=BOOLEAN},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete"
+            parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudCompanyStrategyAuthorizedEntity">
+	  delete from cloud_company_strategy_authorized where id = #{id}
+    </update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudCompanyStrategyAuthorizedEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from cloud_company_strategy_authorized
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByPhone" resultMap="BaseResultMap" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudCompanyStrategyAuthorizedEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from cloud_company_strategy_authorized
+        WHERE phone = #{phone} AND is_delete = 0
+    </select>
+
+</mapper>   

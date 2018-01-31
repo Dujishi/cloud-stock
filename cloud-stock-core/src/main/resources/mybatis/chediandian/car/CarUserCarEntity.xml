@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.cdd.car.entity.CarUserCarEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.cdd.car.entity.CarUserCarEntity" >
+	<result column="car_id" property="carId" jdbcType="INTEGER" />
+	<result column="car_userid" property="carUserid" jdbcType="INTEGER" />
+	<result column="car_num" property="carNum" jdbcType="VARCHAR" />
+	<result column="car_brand" property="carBrand" jdbcType="INTEGER" />
+	<result column="car_model" property="carModel" jdbcType="INTEGER" />
+	<result column="car_series" property="carSeries" jdbcType="INTEGER" />
+	<result column="car_kilometers" property="carKilometers" jdbcType="DECIMAL" />
+	<result column="car_vehicle_frame_no" property="carVehicleFrameNo" jdbcType="VARCHAR" />
+	<result column="car_default" property="carDefault" jdbcType="INTEGER" />
+	<result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN" />
+	<result column="tire_standard" property="tireStandard" jdbcType="VARCHAR" />
+	<result column="date_time" property="dateTime" jdbcType="TIMESTAMP" />
+	<result column="car_engine_no" property="carEngineNo" jdbcType="VARCHAR" />
+	<result column="violation_search_time" property="violationSearchTime" jdbcType="TIMESTAMP" />
+	<result column="violation_car_type" property="violationCarType" jdbcType="VARCHAR" />
+	<result column="search_city_id" property="searchCityId" jdbcType="INTEGER" />
+	<result column="car_info_error" property="carInfoError" jdbcType="INTEGER" />
+	<result column="violation_search_last_time" property="violationSearchLastTime" jdbcType="TIMESTAMP" />
+	<result column="violation_search_count" property="violationSearchCount" jdbcType="INTEGER" />
+	<result column="back_tire_standard" property="backTireStandard" jdbcType="VARCHAR" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+	<result column="fresh" property="fresh" jdbcType="BOOLEAN" />
+	<result column="usefor" property="usefor" jdbcType="BOOLEAN" />
+	<result column="car_model_type" property="carModelType" jdbcType="INTEGER" />
+	<result column="car_type_color" property="carTypeColor" jdbcType="INTEGER" />
+</resultMap>
+       
+<!-- car_user_car table all fields -->
+<sql id="Base_Column_List" >
+	 car_id, car_userid, car_num, car_brand, car_model, car_series, car_kilometers, car_vehicle_frame_no, car_default, is_deleted, tire_standard, date_time, car_engine_no, violation_search_time, violation_car_type, search_city_id, car_info_error, violation_search_last_time, violation_search_count, back_tire_standard, create_time, modify_time, fresh, usefor, car_model_type, car_type_color
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="carId != null" >
+	    and car_id = #{carId, jdbcType=INTEGER}
+	</if>
+	<if test="carUserid != null" >
+	    and car_userid = #{carUserid, jdbcType=INTEGER}
+	</if>
+	 	<if test="carNum != null and carNum != ''" >
+	    and car_num = #{carNum, jdbcType=VARCHAR}
+	</if>
+	<if test="carBrand != null" >
+	    and car_brand = #{carBrand, jdbcType=INTEGER}
+	</if>
+	<if test="carModel != null" >
+	    and car_model = #{carModel, jdbcType=INTEGER}
+	</if>
+	<if test="carSeries != null" >
+	    and car_series = #{carSeries, jdbcType=INTEGER}
+	</if>
+	<if test="carKilometers != null" >
+	    and car_kilometers = #{carKilometers, jdbcType=DECIMAL}
+	</if>
+	 	<if test="carVehicleFrameNo != null and carVehicleFrameNo != ''" >
+	    and car_vehicle_frame_no = #{carVehicleFrameNo, jdbcType=VARCHAR}
+	</if>
+	<if test="carDefault != null" >
+	    and car_default = #{carDefault, jdbcType=INTEGER}
+	</if>
+	<if test="isDeleted != null" >
+	    and is_deleted = #{isDeleted, jdbcType=BOOLEAN}
+	</if>
+	 	<if test="tireStandard != null and tireStandard != ''" >
+	    and tire_standard = #{tireStandard, jdbcType=VARCHAR}
+	</if>
+	<if test="dateTime != null" >
+	    and date_time = #{dateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="carEngineNo != null and carEngineNo != ''" >
+	    and car_engine_no = #{carEngineNo, jdbcType=VARCHAR}
+	</if>
+	<if test="violationSearchTime != null" >
+	    and violation_search_time = #{violationSearchTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="violationCarType != null and violationCarType != ''" >
+	    and violation_car_type = #{violationCarType, jdbcType=VARCHAR}
+	</if>
+	<if test="searchCityId != null" >
+	    and search_city_id = #{searchCityId, jdbcType=INTEGER}
+	</if>
+	<if test="carInfoError != null" >
+	    and car_info_error = #{carInfoError, jdbcType=INTEGER}
+	</if>
+	<if test="violationSearchLastTime != null" >
+	    and violation_search_last_time = #{violationSearchLastTime, jdbcType=TIMESTAMP}
+	</if>
+	<if test="violationSearchCount != null" >
+	    and violation_search_count = #{violationSearchCount, jdbcType=INTEGER}
+	</if>
+	 	<if test="backTireStandard != null and backTireStandard != ''" >
+	    and back_tire_standard = #{backTireStandard, jdbcType=VARCHAR}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	<if test="modifyTime != null" >
+	    and modify_time = #{modifyTime, jdbcType=TIMESTAMP}
+	</if>
+	<if test="fresh != null" >
+	    and fresh = #{fresh, jdbcType=BOOLEAN}
+	</if>
+	<if test="usefor != null" >
+	    and usefor = #{usefor, jdbcType=BOOLEAN}
+	</if>
+	<if test="carModelType != null" >
+	    and car_model_type = #{carModelType, jdbcType=INTEGER}
+	</if>
+	<if test="carTypeColor != null" >
+	    and car_type_color = #{carTypeColor, jdbcType=INTEGER}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.cdd.car.entity.CarUserCarEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from car_user_car 
+    <include refid="Where_Clause"/>
+</select>
+
+	<!-- for car brand查询 -->
+<select id="selectByModelId" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.cdd.car.entity.CarUserCarEntity">
+	select
+	car_id, car_vehicle_frame_no
+	from car_user_car
+	where car_model = #{carModel, jdbcType=INTEGER} and is_deleted = #{isDeleted, jdbcType=BOOLEAN} and length(car_vehicle_frame_no)=17
+</select>
+  	
+</mapper>   

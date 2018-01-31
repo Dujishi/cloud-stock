@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity" >
+	<result column="series_id" property="seriesId" jdbcType="INTEGER" />
+	<result column="series_name" property="seriesName" jdbcType="VARCHAR" />
+	<result column="series" property="series" jdbcType="VARCHAR" />
+	<result column="series_bbg" property="seriesBbg" jdbcType="VARCHAR" />
+	<result column="series_bbg_eop_year" property="seriesBbgEopYear" jdbcType="VARCHAR" />
+	<result column="series_bbg_sop_year" property="seriesBbgSopYear" jdbcType="VARCHAR" />
+	<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+	<result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+	<result column="make_id" property="makeId" jdbcType="INTEGER" />
+	<result column="make_name" property="makeName" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+
+<!-- car_series table all fields -->
+<sql id="Base_Column_List" >
+	 series_id, series_name, series, series_bbg, series_bbg_eop_year, series_bbg_sop_year, brand_id, brand_name, make_id, make_name, is_valid, create_time, create_by, update_time, update_by
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="seriesId != null" >
+	    and series_id = #{seriesId, jdbcType=INTEGER}
+	</if>
+	 	<if test="seriesName != null and seriesName != ''" >
+	    and series_name = #{seriesName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="series != null and series != ''" >
+	    and series = #{series, jdbcType=VARCHAR}
+	</if>
+	 	<if test="seriesBbg != null and seriesBbg != ''" >
+	    and series_bbg = #{seriesBbg, jdbcType=VARCHAR}
+	</if>
+	 	<if test="seriesBbgEopYear != null and seriesBbgEopYear != ''" >
+	    and series_bbg_eop_year = #{seriesBbgEopYear, jdbcType=VARCHAR}
+	</if>
+	 	<if test="seriesBbgSopYear != null and seriesBbgSopYear != ''" >
+	    and series_bbg_sop_year = #{seriesBbgSopYear, jdbcType=VARCHAR}
+	</if>
+	<if test="brandId != null" >
+	    and brand_id = #{brandId, jdbcType=INTEGER}
+	</if>
+	 	<if test="brandName != null and brandName != ''" >
+	    and brand_name = #{brandName, jdbcType=VARCHAR}
+	</if>
+	<if test="makeId != null" >
+	    and make_id = #{makeId, jdbcType=INTEGER}
+	</if>
+	 	<if test="makeName != null and makeName != ''" >
+	    and make_name = #{makeName, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity" >
+  	insert into car_series(
+		series_id,
+		series_name,
+		series,
+		series_bbg,
+		series_bbg_eop_year,
+		series_bbg_sop_year,
+		brand_id,
+		brand_name,
+		make_id,
+		make_name,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{seriesId, jdbcType=INTEGER},
+		#{seriesName, jdbcType=VARCHAR},
+		#{series, jdbcType=VARCHAR},
+		#{seriesBbg, jdbcType=VARCHAR},
+		#{seriesBbgEopYear, jdbcType=VARCHAR},
+		#{seriesBbgSopYear, jdbcType=VARCHAR},
+		#{brandId, jdbcType=INTEGER},
+		#{brandName, jdbcType=VARCHAR},
+		#{makeId, jdbcType=INTEGER},
+		#{makeName, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List" >
+	insert into car_series(
+	series_id,
+	series_name,
+	series,
+	series_bbg,
+	series_bbg_eop_year,
+	series_bbg_sop_year,
+	brand_id,
+	brand_name,
+	make_id,
+	make_name,
+	is_valid,
+	create_time,
+	create_by,
+	update_time,
+	update_by
+	) values (
+	<foreach collection="list" item="item" open="" close="" separator="),(">
+	#{item.seriesId, jdbcType=INTEGER},
+	#{item.seriesName, jdbcType=VARCHAR},
+	#{item.series, jdbcType=VARCHAR},
+	#{item.seriesBbg, jdbcType=VARCHAR},
+	#{item.seriesBbgEopYear, jdbcType=VARCHAR},
+	#{item.seriesBbgSopYear, jdbcType=VARCHAR},
+	#{item.brandId, jdbcType=INTEGER},
+	#{item.brandName, jdbcType=VARCHAR},
+	#{item.makeId, jdbcType=INTEGER},
+	#{item.makeName, jdbcType=VARCHAR},
+	#{item.isValid, jdbcType=INTEGER},
+	#{item.createTime, jdbcType=TIMESTAMP},
+	#{item.createBy, jdbcType=VARCHAR},
+	#{item.updateTime, jdbcType=TIMESTAMP},
+	#{item.updateBy, jdbcType=VARCHAR}
+	</foreach>
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity" >
+	update car_series set
+	<trim  suffixOverrides="," >
+		<if test="seriesName != null  and seriesName != '' ">
+			series_name = #{seriesName, jdbcType=VARCHAR},
+		</if>
+		<if test="series != null  and series != '' ">
+			series = #{series, jdbcType=VARCHAR},
+		</if>
+		<if test="seriesBbg != null  and seriesBbg != '' ">
+			series_bbg = #{seriesBbg, jdbcType=VARCHAR},
+		</if>
+		<if test="seriesBbgEopYear != null  and seriesBbgEopYear != '' ">
+			series_bbg_eop_year = #{seriesBbgEopYear, jdbcType=VARCHAR},
+		</if>
+		<if test="seriesBbgSopYear != null  and seriesBbgSopYear != '' ">
+			series_bbg_sop_year = #{seriesBbgSopYear, jdbcType=VARCHAR},
+		</if>
+		<if test="brandId != null  ">
+			brand_id = #{brandId, jdbcType=INTEGER},
+		</if>
+		<if test="brandName != null  and brandName != '' ">
+			brand_name = #{brandName, jdbcType=VARCHAR},
+		</if>
+		<if test="makeId != null  ">
+			make_id = #{makeId, jdbcType=INTEGER},
+		</if>
+		<if test="makeName != null  and makeName != '' ">
+			make_name = #{makeName, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim>
+	where series_id = #{seriesId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity">
+	delete from car_series where series_id = #{seriesId}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity">
+	select
+    <include refid="Base_Column_List"/>
+    from car_series
+    <include refid="Where_Clause"/>
+</select>
+
+	<select id="selectAllCarSeries" resultType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from car_series
+        WHERE is_valid=1
+    </select>
+
+	<select id="selectDistinctSeriesByBrand" resultType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarSeriesEntity" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List"/>
+		from car_series
+		WHERE is_valid=1 and brand_id = #{brandId} group by series;
+	</select>
+
+</mapper>   

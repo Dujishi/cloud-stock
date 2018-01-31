@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.xiaoka.cloud.stock.cdd, com.xiaoka.cloud.stock.service.wrapper.superepc">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+
+	<bean id="vinSampleService" name="vinSampleService" class="com.xiaoka.cloud.stock.service.epc.impl.VinSampleServiceImpl"/>
+	<bean id="vinSampleRepo" name="vinSampleRepo" class="com.xiaoka.cloud.stock.core.epc.repo.VinSampleRepo"/>
+	<bean id="vinEpcResultRepo" name="vinEpcResultRepo" class="com.xiaoka.cloud.stock.core.epc.repo.VinEpcResultRepo"/>
+	<bean id="superEpcService" name="superEpcService" class="com.xiaoka.cloud.stock.service.epc.impl.SuperEpcServiceImpl"/>
+
+</beans>

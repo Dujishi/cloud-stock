@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+
+	<display-name>cloud-stock</display-name>
+	<jsp-config>
+		<jsp-property-group>
+			<display-name>staticPages</display-name>
+			<url-pattern>*.html</url-pattern>
+			<el-ignored>false</el-ignored>
+			<page-encoding>UTF-8</page-encoding>
+			<scripting-invalid>false</scripting-invalid>
+			<default-content-type>text/html;charset=UTF-8</default-content-type>
+		</jsp-property-group>
+	</jsp-config>
+	<listener>
+		<listener-class>com.xiaoka.freework.container.spring.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--拦截所有请求记录日志-->
+	<!--<filter>
+		<filter-name>interceptWebRequestFilter</filter-name>
+		<filter-class>com.xiaoka.cloud.stock.web.filter.InterceptWebRequestFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>interceptWebRequestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>-->
+	<filter>
+		<filter-name>clusterRequestFilter</filter-name>
+		<filter-class>com.xiaoka.freework.container.cluster.ClusterRequestFilter</filter-class>
+		<init-param>
+			<param-name>clusterCacheName</param-name>
+			<param-value>clusterCache</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>clusterRequestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>logTraceFilter</filter-name>
+		<filter-class>com.xiaoka.freework.container.log.LogTraceFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>logTraceFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>requestCopyInputFilter</filter-name>
+		<filter-class>com.xiaoka.freework.container.web.request.RequestCopyInputFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>requestCopyInputFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>servletDispatcherFilter</filter-name>
+		<filter-class>com.xiaoka.freework.container.web.filter.ServletDispatcherAfterFilter</filter-class>
+		<init-param>
+			<param-name>spring-mvc</param-name>
+			<param-value>/, !*.*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>servletDispatcherFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>spring-mvc</servlet-name>
+		<servlet-class>com.xiaoka.freework.container.spring.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!--<servlet-mapping>
+        <servlet-name>spring-mvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>-->
+
+</web-app>

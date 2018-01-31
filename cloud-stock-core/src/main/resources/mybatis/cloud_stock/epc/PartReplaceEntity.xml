@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.PartReplaceEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.PartReplaceEntity">
+        <result column="part_code" property="partCode" jdbcType="VARCHAR"/>
+        <result column="replace_part_code" property="replacePartCode" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="gp_id" property="gpId" jdbcType="VARCHAR"/>
+        <result column="brand_name" property="brandName" jdbcType="VARCHAR"/>
+        <result column="bp_id" property="bpId" jdbcType="VARCHAR"/>
+        <result column="make_name" property="makeName" jdbcType="VARCHAR"/>
+        <result column="part_brand" property="partBrand" jdbcType="VARCHAR"/>
+        <result column="logo_path" property="logoPath" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="epc_no" property="epcNo" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- part_replace table all fields -->
+    <sql id="Base_Column_List">
+	 part_code, replace_part_code, type, gp_id, brand_name, bp_id, make_name, part_brand, logo_path, remark, epc_no, is_valid, create_time, create_by, update_time, update_by
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="partCode != null and partCode != ''">
+                    and part_code = #{partCode, jdbcType=VARCHAR}
+                </if>
+                <if test="replacePartCode != null and replacePartCode != ''">
+                    and replace_part_code = #{replacePartCode, jdbcType=VARCHAR}
+                </if>
+                <if test="type != null and type != ''">
+                    and type = #{type, jdbcType=VARCHAR}
+                </if>
+                <if test="gpId != null">
+                    and gp_id = #{gpId, jdbcType=VARCHAR}
+                </if>
+                <if test="brandName != null and brandName != ''">
+                    and brand_name = #{brandName, jdbcType=VARCHAR}
+                </if>
+                <if test="bpId != null">
+                    and bp_id = #{bpId, jdbcType=VARCHAR}
+                </if>
+                <if test="makeName != null and makeName != ''">
+                    and make_name = #{makeName, jdbcType=VARCHAR}
+                </if>
+                <if test="partBrand != null and partBrand != ''">
+                    and part_brand = #{partBrand, jdbcType=VARCHAR}
+                </if>
+                <if test="logoPath != null and logoPath != ''">
+                    and logo_path = #{logoPath, jdbcType=VARCHAR}
+                </if>
+                <if test="remark != null and remark != ''">
+                    and remark = #{remark, jdbcType=VARCHAR}
+                </if>
+                <if test="epcNo != null">
+                    and epc_no = #{epcNo, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartReplaceEntity">
+  	insert into part_replace(
+		part_code,
+		replace_part_code,
+		type,
+		gp_id,
+		brand_name,
+		bp_id,
+		make_name,
+		part_brand,
+		logo_path,
+		remark,
+		epc_no,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{partCode, jdbcType=VARCHAR},
+		#{replacePartCode, jdbcType=VARCHAR},
+		#{type, jdbcType=VARCHAR},
+		#{gpId, jdbcType=VARCHAR},
+		#{brandName, jdbcType=VARCHAR},
+		#{bpId, jdbcType=VARCHAR},
+		#{makeName, jdbcType=VARCHAR},
+		#{partBrand, jdbcType=VARCHAR},
+		#{logoPath, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR},
+		#{epcNo, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+    <!-- 插入记录 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into part_replace(
+        part_code,
+        replace_part_code,
+        type,
+        gp_id,
+        brand_name,
+        bp_id,
+        make_name,
+        part_brand,
+        logo_path,
+        remark,
+        epc_no,
+        is_valid,
+        create_time,
+        create_by,
+        update_time,
+        update_by
+        ) values (
+        <foreach collection="list" item="item" open="" close="" separator="),(">
+            #{item.partCode, jdbcType=VARCHAR},
+            #{item.replacePartCode, jdbcType=VARCHAR},
+            #{item.type, jdbcType=VARCHAR},
+            #{item.gpId, jdbcType=VARCHAR},
+            #{item.brandName, jdbcType=VARCHAR},
+            #{item.bpId, jdbcType=VARCHAR},
+            #{item.makeName, jdbcType=VARCHAR},
+            #{item.partBrand, jdbcType=VARCHAR},
+            #{item.logoPath, jdbcType=VARCHAR},
+            #{item.remark, jdbcType=VARCHAR},
+            #{item.epcNo, jdbcType=VARCHAR},
+            #{item.isValid, jdbcType=INTEGER},
+            #{item.createTime, jdbcType=TIMESTAMP},
+            #{item.createBy, jdbcType=VARCHAR},
+            #{item.updateTime, jdbcType=TIMESTAMP},
+            #{item.updateBy, jdbcType=VARCHAR}
+        </foreach>
+        )
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartReplaceEntity">
+        update part_replace set
+        <trim suffixOverrides=",">
+            <if test="replacePartCode != null  and replacePartCode != '' ">
+                replace_part_code = #{replacePartCode, jdbcType=VARCHAR},
+            </if>
+            <if test="type != null  and type != '' ">
+                type = #{type, jdbcType=VARCHAR},
+            </if>
+            <if test="gpId != null  ">
+                gp_id = #{gpId, jdbcType=VARCHAR},
+            </if>
+            <if test="brandName != null  and brandName != '' ">
+                brand_name = #{brandName, jdbcType=VARCHAR},
+            </if>
+            <if test="bpId != null  ">
+                bp_id = #{bpId, jdbcType=VARCHAR},
+            </if>
+            <if test="makeName != null  and makeName != '' ">
+                make_name = #{makeName, jdbcType=VARCHAR},
+            </if>
+            <if test="partBrand != null  and partBrand != '' ">
+                part_brand = #{partBrand, jdbcType=VARCHAR},
+            </if>
+            <if test="logoPath != null  and logoPath != '' ">
+                logo_path = #{logoPath, jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null  and remark != '' ">
+                remark = #{remark, jdbcType=VARCHAR},
+            </if>
+            <if test="epcNo != null  ">
+                epc_no = #{epcNo, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where part_code = #{partCode, jdbcType=VARCHAR}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartReplaceEntity">
+	delete from part_replace where part_code = #{partCode}
+</update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.PartReplaceEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from part_replace
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByPartCodeList" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from part_replace
+        where is_valid = 1 and part_code in
+        <foreach item="item" index="index" collection="partCodeList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        <if test="brandName != null and brandName != '' ">
+            and brand_name = #{brandName}
+        </if>
+    </select>
+
+    <select id="selectByCodeList" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from part_replace
+        <where>
+            is_valid = 1 and
+            <foreach item="item" index="index" collection="list" open="(" separator="OR" close=")">
+                (part_code =#{item.partCode} AND replace_part_code =#{item.replacePartCode})
+            </foreach>
+        </where>
+    </select>
+
+</mapper>   

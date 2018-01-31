@@ -1,0 +1,43 @@
+@import '../../assets/less/variable.less';
+
+.v-action-bar {
+    height: 50px;
+    line-height: 27px;
+    background: #FBFBFB;
+    padding: 11px 30px;
+    overflow: hidden;
+    font-size: 12px;
+    strong {
+        font-weight: bold;
+        font-size: 14px;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    .goback {
+        float: left;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 28px;
+        .iconfont {
+            font-size: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+    }
+    .vline {
+        float: left;
+        border-left: 1px solid #D8D8D8;
+        height: 24px;
+        margin: 2px 30px 0 30px;
+        &:first-child {
+            display: none;
+        }
+        &:last-child {
+            display: none;
+        }
+    }
+    .change-model {
+        float: left;
+        border-radius: 16px;
+    }
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierAuthorizeIpEntity" >
+
+  <sql id="Base_Column_List" >
+    id, supplier_id, ip,remark,  is_delete, create_time, update_time
+  </sql>
+
+  <select id="getCountByIp" parameterType="string" resultType="int">
+    SELECT COUNT(0) FROM cloud_supplier_authorize_ip WHERE ip=#{ip} AND  is_delete = 0
+  </select>
+
+  <select id="getCountByIpAndSupplierId" parameterType="map" resultType="int">
+    SELECT COUNT(0) FROM cloud_supplier_authorize_ip
+    WHERE ip=#{ip} AND supplier_id=#{supplierId} AND is_delete = 0
+  </select>
+
+  <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierAuthorizeIpEntity" >
+    insert into cloud_supplier_authorize_ip (supplier_id, ip, remark)
+    values (#{supplierId,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierAuthorizeIpEntity" >
+    update cloud_supplier_authorize_ip
+    <set >
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="deleteSupplierAuthorizeById" parameterType="Integer" >
+    update cloud_supplier_authorize_ip set is_delete = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

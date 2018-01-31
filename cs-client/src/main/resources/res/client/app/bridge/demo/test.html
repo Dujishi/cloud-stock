@@ -1,0 +1,50 @@
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+<!--  <script type="text/javascript" src="./test.js"></script> -->
+<body onload="">
+	<h1>测试页面 - AAA</h1>
+	<br />
+	<div>
+		<div>
+			服务：<input id="service" value="bridgeDemoService.sayHello" />
+		</div>
+		<div>
+			参数1：<input id="param1" value="Your.Name" />
+		</div>
+		<button onclick="callJavaService()">调用函数</button>
+	</div>
+	<br/>
+	<div>
+		<div>
+			配置项：<input id="configKey" value="app.name" />
+		</div>
+		<button onclick="console.log(JSBridge.config(document.getElementById('configKey').value))">调用配置项</button>
+	</div>
+	<br/>
+	<div>
+		<button onclick="complexCall()">复杂对象测试</button>
+	</div>
+</body>
+<script type="text/javascript">
+	function callJavaService() {
+		var service = document.getElementById('service').value;
+		var param1 = document.getElementById('param1').value;
+
+		var rs = JSBridge.call(service, param1);//, param2, param3);
+		if (rs.success) {
+			console.log(rs.data);
+		}
+	}
+	
+	function complexCall(){
+		var dto = {name: "winner", age: 10};
+		var dtos = [{name: "aaa", age: 10}, {name: "bbb", age: 20}];
+		var dtoMap = {"CKey": {name: "ccc", age: 30}, "DKey": {name: "ddd", age: 40}}
+		var rs = JSBridge.call("bridgeDemoService.complex", dto, dtos, dtoMap);
+		console.log(rs);
+	}
+
+</script>
+

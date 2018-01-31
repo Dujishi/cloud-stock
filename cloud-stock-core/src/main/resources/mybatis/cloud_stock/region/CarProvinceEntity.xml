@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.region.entity.CarProvinceEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.region.entity.CarProvinceEntity" >
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="name" property="name" jdbcType="VARCHAR" />
+	<result column="query_violation_status" property="queryViolationStatus" jdbcType="INTEGER" />
+	<result column="has_cities" property="hasCities" jdbcType="INTEGER" />
+	<result column="coding" property="coding" jdbcType="INTEGER" />
+</resultMap>
+       
+<!-- car_province table all fields -->
+<sql id="Base_Column_List" >
+	 id, name, query_violation_status, has_cities, coding
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id = #{id, jdbcType=INTEGER}
+	</if>
+	 	<if test="name != null and name != ''" >
+	    and name = #{name, jdbcType=VARCHAR}
+	</if>
+	<if test="queryViolationStatus != null" >
+	    and query_violation_status = #{queryViolationStatus, jdbcType=INTEGER}
+	</if>
+	<if test="hasCities != null" >
+	    and has_cities = #{hasCities, jdbcType=INTEGER}
+	</if>
+	<if test="coding != null" >
+	    and coding = #{coding, jdbcType=INTEGER}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarProvinceEntity" >
+  	insert into car_province(
+		id,
+		name,
+		query_violation_status,
+		has_cities,
+		coding
+	) values (
+		#{id, jdbcType=INTEGER},
+		#{name, jdbcType=VARCHAR},
+		#{queryViolationStatus, jdbcType=INTEGER},
+		#{hasCities, jdbcType=INTEGER},
+		#{coding, jdbcType=INTEGER}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarProvinceEntity" >
+	update car_province set 
+	<trim  suffixOverrides="," >
+		<if test="name != null  and name != '' ">
+			name = #{name, jdbcType=VARCHAR},
+		</if>
+		<if test="queryViolationStatus != null  ">
+			query_violation_status = #{queryViolationStatus, jdbcType=INTEGER},
+		</if>
+		<if test="hasCities != null  ">
+			has_cities = #{hasCities, jdbcType=INTEGER},
+		</if>
+		<if test="coding != null  ">
+			coding = #{coding, jdbcType=INTEGER},
+		</if>
+	</trim> 
+	where id = #{id, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.region.entity.CarProvinceEntity">
+	delete from car_province where id = #{id}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.region.entity.CarProvinceEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from car_province 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

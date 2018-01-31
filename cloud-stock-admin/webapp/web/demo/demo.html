@@ -1,0 +1,126 @@
+
+
+    <div v-show="showPage" id="app" class="wrapper">
+
+        <div class="ui-content">
+            <div class="ui-title clearfix">
+                <div class="ui-title-text">
+                    我是区块标题
+                </div>
+                <div class="ui-title-actions">
+                    <el-button type="primary">新建</el-button>
+                    <el-button>删除</el-button>
+                </div>
+            </div>
+
+            <div class="ui-search">
+                <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                    <el-form-item label="">
+                        <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+                    </el-form-item>
+                    <el-form-item label="">
+                        <el-select v-model="formInline.region" placeholder="活动区域">
+                            <el-option label="区域一" value="shanghai"></el-option>
+                            <el-option label="区域二" value="beijing"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+
+            <el-table :data="tableData" stripe style="width: 100%">
+                <el-table-column prop="date" label="日期" width="180">
+                </el-table-column>
+                <el-table-column prop="name" label="姓名" width="180">
+                </el-table-column>
+                <el-table-column prop="address" label="地址">
+                </el-table-column>
+                <el-table-column label="操作" width="140">
+                    <template scope="scope">
+                        <el-button size="small" @click="">编辑</el-button>
+                        <el-button size="small" type="danger" @click="">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+            <div class="ui-actions clearfix">
+                <div class="left">
+                    <el-button size="small">按钮1</el-button>
+                    <el-button type="primary" size="small">按钮2</el-button>
+                </div>
+                <div class="right">
+                    <el-pagination layout="prev, pager, next" :total="1000">
+                    </el-pagination>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+var Main = {
+	    data() {
+	        return {
+	            showPage: false,
+
+	            activeIndex: '1',
+
+	            formInline: {
+	                user: '',
+	                region: ''
+	            },
+
+	            tableData: [{
+	                date: '2016-05-02',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1518 弄'
+	            }, {
+	                date: '2016-05-04',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1517 弄'
+	            }, {
+	                date: '2016-05-01',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1519 弄'
+	            }, {
+	                date: '2016-05-01',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1519 弄'
+	            }, {
+	                date: '2016-05-01',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1519 弄'
+	            }, {
+	                date: '2016-05-01',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1519 弄'
+	            }, {
+	                date: '2016-05-01',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1519 弄'
+	            }, {
+	                date: '2016-05-03',
+	                name: '王小虎',
+	                address: '上海市普陀区金沙江路 1516 弄'
+	            }],
+	        };
+	    },
+	    methods: {
+	        onSubmit() {
+	            console.log('submit!');
+	        },
+	    },
+	    created() {
+	        this.showPage = true;
+	    }
+	}
+	var Ctor = Vue.extend(Main);
+	new Ctor().$mount('#app');
+	
+// var Main = {
+//   };
+// var Ctor = Vue.extend(Main)
+// new Ctor().$mount('#app')
+</script>

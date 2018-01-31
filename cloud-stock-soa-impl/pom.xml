@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>cloud-stock-pom</artifactId>
+        <groupId>com.xiaoka.cloud-stock</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../cloud-stock-pom/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>cloud-stock-soa-impl</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xiaoka.cloud-stock</groupId>
+            <artifactId>cloud-stock-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xiaoka.cloud-stock</groupId>
+            <artifactId>cloud-stock-soa-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xiaoka.cloud-stock</groupId>
+            <artifactId>cloud-stock-service</artifactId>
+        </dependency>
+    </dependencies>
+</project>

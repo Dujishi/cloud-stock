@@ -1,0 +1,45 @@
+<div class="main-menu" ng-app="App" ng-controller="mainCtrl">
+    <ul class="accordion">
+        <li class="menu-header">
+            Main Menu
+        </li>
+        <li class="bg-palette1 active">
+            <a href="index.html">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
+										<span class="text m-left-sm">Dashboard</span>
+									</span>
+                <span class="menu-content-hover block">
+										Home
+									</span>
+            </a>
+        </li>
+        <li ng-repeat="n in menus" ng-class="n.children != null ? 'openable bg-palette3' : 'bg-palette2'">
+            <a href="javascript:;" ng-click="open(n)">
+                            <span class="menu-content block">
+										<span class="menu-icon"><i ng-class="n.icon"></i></span>
+                                        <span class="text m-left-sm" ng-bind="n.title"></span>
+                                        <span class="submenu-icon"></span>
+									</span>
+                <span class="menu-content-hover block">
+										Landing
+									</span>
+            </a>
+            <ul class="submenu bg-palette4" ng-if="n.children != null" ng-style="{display:(n.selected)?'block':'none'}">
+                <li ng-repeat="c in n.children">
+                    <a href="javascript:;" ng-click="open(c)">
+                                    <span class="menu-content block">
+										<span class="menu-icon"><i ng-class="c.icon"></i></span>
+                                        <span class="text m-left-sm" ng-bind="c.title"></span>
+									</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script>
+    seajs.use(['demo/common/layout'],function () {
+        angular.bootstrap(document, ['App']);
+    });
+</script>

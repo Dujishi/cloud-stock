@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelConfigEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelConfigEntity">
+        <result column="config_id" property="configId" jdbcType="INTEGER"/>
+        <result column="model_id" property="modelId" jdbcType="INTEGER"/>
+        <result column="gps" property="gps" jdbcType="VARCHAR"/>
+        <result column="hid_light" property="hidLight" jdbcType="VARCHAR"/>
+        <result column="aircon_mode" property="airconMode" jdbcType="VARCHAR"/>
+        <result column="alloy_wheel" property="alloyWheel" jdbcType="VARCHAR"/>
+        <result column="auto_head_light" property="autoHeadLight" jdbcType="VARCHAR"/>
+        <result column="cruise" property="cruise" jdbcType="VARCHAR"/>
+        <result column="ele_rearview_adj" property="eleRearviewAdj" jdbcType="VARCHAR"/>
+        <result column="ele_rearview_fold" property="eleRearviewFold" jdbcType="VARCHAR"/>
+        <result column="ele_seats_adj" property="eleSeatsAdj" jdbcType="VARCHAR"/>
+        <result column="ele_sunroof" property="eleSunroof" jdbcType="VARCHAR"/>
+        <result column="front_tire_spec" property="frontTireSpec" jdbcType="VARCHAR"/>
+        <result column="rear_tire_spec" property="rearTireSpec" jdbcType="VARCHAR"/>
+        <result column="head_light_clean_sys" property="headLightCleanSys" jdbcType="VARCHAR"/>
+        <result column="keyless_boot" property="keylessBoot" jdbcType="VARCHAR"/>
+        <result column="large_color_lcd" property="largeColorLcd" jdbcType="VARCHAR"/>
+        <result column="leather_seat" property="leatherSeat" jdbcType="VARCHAR"/>
+        <result column="multi_steering_wheel_adj" property="multiSteeringWheelAdj" jdbcType="VARCHAR"/>
+        <result column="pano_sunroof" property="panoSunroof" jdbcType="VARCHAR"/>
+        <result column="parking_radar" property="parkingRadar" jdbcType="VARCHAR"/>
+        <result column="reversing_video" property="reversingVideo" jdbcType="VARCHAR"/>
+        <result column="seat_heating" property="seatHeating" jdbcType="VARCHAR"/>
+        <result column="pic_path" property="picPath" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- car_model_config table all fields -->
+    <sql id="Base_Column_List">
+	 config_id, model_id, gps, hid_light, aircon_mode, alloy_wheel, auto_head_light, cruise, ele_rearview_adj, ele_rearview_fold, ele_seats_adj, ele_sunroof, front_tire_spec, rear_tire_spec, head_light_clean_sys, keyless_boot, large_color_lcd, leather_seat, multi_steering_wheel_adj, pano_sunroof, parking_radar, reversing_video, seat_heating, pic_path, is_valid, create_time, create_by, update_time, update_by
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="configId != null">
+                    and config_id = #{configId, jdbcType=INTEGER}
+                </if>
+                <if test="modelId != null">
+                    and model_id = #{modelId, jdbcType=INTEGER}
+                </if>
+                <if test="gps != null and gps != ''">
+                    and gps = #{gps, jdbcType=VARCHAR}
+                </if>
+                <if test="hidLight != null and hidLight != ''">
+                    and hid_light = #{hidLight, jdbcType=VARCHAR}
+                </if>
+                <if test="airconMode != null and airconMode != ''">
+                    and aircon_mode = #{airconMode, jdbcType=VARCHAR}
+                </if>
+                <if test="alloyWheel != null and alloyWheel != ''">
+                    and alloy_wheel = #{alloyWheel, jdbcType=VARCHAR}
+                </if>
+                <if test="autoHeadLight != null and autoHeadLight != ''">
+                    and auto_head_light = #{autoHeadLight, jdbcType=VARCHAR}
+                </if>
+                <if test="cruise != null and cruise != ''">
+                    and cruise = #{cruise, jdbcType=VARCHAR}
+                </if>
+                <if test="eleRearviewAdj != null and eleRearviewAdj != ''">
+                    and ele_rearview_adj = #{eleRearviewAdj, jdbcType=VARCHAR}
+                </if>
+                <if test="eleRearviewFold != null and eleRearviewFold != ''">
+                    and ele_rearview_fold = #{eleRearviewFold, jdbcType=VARCHAR}
+                </if>
+                <if test="eleSeatsAdj != null and eleSeatsAdj != ''">
+                    and ele_seats_adj = #{eleSeatsAdj, jdbcType=VARCHAR}
+                </if>
+                <if test="eleSunroof != null and eleSunroof != ''">
+                    and ele_sunroof = #{eleSunroof, jdbcType=VARCHAR}
+                </if>
+                <if test="frontTireSpec != null and frontTireSpec != ''">
+                    and front_tire_spec = #{frontTireSpec, jdbcType=VARCHAR}
+                </if>
+                <if test="rearTireSpec != null and rearTireSpec != ''">
+                    and rear_tire_spec = #{rearTireSpec, jdbcType=VARCHAR}
+                </if>
+                <if test="headLightCleanSys != null and headLightCleanSys != ''">
+                    and head_light_clean_sys = #{headLightCleanSys, jdbcType=VARCHAR}
+                </if>
+                <if test="keylessBoot != null and keylessBoot != ''">
+                    and keyless_boot = #{keylessBoot, jdbcType=VARCHAR}
+                </if>
+                <if test="largeColorLcd != null and largeColorLcd != ''">
+                    and large_color_lcd = #{largeColorLcd, jdbcType=VARCHAR}
+                </if>
+                <if test="leatherSeat != null and leatherSeat != ''">
+                    and leather_seat = #{leatherSeat, jdbcType=VARCHAR}
+                </if>
+                <if test="multiSteeringWheelAdj != null and multiSteeringWheelAdj != ''">
+                    and multi_steering_wheel_adj = #{multiSteeringWheelAdj, jdbcType=VARCHAR}
+                </if>
+                <if test="panoSunroof != null and panoSunroof != ''">
+                    and pano_sunroof = #{panoSunroof, jdbcType=VARCHAR}
+                </if>
+                <if test="parkingRadar != null and parkingRadar != ''">
+                    and parking_radar = #{parkingRadar, jdbcType=VARCHAR}
+                </if>
+                <if test="reversingVideo != null and reversingVideo != ''">
+                    and reversing_video = #{reversingVideo, jdbcType=VARCHAR}
+                </if>
+                <if test="seatHeating != null and seatHeating != ''">
+                    and seat_heating = #{seatHeating, jdbcType=VARCHAR}
+                </if>
+                <if test="picPath != null and picPath != ''">
+                    and pic_path = #{picPath, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+
+    <sql id="insert_columns">
+	config_id,
+	model_id,
+	gps,
+	hid_light,
+	aircon_mode,
+	alloy_wheel,
+	auto_head_light,
+	cruise,
+	ele_rearview_adj,
+	ele_rearview_fold,
+	ele_seats_adj,
+	ele_sunroof,
+	front_tire_spec,
+	rear_tire_spec,
+	head_light_clean_sys,
+	keyless_boot,
+	large_color_lcd,
+	leather_seat,
+	multi_steering_wheel_adj,
+	pano_sunroof,
+	parking_radar,
+	reversing_video,
+	seat_heating,
+	pic_path,
+	is_valid,
+	create_time,
+	create_by,
+	update_time,
+	update_by
+</sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelConfigEntity">
+        insert into car_model_config(
+        <include refid="insert_columns"/>
+        ) values (
+        #{configId, jdbcType=INTEGER},
+        #{modelId, jdbcType=INTEGER},
+        #{gps, jdbcType=VARCHAR},
+        #{hidLight, jdbcType=VARCHAR},
+        #{airconMode, jdbcType=VARCHAR},
+        #{alloyWheel, jdbcType=VARCHAR},
+        #{autoHeadLight, jdbcType=VARCHAR},
+        #{cruise, jdbcType=VARCHAR},
+        #{eleRearviewAdj, jdbcType=VARCHAR},
+        #{eleRearviewFold, jdbcType=VARCHAR},
+        #{eleSeatsAdj, jdbcType=VARCHAR},
+        #{eleSunroof, jdbcType=VARCHAR},
+        #{frontTireSpec, jdbcType=VARCHAR},
+        #{rearTireSpec, jdbcType=VARCHAR},
+        #{headLightCleanSys, jdbcType=VARCHAR},
+        #{keylessBoot, jdbcType=VARCHAR},
+        #{largeColorLcd, jdbcType=VARCHAR},
+        #{leatherSeat, jdbcType=VARCHAR},
+        #{multiSteeringWheelAdj, jdbcType=VARCHAR},
+        #{panoSunroof, jdbcType=VARCHAR},
+        #{parkingRadar, jdbcType=VARCHAR},
+        #{reversingVideo, jdbcType=VARCHAR},
+        #{seatHeating, jdbcType=VARCHAR},
+        #{picPath, jdbcType=VARCHAR},
+        #{isValid, jdbcType=INTEGER},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{createBy, jdbcType=VARCHAR},
+        #{updateTime, jdbcType=TIMESTAMP},
+        #{updateBy, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into car_model_config(
+        <include refid="insert_columns"/>
+        ) values (
+        <foreach collection="list" item="item" open="" close="" separator="),(">
+            #{item.configId, jdbcType=INTEGER},
+            #{item.modelId, jdbcType=INTEGER},
+            #{item.gps, jdbcType=VARCHAR},
+            #{item.hidLight, jdbcType=VARCHAR},
+            #{item.airconMode, jdbcType=VARCHAR},
+            #{item.alloyWheel, jdbcType=VARCHAR},
+            #{item.autoHeadLight, jdbcType=VARCHAR},
+            #{item.cruise, jdbcType=VARCHAR},
+            #{item.eleRearviewAdj, jdbcType=VARCHAR},
+            #{item.eleRearviewFold, jdbcType=VARCHAR},
+            #{item.eleSeatsAdj, jdbcType=VARCHAR},
+            #{item.eleSunroof, jdbcType=VARCHAR},
+            #{item.frontTireSpec, jdbcType=VARCHAR},
+            #{item.rearTireSpec, jdbcType=VARCHAR},
+            #{item.headLightCleanSys, jdbcType=VARCHAR},
+            #{item.keylessBoot, jdbcType=VARCHAR},
+            #{item.largeColorLcd, jdbcType=VARCHAR},
+            #{item.leatherSeat, jdbcType=VARCHAR},
+            #{item.multiSteeringWheelAdj, jdbcType=VARCHAR},
+            #{item.panoSunroof, jdbcType=VARCHAR},
+            #{item.parkingRadar, jdbcType=VARCHAR},
+            #{item.reversingVideo, jdbcType=VARCHAR},
+            #{item.seatHeating, jdbcType=VARCHAR},
+            #{item.picPath, jdbcType=VARCHAR},
+            #{item.isValid, jdbcType=INTEGER},
+            #{item.createTime, jdbcType=TIMESTAMP},
+            #{item.createBy, jdbcType=VARCHAR},
+            #{item.updateTime, jdbcType=TIMESTAMP},
+            #{item.updateBy, jdbcType=VARCHAR}
+        </foreach>
+        )
+    </insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelConfigEntity">
+        update car_model_config set
+        <trim suffixOverrides=",">
+            <if test="modelId != null  ">
+                model_id = #{modelId, jdbcType=INTEGER},
+            </if>
+            <if test="gps != null  and gps != '' ">
+                gps = #{gps, jdbcType=VARCHAR},
+            </if>
+            <if test="hidLight != null  and hidLight != '' ">
+                hid_light = #{hidLight, jdbcType=VARCHAR},
+            </if>
+            <if test="airconMode != null  and airconMode != '' ">
+                aircon_mode = #{airconMode, jdbcType=VARCHAR},
+            </if>
+            <if test="alloyWheel != null  and alloyWheel != '' ">
+                alloy_wheel = #{alloyWheel, jdbcType=VARCHAR},
+            </if>
+            <if test="autoHeadLight != null  and autoHeadLight != '' ">
+                auto_head_light = #{autoHeadLight, jdbcType=VARCHAR},
+            </if>
+            <if test="cruise != null  and cruise != '' ">
+                cruise = #{cruise, jdbcType=VARCHAR},
+            </if>
+            <if test="eleRearviewAdj != null  and eleRearviewAdj != '' ">
+                ele_rearview_adj = #{eleRearviewAdj, jdbcType=VARCHAR},
+            </if>
+            <if test="eleRearviewFold != null  and eleRearviewFold != '' ">
+                ele_rearview_fold = #{eleRearviewFold, jdbcType=VARCHAR},
+            </if>
+            <if test="eleSeatsAdj != null  and eleSeatsAdj != '' ">
+                ele_seats_adj = #{eleSeatsAdj, jdbcType=VARCHAR},
+            </if>
+            <if test="eleSunroof != null  and eleSunroof != '' ">
+                ele_sunroof = #{eleSunroof, jdbcType=VARCHAR},
+            </if>
+            <if test="frontTireSpec != null  and frontTireSpec != '' ">
+                front_tire_spec = #{frontTireSpec, jdbcType=VARCHAR},
+            </if>
+            <if test="rearTireSpec != null  and rearTireSpec != '' ">
+                rear_tire_spec = #{rearTireSpec, jdbcType=VARCHAR},
+            </if>
+            <if test="headLightCleanSys != null  and headLightCleanSys != '' ">
+                head_light_clean_sys = #{headLightCleanSys, jdbcType=VARCHAR},
+            </if>
+            <if test="keylessBoot != null  and keylessBoot != '' ">
+                keyless_boot = #{keylessBoot, jdbcType=VARCHAR},
+            </if>
+            <if test="largeColorLcd != null  and largeColorLcd != '' ">
+                large_color_lcd = #{largeColorLcd, jdbcType=VARCHAR},
+            </if>
+            <if test="leatherSeat != null  and leatherSeat != '' ">
+                leather_seat = #{leatherSeat, jdbcType=VARCHAR},
+            </if>
+            <if test="multiSteeringWheelAdj != null  and multiSteeringWheelAdj != '' ">
+                multi_steering_wheel_adj = #{multiSteeringWheelAdj, jdbcType=VARCHAR},
+            </if>
+            <if test="panoSunroof != null  and panoSunroof != '' ">
+                pano_sunroof = #{panoSunroof, jdbcType=VARCHAR},
+            </if>
+            <if test="parkingRadar != null  and parkingRadar != '' ">
+                parking_radar = #{parkingRadar, jdbcType=VARCHAR},
+            </if>
+            <if test="reversingVideo != null  and reversingVideo != '' ">
+                reversing_video = #{reversingVideo, jdbcType=VARCHAR},
+            </if>
+            <if test="seatHeating != null  and seatHeating != '' ">
+                seat_heating = #{seatHeating, jdbcType=VARCHAR},
+            </if>
+            <if test="picPath != null  and picPath != '' ">
+                pic_path = #{picPath, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null  ">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null  and createBy != '' ">
+                create_by = #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null  ">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where config_id = #{configId, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelConfigEntity">
+	delete from car_model_config where config_id = #{configId}
+</update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelConfigEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from car_model_config
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByModelIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from car_model_config
+        <where>
+            model_id in
+            <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+</mapper>   

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartEntity">
+
+    <sql id="insert_columns">
+        c_part_id,depot_id,c_depot_id,shop_id,c_supplier_id,oe_no,part_name,part_brand,balance_count,origin_place,manufacturer,c_operate_mode,c_create_time,c_update_time,remark
+    </sql>
+
+    <select id="selectByOeNo" parameterType="string"
+            resultType="java.util.List">
+        SELECT *
+        FROM cloud_part
+        where oe_no=#{id}
+    </select>
+
+    <select id="queryCloudPartsByConditionList" parameterType="java.util.List"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartEntity">
+        SELECT *
+        FROM cloud_part
+        <where>
+            (
+            <foreach collection="list" separator="OR" index="index" item="item">
+                (c_part_id=#{item.cPartId} AND c_depot_id = #{item.cDepotId} AND shop_id = #{item.shopId})
+            </foreach>
+            )
+            AND is_valid = 0
+        </where>
+    </select>
+
+    <insert id="insertCloudPartEntities" parameterType="java.util.List">
+        INSERT INTO cloud_part(
+        <include refid="insert_columns"/>
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.cPartId},
+            #{item.depotId},
+            #{item.cDepotId},
+            #{item.shopId},
+            #{item.cSupplierId},
+            #{item.oeNo},
+            #{item.partName},
+            #{item.partBrand},
+            #{item.balanceCount},
+            #{item.originPlace},
+            #{item.manufacturer},
+            #{item.cOperateMode},
+            #{item.cCreateTime},
+            #{item.cUpdateTime},
+            #{item.remark})
+        </foreach>
+    </insert>
+
+    <update id="casUpdateCloudPartEntities" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            UPDATE cloud_part
+            <set>
+                <if test="item.oeNo != null and item.oeNo !='' ">
+                    oe_no = #{item.oeNo},
+                </if>
+                <if test="item.partName != null and item.partName !='' ">
+                    part_name = #{item.partName},
+                </if>
+                <if test="item.partBrand != null and item.partBrand !='' ">
+                    part_brand = #{item.partBrand},
+                </if>
+                <if test="item.balanceCount != null and item.balanceCount !='' ">
+                    balance_count = #{item.balanceCount},
+                </if>
+                <if test="item.originPlace != null and item.originPlace !='' ">
+                    origin_place = #{item.originPlace},
+                </if>
+                <if test="item.manufacturer != null and item.manufacturer !='' ">
+                    manufacturer = #{item.manufacturer},
+                </if>
+                <if test="item.cOperateMode != null and item.cOperateMode !='' ">
+                    c_operate_mode = #{item.cOperateMode},
+                </if>
+                <if test="item.cCreateTime != null and item.cCreateTime !='' ">
+                    c_create_time = #{item.cCreateTime},
+                </if>
+                <if test="item.cUpdateTime != null and item.cUpdateTime !='' ">
+                    c_update_time = #{item.cUpdateTime},
+                </if>
+                <if test="item.version != null and item.version !='' ">
+                    version=#{item.version} +1,
+                </if>
+            </set>
+            <where>
+                c_depot_id=#{item.cDepotId}
+                AND c_part_id=#{item.cPartId}
+                AND shop_id=#{item.shopId}
+                AND is_valid=0
+                AND IFNULL(#{item.version},0) = version
+            </where>
+        </foreach>
+    </update>
+
+    <select id="queryStockPartInfoListByShopIdsAndOeNoes" parameterType="java.util.Map"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartEntity">
+        SELECT *
+        FROM cloud_part
+        <where>
+            shop_id in (
+            <foreach collection="shopIds" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+            )
+            AND oe_no in (
+            <foreach collection="codes" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+            )
+            AND is_valid = 0
+        </where>
+    </select>
+
+    <select id="queryExistStockPartsByOeNosExcludeShopIds" parameterType="java.util.Map"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartEntity">
+        SELECT *
+        FROM cloud_part
+        <where>
+            shop_id NOT IN (
+            <foreach collection="shopIds" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+            )
+            AND oe_no IN (
+            <foreach collection="codes" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+            )
+            AND balance_count > 0
+            AND is_valid = 0
+        </where>
+    </select>
+
+    <select id="queryStockPartCountByShopIdsAndOeNoes" parameterType="java.util.Map"
+            resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM cloud_part
+        <where>
+            shop_id NOT IN (
+            <foreach collection="shopIds" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+            )
+            AND oe_no IN (
+            <foreach collection="codes" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+            )
+            AND is_valid = 0
+        </where>
+    </select>
+
+    <select id="queryExistsStockPageList" parameterType="com.xiaoka.freework.help.page.PageList"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudPartEntity">
+        SELECT *
+        FROM cloud_part
+        <where>
+            shop_id = #{condition.shopId}
+            AND balance_count > 0
+            AND is_valid = 0
+        </where>
+        limit #{start},#{pageSize}
+    </select>
+
+</mapper>

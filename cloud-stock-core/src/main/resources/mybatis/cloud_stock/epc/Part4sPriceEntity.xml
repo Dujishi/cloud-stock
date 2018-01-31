@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.Part4sPriceEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.Part4sPriceEntity" >
+	<result column="part_code" property="partCode" jdbcType="VARCHAR" />
+	<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+	<result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+	<result column="make_id" property="makeId" jdbcType="INTEGER" />
+	<result column="make_name" property="makeName" jdbcType="VARCHAR" />
+	<result column="part_code_temp" property="partCodeTemp" jdbcType="VARCHAR" />
+	<result column="part_name" property="partName" jdbcType="VARCHAR" />
+	<result column="price" property="price" jdbcType="DECIMAL" />
+	<result column="epc_no" property="epcNo" jdbcType="INTEGER" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- part_4s_price table all fields -->
+<sql id="Base_Column_List" >
+	 part_code, brand_id, brand_name, make_id, make_name, part_code_temp, part_name, price, epc_no, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	 	<if test="partCode != null and partCode != ''" >
+	    and part_code = #{partCode, jdbcType=VARCHAR}
+	</if>
+	<if test="brandId != null" >
+	    and brand_id = #{brandId, jdbcType=INTEGER}
+	</if>
+	 	<if test="brandName != null and brandName != ''" >
+	    and brand_name = #{brandName, jdbcType=VARCHAR}
+	</if>
+	<if test="makeId != null" >
+	    and make_id = #{makeId, jdbcType=INTEGER}
+	</if>
+	 	<if test="makeName != null and makeName != ''" >
+	    and make_name = #{makeName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="partCodeTemp != null and partCodeTemp != ''" >
+	    and part_code_temp = #{partCodeTemp, jdbcType=VARCHAR}
+	</if>
+	 	<if test="partName != null and partName != ''" >
+	    and part_name = #{partName, jdbcType=VARCHAR}
+	</if>
+	<if test="price != null" >
+	    and price = #{price, jdbcType=DECIMAL}
+	</if>
+	<if test="epcNo != null" >
+		and epc_no = #{epcNo, jdbcType=INTEGER}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.Part4sPriceEntity" >
+  	insert into part_4s_price(
+		part_code,
+		brand_id,
+		brand_name,
+		make_id,
+		make_name,
+		part_code_temp,
+		part_name,
+		price,
+		epc_no,
+		create_by
+	) values (
+		#{partCode, jdbcType=VARCHAR},
+		#{brandId, jdbcType=INTEGER},
+		#{brandName, jdbcType=VARCHAR},
+		#{makeId, jdbcType=INTEGER},
+		#{makeName, jdbcType=VARCHAR},
+		#{partCodeTemp, jdbcType=VARCHAR},
+		#{partName, jdbcType=VARCHAR},
+		#{price, jdbcType=DECIMAL},
+		#{epcNo, jdbcType=INTEGER},
+		#{createBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 插入记录 -->
+<insert id="batchInsert" parameterType="java.util.List" >
+	insert into part_4s_price(
+		part_code,
+		brand_id,
+		brand_name,
+		make_id,
+		make_name,
+		part_code_temp,
+		part_name,
+		price,
+		epc_no,
+		create_by
+	)
+	values
+	<foreach collection="list" item="item" index="index" separator=",">
+		(
+		#{item.partCode, jdbcType=VARCHAR},
+		#{item.brandId, jdbcType=INTEGER},
+		#{item.brandName, jdbcType=VARCHAR},
+		#{item.makeId, jdbcType=INTEGER},
+		#{item.makeName, jdbcType=VARCHAR},
+		#{item.partCodeTemp, jdbcType=VARCHAR},
+		#{item.partName, jdbcType=VARCHAR},
+		#{item.price, jdbcType=DECIMAL},
+		#{item.epcNo, jdbcType=INTEGER},
+		#{item.createBy, jdbcType=VARCHAR}
+		)
+	</foreach>
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.Part4sPriceEntity" >
+	update part_4s_price set 
+	<trim  suffixOverrides="," >
+		<if test="brandId != null  ">
+			brand_id = #{brandId, jdbcType=INTEGER},
+		</if>
+		<if test="brandName != null  and brandName != '' ">
+			brand_name = #{brandName, jdbcType=VARCHAR},
+		</if>
+		<if test="makeId != null  ">
+			make_id = #{makeId, jdbcType=INTEGER},
+		</if>
+		<if test="makeName != null  and makeName != '' ">
+			make_name = #{makeName, jdbcType=VARCHAR},
+		</if>
+		<if test="partCodeTemp != null  and partCodeTemp != '' ">
+			part_code_temp = #{partCodeTemp, jdbcType=VARCHAR},
+		</if>
+		<if test="partName != null  and partName != '' ">
+			part_name = #{partName, jdbcType=VARCHAR},
+		</if>
+		<if test="price != null  ">
+			price = #{price, jdbcType=DECIMAL},
+		</if>
+		<if test="epcNo != null  ">
+			epc_no = #{epcNo, jdbcType=INTEGER},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where part_code = #{partCode, jdbcType=VARCHAR}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.Part4sPriceEntity">
+	delete from part_4s_price where part_code = #{partCode}
+</update>
+
+<!-- 删除 -->
+<update id="batchDelete" parameterType="java.util.List">
+	update part_4s_price set is_valid = 0
+	where
+	<foreach collection="list" item="item" index="index" separator="or">
+	(
+		part_code = #{item.partCode, jdbcType=VARCHAR}
+		and brand_name = #{item.brandName, jdbcType=VARCHAR}
+		and make_name = #{item.makeName, jdbcType=VARCHAR}
+	)
+	</foreach>
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.Part4sPriceEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from part_4s_price 
+    <include refid="Where_Clause"/>
+</select>
+
+<!-- 查询 -->
+<select id="selectByPartCodes" resultMap="BaseResultMap"  parameterType="java.util.List">
+	select
+	<include refid="Base_Column_List"/>
+	from part_4s_price
+	where is_valid = 1 and
+	part_code in
+	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		#{item}
+	</foreach>
+</select>
+
+</mapper>   

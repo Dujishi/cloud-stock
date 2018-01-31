@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudDepotEntity">
+
+    <sql id="insert_columns">
+        c_depot_id,shop_id,c_supplier_id,depot_code,depot_name,depot_province,depot_city,depot_address,remark
+    </sql>
+
+    <select id="queryDepotByCondition" parameterType="java.util.Map"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudDepotEntity">
+        SELECT * FROM cloud_depot
+        WHERE c_depot_id=#{cDepotId} AND shop_id=#{shopId} AND is_valid=0
+    </select>
+
+    <select id="queryDepotByConditionList" parameterType="java.util.List"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudDepotEntity">
+        SELECT * FROM cloud_depot
+        <where>
+            <foreach collection="list" item="item" index="index" separator="OR" open="(" close=")">
+                (c_depot_id=#{item.cDepotId} AND shop_id=#{item.shopId})
+            </foreach>
+            AND is_valid=0
+        </where>
+    </select>
+
+    <insert id="insertCloudDepotEntities" parameterType="java.util.List">
+        INSERT INTO cloud_depot(<include refid="insert_columns"/>)
+        VALUES
+        <foreach collection="list" separator="," index="index" item="item">
+            (#{item.cDepotId},#{item.shopId},#{item.cSupplierId},
+            #{item.depotCode},#{item.depotName},#{item.depotProvince},
+            #{item.depotCity},#{item.depotAddress},#{item.remark})
+        </foreach>
+    </insert>
+
+    <update id="casUpdateCloudDepotEntities" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            UPDATE cloud_depot
+            <set>
+                <if test="item.depotCode != null and item.depotCode !='' ">
+                    depot_code=#{item.depotCode},
+                </if>
+                <if test="item.depotName != null and item.depotName !='' ">
+                    depot_name=#{item.depotName},
+                </if>
+                <if test="item.depotProvince != null and item.depotProvince !='' ">
+                    depot_province=#{item.depotProvince},
+                </if>
+                <if test="item.depotCity != null and item.depotCity !='' ">
+                    depot_city=#{item.depotCity},
+                </if>
+                <if test="item.depotAddress != null and item.depotAddress !='' ">
+                    depot_address=#{item.depotAddress},
+                </if>
+                <if test="item.version != null and item.version !='' ">
+                    version=#{item.version} + 1,
+                </if>
+            </set>
+            <where>
+                c_depot_id=#{item.cDepotId}
+                AND shop_id=#{item.shopId}
+                AND is_valid=0
+                AND IFNULL(#{item.version},0) = version
+            </where>
+        </foreach>
+    </update>
+
+    <select id="queryDepotsByIds" parameterType="java.util.List"
+            resultType="com.xiaoka.cloud.stock.core.stock.repo.entity.CloudDepotEntity">
+        SELECT *
+        FROM cloud_depot
+        WHERE id in (
+        <foreach collection="list" item="item" index="index" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+
+</mapper>

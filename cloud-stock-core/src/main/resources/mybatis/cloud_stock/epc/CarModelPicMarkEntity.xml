@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPicMarkEntity">
+
+    <!-- for car brandResult Map-->
+    <resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPicMarkEntity">
+        <result column="model_id" property="modelId" jdbcType="INTEGER"/>
+        <result column="pic_num" property="picNum" jdbcType="VARCHAR"/>
+        <result column="pic_name" property="picName" jdbcType="VARCHAR"/>
+        <result column="pic_local_path" property="picLocalPath" jdbcType="VARCHAR"/>
+        <result column="raw_pic_height" property="rawPicHeight" jdbcType="INTEGER"/>
+        <result column="raw_pic_width" property="rawPicWidth" jdbcType="INTEGER"/>
+        <result column="marked_error_type" property="markedErrorType" jdbcType="INTEGER"/>
+        <result column="mark_set" property="markSet" jdbcType="VARCHAR"/>
+        <result column="has_marked" property="hasMarked" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="is_valid" property="isValid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- car_model_pic_mark table all fields -->
+    <sql id="Base_Column_List">
+	 model_id, pic_num, pic_name, pic_local_path, raw_pic_height, raw_pic_width, marked_error_type, mark_set, has_marked, create_time, create_by, update_time, update_by, is_valid
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <trim suffixOverrides=",">
+                <if test="modelId != null">
+                    and model_id = #{modelId, jdbcType=INTEGER}
+                </if>
+                <if test="picNum != null and picNum != ''">
+                    and pic_num = #{picNum, jdbcType=VARCHAR}
+                </if>
+                <if test="picName != null and picName != ''">
+                    and pic_name = #{picName, jdbcType=VARCHAR}
+                </if>
+                <if test="picLocalPath != null and picLocalPath != ''">
+                    and pic_local_path = #{picLocalPath, jdbcType=VARCHAR}
+                </if>
+                <if test="rawPicHeight != null">
+                    and raw_pic_height = #{rawPicHeight, jdbcType=INTEGER}
+                </if>
+                <if test="rawPicWidth != null">
+                    and raw_pic_width = #{rawPicWidth, jdbcType=INTEGER}
+                </if>
+                <if test="markedErrorType != null">
+                    and marked_error_type = #{markedErrorType, jdbcType=INTEGER}
+                </if>
+                <if test="markSet != null and markSet != ''">
+                    and mark_set = #{markSet, jdbcType=VARCHAR}
+                </if>
+                <if test="hasMarked != null">
+                    and has_marked = #{hasMarked, jdbcType=INTEGER}
+                </if>
+                <if test="createTime != null">
+                    and create_time = #{createTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="createBy != null and createBy != ''">
+                    and create_by = #{createBy, jdbcType=VARCHAR}
+                </if>
+                <if test="updateTime != null">
+                    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateBy != null and updateBy != ''">
+                    and update_by = #{updateBy, jdbcType=VARCHAR}
+                </if>
+                <if test="isValid != null">
+                    and is_valid = #{isValid, jdbcType=INTEGER}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPicMarkEntity">
+  	insert into car_model_pic_mark(
+		model_id,
+		pic_num,
+		pic_name,
+		pic_local_path,
+		raw_pic_height,
+		raw_pic_width,
+		marked_error_type,
+		mark_set,
+		has_marked,
+		create_by,
+		update_by,
+		is_valid
+	) values (
+		#{modelId, jdbcType=INTEGER},
+		#{picNum, jdbcType=VARCHAR},
+		#{picName, jdbcType=VARCHAR},
+		#{picLocalPath, jdbcType=VARCHAR},
+		#{rawPicHeight, jdbcType=INTEGER},
+		#{rawPicWidth, jdbcType=INTEGER},
+		#{markedErrorType, jdbcType=INTEGER},
+		#{markSet, jdbcType=VARCHAR},
+		#{hasMarked, jdbcType=INTEGER},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateBy, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER}
+	)
+</insert>
+
+    <!-- 根据所选内容更新 -->
+    <update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPicMarkEntity">
+        update car_model_pic_mark set
+        <trim suffixOverrides=",">
+            <if test="rawPicHeight != null  ">
+                raw_pic_height = #{rawPicHeight, jdbcType=INTEGER},
+            </if>
+            <if test="rawPicWidth != null  ">
+                raw_pic_width = #{rawPicWidth, jdbcType=INTEGER},
+            </if>
+            <if test="markedErrorType != null  ">
+                marked_error_type = #{markedErrorType, jdbcType=INTEGER},
+            </if>
+            <if test="markSet != null  and markSet != '' ">
+                mark_set = #{markSet, jdbcType=VARCHAR},
+            </if>
+            <if test="hasMarked != null  ">
+                has_marked = #{hasMarked, jdbcType=INTEGER},
+            </if>
+            <if test="updateBy != null  and updateBy != '' ">
+                update_by = #{updateBy, jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null  ">
+                is_valid = #{isValid, jdbcType=INTEGER},
+            </if>
+        </trim>
+        <where>
+            <trim suffixOverrides=",">
+                <if test="modelId != null">
+                    and model_id = #{modelId, jdbcType=INTEGER}
+                </if>
+                <if test="picNum != null and picNum != ''">
+                    and pic_num = #{picNum, jdbcType=VARCHAR}
+                </if>
+                <if test="picName != null and picName != ''">
+                    and pic_name = #{picName, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </update>
+
+    <!-- 删除 -->
+    <update id="delete" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPicMarkEntity">
+	delete from car_model_pic_mark where model_id = #{modelId}
+</update>
+
+    <!-- for car brand查询 -->
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarModelPicMarkEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from car_model_pic_mark
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="selectByList" parameterType="java.util.List"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM car_model_pic_mark
+        <where>
+            <foreach collection="list" separator="OR" index="index" item="item">
+                (
+                model_id = #{item.modelId} AND pic_num = #{item.picNum} AND pic_name = #{item.picName}
+                )
+            </foreach>
+        </where>
+    </select>
+
+</mapper>   

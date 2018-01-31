@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierCompanySubEntity" >
+
+  <sql id="Base_Column_List" >
+    id, company_id, supplier_id, is_delete, create_time, update_time
+  </sql>
+
+  <select id="selectById" resultType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierCompanySubEntity" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cloud_supplier_company_sub
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySupplierId" resultType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierCompanySubEntity" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from cloud_supplier_company_sub
+    where supplier_id = #{supplierId,jdbcType=INTEGER} and is_delete = 0 limit 1
+  </select>
+
+  <select id="selectAllSubSupplierIdById" resultType="Integer" parameterType="Integer">
+    select cscs.supplier_id from cloud_supplier_company csc
+    left join cloud_supplier_company_sub cscs on csc.id = cscs.company_id
+    where cscs.company_id = #{id}
+  </select>
+
+  <insert id="insert" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierCompanySubEntity" >
+    insert into cloud_supplier_company_sub (company_id, supplier_id)
+    values (#{companyId,jdbcType=INTEGER}, #{supplierId,jdbcType=INTEGER})
+  </insert>
+
+  <update id="update" parameterType="com.xiaoka.cloud.stock.core.supplier.repo.entity.CloudSupplierCompanySubEntity">
+    update cloud_supplier_company_sub
+    <set>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="deleteSubSupplier" parameterType="Integer" >
+    update cloud_supplier_company_sub SET is_delete = 1
+    where id = #{id}
+  </update>
+
+</mapper>

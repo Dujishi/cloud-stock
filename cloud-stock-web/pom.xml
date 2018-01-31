@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>cloud-stock-pom</artifactId>
+        <groupId>com.xiaoka.cloud-stock</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../cloud-stock-pom/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>cloud-stock-web</artifactId>
+    <packaging>war</packaging>
+
+    <properties>
+        <xk.build.env.path>../${project.parent.artifactId}</xk.build.env.path>
+        <xk.version.spring>4.2.5.RELEASE</xk.version.spring>
+        <admin.front.artifactId>front-components</admin.front.artifactId>
+        <admin.front.version>1.1.1-SNAPSHOT</admin.front.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xiaoka.cloud-stock</groupId>
+            <artifactId>cloud-stock-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xiaoka.cloud-stock</groupId>
+            <artifactId>cloud-stock-soa-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.xiaoka.pay.center</groupId>
+            <artifactId>pay-api</artifactId>
+            <version>1.1.17-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>cloud-stock</finalName>
+        <plugins><!-- 插件扩展 -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>cloud-stock</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.xiaoka.maven</groupId>
+                <artifactId>maven-adminwar-plugin</artifactId>
+                <configuration>
+                    <warName>cloud-stock</warName>
+                    <copyFiles/>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoka.cloud.stock.core.order.entity.CsOrderPartEntity" >
+
+<!-- for car brandResult Map-->
+<resultMap id="BaseResultMap" type="com.xiaoka.cloud.stock.core.order.entity.CsOrderPartEntity" >
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+	<result column="buyer_code" property="buyerCode" jdbcType="VARCHAR" />
+	<result column="seller_code" property="sellerCode" jdbcType="VARCHAR" />
+	<result column="cs_indent_part_id" property="csIndentPartId" jdbcType="INTEGER" />
+	<result column="oe_no" property="oeNo" jdbcType="VARCHAR" />
+	<result column="part_name" property="partName" jdbcType="VARCHAR" />
+	<result column="origin_place" property="originPlace" jdbcType="VARCHAR" />
+	<result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+	<result column="part_depot" property="partDepot" jdbcType="VARCHAR" />
+	<result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
+	<result column="amount" property="amount" jdbcType="DECIMAL" />
+	<result column="subtotal" property="subtotal" jdbcType="DECIMAL" />
+	<result column="is_valid" property="isValid" jdbcType="BOOLEAN" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+</resultMap>
+       
+<!-- cs_order_part table all fields -->
+<sql id="Base_Column_List" >
+	 id, order_no, buyer_code, seller_code, cs_indent_part_id, oe_no, part_name, origin_place, manufacturer, part_depot, unit_price, amount, subtotal, is_valid, create_by, create_time, update_by, update_time
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id = #{id, jdbcType=INTEGER}
+	</if>
+	 	<if test="orderNo != null and orderNo != ''" >
+	    and order_no = #{orderNo, jdbcType=VARCHAR}
+	</if>
+	 	<if test="buyerCode != null and buyerCode != ''" >
+	    and buyer_code = #{buyerCode, jdbcType=VARCHAR}
+	</if>
+	 	<if test="sellerCode != null and sellerCode != ''" >
+	    and seller_code = #{sellerCode, jdbcType=VARCHAR}
+	</if>
+	<if test="csIndentPartId != null" >
+	    and cs_indent_part_id = #{csIndentPartId, jdbcType=INTEGER}
+	</if>
+	 	<if test="oeNo != null and oeNo != ''" >
+	    and oe_no = #{oeNo, jdbcType=VARCHAR}
+	</if>
+	 	<if test="partName != null and partName != ''" >
+	    and part_name = #{partName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="originPlace != null and originPlace != ''" >
+	    and origin_place = #{originPlace, jdbcType=VARCHAR}
+	</if>
+	 	<if test="manufacturer != null and manufacturer != ''" >
+	    and manufacturer = #{manufacturer, jdbcType=VARCHAR}
+	</if>
+	 	<if test="partDepot != null and partDepot != ''" >
+	    and part_depot = #{partDepot, jdbcType=VARCHAR}
+	</if>
+	<if test="unitPrice != null" >
+	    and unit_price = #{unitPrice, jdbcType=DECIMAL}
+	</if>
+	<if test="amount != null" >
+	    and amount = #{amount, jdbcType=DECIMAL}
+	</if>
+	<if test="subtotal != null" >
+	    and subtotal = #{subtotal, jdbcType=DECIMAL}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=BOOLEAN}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+</trim>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="com.xiaoka.cloud.stock.core.order.entity.CsOrderPartEntity" useGeneratedKeys="true" keyProperty="id">
+  	insert into cs_order_part(
+		order_no,
+		buyer_code,
+		seller_code,
+		cs_indent_part_id,
+		oe_no,
+		part_name,
+		origin_place,
+		manufacturer,
+		part_depot,
+		unit_price,
+		amount,
+		subtotal,
+		is_valid,
+		create_by,
+		update_by
+	) values (
+		#{orderNo, jdbcType=VARCHAR},
+		#{buyerCode, jdbcType=VARCHAR},
+		#{sellerCode, jdbcType=VARCHAR},
+		#{csIndentPartId, jdbcType=INTEGER},
+		#{oeNo, jdbcType=VARCHAR},
+		#{partName, jdbcType=VARCHAR},
+		#{originPlace, jdbcType=VARCHAR},
+		#{manufacturer, jdbcType=VARCHAR},
+		#{partDepot, jdbcType=VARCHAR},
+		#{unitPrice, jdbcType=DECIMAL},
+		#{amount, jdbcType=DECIMAL},
+		#{subtotal, jdbcType=DECIMAL},
+		#{isValid, jdbcType=BOOLEAN},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="com.xiaoka.cloud.stock.core.order.entity.CsOrderPartEntity" >
+	update cs_order_part set 
+	<trim  suffixOverrides="," >
+		<if test="orderNo != null  and orderNo != '' ">
+			order_no = #{orderNo, jdbcType=VARCHAR},
+		</if>
+		<if test="buyerCode != null  and buyerCode != '' ">
+			buyer_code = #{buyerCode, jdbcType=VARCHAR},
+		</if>
+		<if test="sellerCode != null  and sellerCode != '' ">
+			seller_code = #{sellerCode, jdbcType=VARCHAR},
+		</if>
+		<if test="csIndentPartId != null  ">
+			cs_indent_part_id = #{csIndentPartId, jdbcType=INTEGER},
+		</if>
+		<if test="oeNo != null  and oeNo != '' ">
+			oe_no = #{oeNo, jdbcType=VARCHAR},
+		</if>
+		<if test="partName != null  and partName != '' ">
+			part_name = #{partName, jdbcType=VARCHAR},
+		</if>
+		<if test="originPlace != null  and originPlace != '' ">
+			origin_place = #{originPlace, jdbcType=VARCHAR},
+		</if>
+		<if test="manufacturer != null  and manufacturer != '' ">
+			manufacturer = #{manufacturer, jdbcType=VARCHAR},
+		</if>
+		<if test="partDepot != null  and partDepot != '' ">
+			part_depot = #{partDepot, jdbcType=VARCHAR},
+		</if>
+		<if test="unitPrice != null  ">
+			unit_price = #{unitPrice, jdbcType=DECIMAL},
+		</if>
+		<if test="amount != null  ">
+			amount = #{amount, jdbcType=DECIMAL},
+		</if>
+		<if test="subtotal != null  ">
+			subtotal = #{subtotal, jdbcType=DECIMAL},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=BOOLEAN},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+	</trim> 
+	where id = #{id, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="com.xiaoka.cloud.stock.core.order.entity.CsOrderPartEntity">
+	update cs_order_part set is_valid=0 where id = #{id}
+</update>
+
+<!-- for car brand查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="com.xiaoka.cloud.stock.core.order.entity.CsOrderPartEntity">
+	select 
+    <include refid="Base_Column_List"/>
+    from cs_order_part 
+    <include refid="Where_Clause"/>
+</select>
+
+<!-- for car brand查询 -->
+<select id="statAmountByOrderNos" resultMap="BaseResultMap"  parameterType="list">
+	select order_no, sum(ifnull(amount, 0)) as amount from cs_order_part
+	where order_no IN
+	<foreach item="item" index="index" collection="list"
+			 open="(" separator="," close=")">
+		#{item}
+	</foreach>
+	and is_valid=1
+	group by order_no;
+</select>
+  	
+</mapper>   

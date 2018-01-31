@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoka.cloud.stock.core.epc.repo.entity.CarBrandIconEntity" >
+  <sql id="Base_Column_List" >
+    id, name, icon, is_valid, create_time, modify_time
+  </sql>
+
+  <select id="getBrandIconByName" parameterType="String" resultType="String">
+    select icon from car_brand_icon
+    where is_valid =1 and `name` = #{name} limit 1
+  </select>
+
+  <select id="getBrandIconByNames" parameterType="list" resultType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarBrandIconEntity">
+    select `name`, icon from car_brand_icon
+    where is_valid =1 and `name` in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+  <select id="getBrandIconByLikeName" parameterType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarBrandIconEntity" resultType="com.xiaoka.cloud.stock.core.epc.repo.entity.CarBrandIconEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from car_brand_icon
+    where is_valid =1 and `name` like concat('%',#{name},'%')
+  </select>
+</mapper>

@@ -1,0 +1,456 @@
+@import "./variable.less";
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: @color-text-normal;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: @color-primary;
+}
+
+body {
+    color: @color-text-normal;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F6F6F6;
+    font-family: Arial, Microsoft YaHei, Helvetica Neue, Hiragino Sans GB, SimSun, sans-serif;
+}
+
+input, button, textarea {
+    font-family: Arial, Microsoft YaHei, Helvetica Neue, Hiragino Sans GB, SimSun, sans-serif;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.uppercase,
+.uppercase input {
+    text-transform: uppercase;
+}
+
+.lowercase,
+.lowercase input {
+    text-transform: lowercase;
+}
+
+.affix {
+    position: fixed;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: block;
+    content: " ";
+    clear: both;
+}
+
+/*text algin*/
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.single-line {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt15 {
+    margin-top: 15px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.mr5 {
+    margin-right: 5px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.mr15 {
+    margin-right: 15px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.mr30 {
+    margin-right: 30px;
+}
+
+.mr40 {
+    margin-right: 40px;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.ml15 {
+    margin-left: 15px;
+}
+
+.ml20 {
+    margin-left: 20px;
+}
+
+.ml30 {
+    margin-left: 30px;
+}
+
+.ml40 {
+    margin-left: 40px;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.font16 {
+    font-size: 16px;
+}
+
+.font18 {
+    font-size: 18px;
+}
+
+.font20 {
+    font-size: 20px;
+}
+
+.inline-block{
+    display: inline-block !important;
+}
+
+.word-break {
+    word-break: break-all;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.v-wrapper{
+    display: flex;
+    min-height: 100%;
+    padding: 0 0 70px;
+}
+
+.v-main {
+    //position: absolute;
+    //top: 80px;
+    //right: 0;
+    //left: 240px;
+    // bottom: 0;
+    background: #fff;
+    overflow: auto;
+    flex: 1;
+    margin: 0 0 0 10px;
+}
+.v-sidebar {
+    // position: absolute;
+    // left: 0;
+    // top: 80px;
+    // bottom: 0;
+    width: 230px;
+    background: #fff;
+    overflow: auto;
+    padding: 8px 20px;
+}
+.v-table {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 40px;
+    &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        background: #FBFBFB;
+        left: 0;
+        top: 0;
+    }
+    td {
+        height: 60px;
+    }
+    th {
+        height: 50px;
+        font-weight: bold;
+    }
+    th.is-leaf {
+        border-bottom: 0;
+    }
+    .el-table {
+        border: 0;
+    }
+
+    .el-table::after, .el-table::before {
+        display: none;
+    }
+    .el-table-column--selection .cell {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.v-table-bordered.el-table {
+    font-size: 12px;
+    td {
+        height: 50px;
+    }
+    th {
+        height: 50px;
+        font-weight: bold;
+    }
+}
+
+.v-icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+
+ .v-hide-sidebar {
+    .v-sidebar {
+        display: none;
+    }
+    .v-main {
+        left: 40px;
+    }
+}
+
+.v-role {
+    display: inline-block;
+    min-width: 58px;
+    padding: 0 11px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    &--1 {
+        background-image: linear-gradient(90deg, #EFA844 9%, #FA6456 82%);
+    }
+    &--2 {
+        background-color: #4A90E2;
+    }
+    &--3 {
+        background-color: #26D1C1;
+    }
+}
+
+.circle-box {
+
+    &::after,&::before {
+        content: '';
+        position: absolute;
+        top: 130px;
+        width: 50px;
+        height: 50px;
+        border: 1px solid #f6f6f6;
+        border-radius: 50%;
+        background: #f6f6f6;
+    }
+
+    &::before {
+        left: -30px;
+    }
+
+    &::after {
+        right: -30px;
+    }
+    
+}
+
+.icon-huoche {
+        display: inline-block;
+        width: 24px;
+        height: 17px;
+        cursor: pointer;
+
+        &:hover {
+            color: #FA6456;
+        }
+    }
+
+.el-button--default.el-button--primary {
+    background-color: @color-primary;
+    border-color: @color-primary;
+}
+.el-button:hover{
+    color: @color-primary;
+    border-color: @color-primary;
+}
+
+
+.el-button--v-warn:hover{
+    color: #fff;
+}
+
+.el-button--default:focus, .el-button:hover {
+    border-color: @color-primary;
+    color: @color-primary;
+}
+
+.v-vin-sidebar__query-btn:hover, .v-part-sidebar__query-btn:hover{
+    color: #fff;
+}
+
+.el-button--v-primary:hover {
+    color: #fff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0; 
+}
+
+.primary-color {
+    color: #de5550;
+    cursor: pointer;
+}
+
+.color-bold {
+    color: #222;
+    font-weight: bold;
+}
+
+body{
+    .el-select .el-input .el-input__icon{
+        // top: 0;
+    }
+}
+
+
+
+@media screen and (max-width:1400px) {
+    .table-box {
+        margin-left: 50px!important;
+        margin-right: 50px!important;
+        //margin: 0 50px 30px!important;
+    }
+    .title-wrap {
+        margin: 0 60px!important;
+    }
+}

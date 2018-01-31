@@ -1,0 +1,112 @@
+@import '../../assets/less/variable.less';
+
+.component-brand-select {
+
+    .el-checkbox__input.is-checked .el-checkbox__inner {
+        background-color: @color-primary;
+        border-color: @color-primary;
+    }
+    
+    .all-frist-name {
+
+        ul {
+            
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: @color-text-normal;
+            background-color: #f6f6f6;
+            cursor: pointer;
+
+            &.selected {
+                background-color: @color-primary;
+                color: #fff;
+            }
+        }
+    }
+
+    .brand-content-box {
+        height: 520px;
+        overflow-y: scroll;
+    }
+
+    section {
+        margin-top: 30px;
+
+        .title {
+            padding-bottom: 15px;
+            color: @color-primary;
+            font-size: 18px;
+            border-bottom: 1px solid #D8D8D8;
+        }
+
+        li {
+            display: inline-block;
+            margin: 25px 30px 0 0;
+
+            .brand-img {
+                position: relative;
+                width: 80px;
+                height: 80px;
+                background: #FFFFFF;
+                border: 1px solid #D4D9E5;
+                box-shadow: 0 1px 6px 0 rgba(0,0,0,0.10);
+                border-radius: 2px;
+
+                img {
+                    width: 80px;
+                }
+
+                .check-box {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 18px;
+                    height: 18px;
+                }
+
+                .el-checkbox__inner {
+                    border-radius: 0;
+                }
+
+                
+
+            }
+
+            p {
+                text-align: center;
+                font-size: 12px;
+                color: #333;
+                padding: 14px 0;
+            }
+            
+        }
+    }
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+
+        .el-button--primary {
+            background-color: @color-primary;
+            border-color: @color-primary;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        .el-checkbox {
+            float: left;
+            margin-top: 10px;
+            color: @color-primary;
+        }
+    }
+}
